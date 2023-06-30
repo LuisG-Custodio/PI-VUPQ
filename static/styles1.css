@@ -43,3 +43,7 @@ a.active, a:hover{
     border:1px solid white;
     transition: .5s;
 }
+.carousel{
+    max-width: 80%;
+    margin: auto;
+}
