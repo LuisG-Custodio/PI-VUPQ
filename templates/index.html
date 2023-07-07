@@ -12,9 +12,9 @@
         <label class="logo" >V-Unity</label>
         <ul>
             <li><a class="active" href="#">Home</a></li>
-            <li><a href="http://localhost:5000\personas">Personas</a></li>
-            <li><a href="http://localhost:5000\autos">Autos</a></li>
-            <li><a href="http://localhost:5000\viajes">Viajes</a></li>
+            <li><a href=/personas>Personas</a></li>
+            <li><a href=/autos>Autos</a></li>
+            <li><a href=/viajes>Viajes</a></li>
         </ul>
     </nav>
     <div id="carouselExampleControls center" class="carousel slide" data-ride="carousel">
@@ -37,6 +37,15 @@
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
+      </div>
+      <div>
+        {% with mensajes= get_flashed_messages()  %}
+        {% if mensajes %}
+            {% for msj in mensajes %}
+                <h3>{{ msj }}</h3>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
       </div>
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

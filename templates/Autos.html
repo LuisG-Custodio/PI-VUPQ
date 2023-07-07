@@ -10,23 +10,23 @@
 <body> 
     <section class="container">
         <header>REGISTRO DE AUTOS</header>
-        <form action="#" class="form">
+        <form action="/guardarautos" class="form" method="POST">
             <div class="column">
                 <div class="input-box">
                     <label>Matricula</label>
-                    <input type="text" placeholder="Ingrese la Matricula del auto">
+                    <input type="text" name="txtMatricula" placeholder="Ingrese la Matricula del auto">
 
                 </div>
                 <div class="input-box">
                     <label>Marca</label>
-                    <input type="text" placeholder="Ingrese la marca del vehiculo">
+                    <input type="text" name="txtMarca" placeholder="Ingrese la marca del vehiculo">
 
                 </div>
             </div>
             <div class="column">
                 <div class="input-box">
                     <label>Poliza</label>
-                    <input type="text" placeholder="Ingrese la poliza del vehiculo">
+                    <input type="text" name="txtPoliza" placeholder="Ingrese la poliza del vehiculo">
 
                 </div>
 
@@ -34,7 +34,7 @@
             <div class="column">
                 <div class="input-box">
                     <label>Capacidad</label>
-                    <input type="number" placeholder="Capacidad en de personas del vehiculo">
+                    <input type="number" name="txtCapacidad" placeholder="Capacidad en de personas del vehiculo">
                 </div>
             </div>
             <div class="column">
@@ -42,10 +42,10 @@
                 <div class="input-box">
                     <label>Tipo</label>
                 </div>
-                <select class="input-box">
+                <select class="input-box" name="txtTipo">
                     <option value="opcion1" type="text">Nissan</option>
                     <option value="opcion2" type="text">Chevrolet</option>
-                    <option value="opcion3" type="text">Yetta</option>
+                    <option value="opcion3" type="text">Jetta</option>
 
                 </select>
             </div>
