@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <button id="btnAgregarAuto">Agregar Auto</button>
+
+  <div id="autoPopup" class="popup">
+    <div class="popup-content">
+      <h2>Auto</h2>
+      <form id="autoForm">
+        <label for="matricula">Matrícula:</label>
+        <input type="text" id="matricula" required>
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" required>
+        <label for="color">Color:</label>
+        <input type="text" id="color" required>
+        <label for="poliza">Póliza de Seguro:</label>
+        <input type="text" id="poliza" required>
+        <label for="capacidad">Capacidad del Auto:</label>
+        <input type="number" id="capacidad" required>
+        <label for="tipoAuto">Tipo de Auto:</label>
+        <select id="tipoAuto" onchange="checkOtroOption(this)">
+          <option value="camioneta">Camioneta</option>
+          <option value="carro">Carro</option>
+          <option value="otro">Otro</option>
+        </select>
+        <input type="text" id="otroTipoAuto" style="display: none;" placeholder="Ingrese el tipo de auto">
+        <input type="submit" value="Guardar">
+      </form>
+    </div>
+  </div>
+
+  <script src="scriptsA.js"></script>
+</body>
+</html>

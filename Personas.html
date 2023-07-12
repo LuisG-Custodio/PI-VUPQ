@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <button id="btnAgregarPersona">Agregar Persona</button>
+
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <h2>Agregar Persona</h2>
+      <form id="personaForm">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" required>
+        <label for="apellidoPaterno">Apellido Paterno:</label>
+        <input type="text" id="apellidoPaterno" required>
+        <label for="apellidoMaterno">Apellido Materno:</label>
+        <input type="text" id="apellidoMaterno" required>
+        <label for="matricula">Matrícula (9 dígitos):</label>
+        <input type="text" id="matricula" pattern="\d{9}" required>
+        <label for="telefono">Teléfono:</label>
+        <input type="text" id="telefono" required>
+        <label for="rol">Rol:</label>
+        <select id="rol">
+          <option value="pasajero">Pasajero</option>
+          <option value="conductor">Conductor</option>
+        </select>
+        <input type="submit" value="Guardar">
+      </form>
+    </div>
+  </div>
+
+  <script src="scripts.js"></script>
+</body>
+</html>
