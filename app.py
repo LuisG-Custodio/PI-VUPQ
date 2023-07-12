@@ -8,7 +8,7 @@ app=Flask(__name__)
 app.config['MYSQL_HOST']='localhost'
 app.config['MYSQL_USER']='root'
 app.config['MYSQL_PASSWORD']=''
-app.config['MYSQL_DB']='Vunity'
+app.config['MYSQL_DB']='vunity'
 app.secret_key='mysecretkey'
 mysql=MySQL(app)
 
@@ -39,11 +39,12 @@ def guardarautos():
     if request.method == 'POST':
         Vmatricula=request.form['txtMatricula']
         Vmarca=request.form['txtMarca']
+        Vcolor=request.form['txtColor']
         Vpoliza=request.form['txtPoliza']
         Vcapacidad=request.form['txtCapacidad']
         Vtipo=request.form['txtTipo']
         CS= mysql.connection.cursor()
-        CS.execute('insert into tb_autos(matricula,marca,poliza,capacidad,tipo) values(%s,%s,%s,%s,%s)',(Vmatricula,Vmarca,Vpoliza,Vcapacidad,Vtipo))
+        CS.execute('insert into tb_autos(matricula,marca,color,poliza,capacidad,tipo,fecha_ingreso,estatus) values(%s,%s,%s,%s,%s,%s,now(),1)',(Vmatricula,Vmarca,Vcolor,Vpoliza,Vcapacidad,Vtipo))
         mysql.connection.commit()           
     flash('Los datos del auto fueron agregados correctamente')
     return redirect(url_for('index'))
@@ -55,16 +56,20 @@ def personas():
 @app.route('/guardarpersonas', methods=['POST'])
 def guardarpersonas():
     if request.method == 'POST':
+        Vuser=request.form['txtUser']
+        Vpassword=request.form['txtPassword']
         Vnombre=request.form['txtNombre']
         Vap=request.form['txtAP']
         Vam=request.form['txtAM']
+        Vmatricula=request.form['txtMatricula']
         Vtelefono=request.form['txtTelefono']
-        Vfecha=request.form['txtFecha']
+        Vrol=request.form['txtRol']
         CS= mysql.connection.cursor()
-        CS.execute('insert into tb_personas(nombre,ap,am,telefono,fecha_nac) values(%s,%s,%s,%s,%s)',(Vnombre,Vap,Vam,Vtelefono,Vfecha))
+        CS.execute('insert into tb_personas(nombre,ap,am,matricula,telefono,rol) values(%s,%s,%s,%s,%s,%s)',(Vnombre,Vap,Vam,Vmatricula,Vtelefono,Vrol))
+        CS.execute('insert into users(user,password) values(%s,%s)',(Vuser,Vpassword))
         mysql.connection.commit()           
-    flash('Los datos de la persona fueron agregados correctamente')
-    return redirect(url_for('index'))
+    flash('El registro se realizó con éxito')
+    return redirect(url_for('inicio'))
 
 @app.route('/viajes')
 def viajes():
@@ -78,7 +83,7 @@ def crearviaje():
         CS= mysql.connection.cursor()
         CS.execute('insert into tb_viajes(ruta,parada) values(%s,%s)',(Vruta,Vparada))
         mysql.connection.commit()           
-    flash('El viaje fue creado correctamente')
+    flash('El viaje fue reservado')
     return redirect(url_for('index'))
     
 
