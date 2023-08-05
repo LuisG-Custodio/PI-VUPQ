@@ -1,5 +1,5 @@
-Create database V_UPQ1
-use V_UPQ1
+Create database V_UPQ
+use V_UPQ
 
 create table Roles(
 id int identity(1,1),
@@ -310,6 +310,7 @@ id_requisitos int default(1),
 foreign key(id_requisitos) references Requisitos(id),
 id_incidente int default(1),
 foreign key(id_incidente) references Incidentes(id),
+estado bit default 0,
 primary key(id)
 )
 create table Viajes(
