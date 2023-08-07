@@ -64,6 +64,16 @@ def registro():
         if (Vpassword==Vcpassword):
             Vpassword=str(Vpassword)
             CC.execute("insert into Personas(matricula,nombre,ap,am,telefono,id_genero,contraseña) values ('"+Vmatricula+"','"+Vnombre+"','"+V_ap+"','"+V_am+"',"+Vtelefono+","+Vgenero+",'"+Vpassword+"')")
+            CC.execute("select id from Personas where matricula="+Vmatricula)
+            idpersona=CC.fetchone()
+            idpersona=str(idpersona[0])
+            Vmatricula=str(Vmatricula)
+            CC.execute("insert into Autos(matricula) values ('"+Vmatricula+"')")
+            CC.execute("select id from Autos where matricula='"+Vmatricula+"'")
+            idautos=CC.fetchone()
+            idautos=str(idautos[0])
+            CC.execute("insert into Pasajeros(id_persona) values ("+idpersona+")")
+            CC.execute("insert into Conductores(id_auto,id_persona) values ("+idautos+","+idpersona+")")
             CC.commit()
             flash('Registro realizado correctamente')
             return redirect("/")
@@ -90,9 +100,7 @@ def homepage(personaid):
         auto=CC.fetchone()
         CC.execute('select Personas.nombre,Personas.matricula,Personas.ap,Personas.am from Viajes inner join Pasajeros on Pasajeros.id=Viajes.id_pasajero inner join Personas on Personas.id=Pasajeros.id_persona where Viajes.id_viaje_global='+pvc)
         pasajeros=CC.fetchall()
-        print(pasajeros[0])
-        print(pasajeros[1])
-        
+
         return render_template('pagina_principal.html',cond=conductor,pas=pasajeros,auto=auto)
     else:
         CC.execute('select Viajes_globales.id,Viajes_globales.id_ruta from Viajes_globales inner join Conductores on Conductores.id=Viajes_globales.id_conductor inner join Autos on Autos.id=Conductores.id_auto where Viajes_globales.estado=0 and Autos.lugares_disponibles!=0')
@@ -101,10 +109,12 @@ def homepage(personaid):
         paradas=CC.fetchall()
         
         return render_template('pagina_principal.html',pvg=pvg,viajes_disponibles=viajes_disponibles,paradas=paradas,personaid=personaid)
-    
+
+#reservar viaje por parte del pasajero   
 @app.route('/reservarviaje/<personaid>', methods=['POST'])
 def reservarviaje(personaid):
     if request.method == 'POST':
+        a=personaid
         rutaid=request.form['txtRuta']
         paradaid=request.form['txtParada']
         CC=connection.cursor()
@@ -115,8 +125,38 @@ def reservarviaje(personaid):
         paradaid=str(paradaid)
         CC.execute("exec sp_reserva_viaje "+rutaid+","+pasajeroid+","+paradaid)
         flash('Se reservó tu viaje con éxito')
-        return redirect('homepage/pasajero/'+personaid)
-        
+        return redirect(url_for('homepage',personaid=a))
+
+#perfil del pasajero
+@app.route('/homepage/pasajero/perfil/<personaid>')
+def perfilpasajero(personaid):
+    CC=connection.cursor()
+    CC.execute('select nombre,matricula,ap,am,telefono,id_genero from Personas where id='+personaid)
+    pasajero=CC.fetchone()
+    return render_template('Perfil_pasajero.html',pasajero=pasajero,personaid=personaid)
+
+#actualizar pasajero
+@app.route('/actualizarpersona/<personaid>', methods=['POST'])
+def actualizarpersona(personaid):
+    if request.method == 'POST':
+        a=personaid
+        Vmatricula=request.form['txtMatricula']
+        Vnombre=request.form['txtNombre']
+        V_ap=request.form['txtAP']
+        V_am=request.form['txtAM']
+        Vtelefono=request.form['txtTelefono']
+        Vgenero=request.form['txtGenero']
+        CC=connection.cursor()
+        CC.execute("update Personas set nombre='"+Vnombre+"'where id="+personaid)
+        CC.execute("update Personas set matricula="+Vmatricula+"where id="+personaid)
+        CC.execute("update Personas set ap='"+V_ap+"'where id="+personaid)
+        CC.execute("update Personas set am='"+V_am+"'where id="+personaid)
+        CC.execute("update Personas set telefono='"+Vtelefono+"'where id="+personaid)
+        CC.execute("update Personas set id_genero="+Vgenero+"where id="+personaid)
+        CC.commit()
+        flash('Se actualizaron tus datos personales con éxito')
+        return redirect(url_for('homepage',personaid=a))  
+          
 #menu principal de conductor
 @app.route('/homepage/conductor/<personaid>')
 def homepagec(personaid):
@@ -124,31 +164,136 @@ def homepagec(personaid):
     CC.execute('select id from Conductores where id_persona= '+personaid)
     conductorid=CC.fetchone()
     conductorid=str(conductorid[0])
+    print(conductorid)
     CC.execute('select id from Viajes_globales where estado=0 and id_conductor='+conductorid)
     pvg=CC.fetchone()
     pvg=str(pvg)
+    print (pvg)
     if(pvg!="None"):
-        CC.execute('select Viajes.id, Viajes_globales.id from Viajes inner join Viajes_globales on Viajes_globales.id=Viajes.id_viaje_global where Viajes_globales.estado=0 and Viajes.id_pasajero='+pasajeroid)
+        CC.execute('select id from Viajes_globales where estado=0 and id_conductor='+conductorid)
         pvg=CC.fetchone()
-        pvp=str(pvg[0])
-        pvc=str(pvg[1])
-        CC.execute('select Personas.nombre,Personas.matricula,Personas.ap,Personas.am, Conductores.id from Viajes_globales inner join Conductores on Conductores.id=Viajes_globales.id_conductor inner join Personas on Personas.id=Conductores.id_persona where Viajes_globales.id='+pvc)
+        pvg=str(pvg[0])
+        CC.execute('select Personas.nombre,Personas.matricula,Personas.ap,Personas.am, Conductores.id from Conductores inner join Personas on Personas.id=Conductores.id_persona where Conductores.id='+conductorid)
         conductor=CC.fetchone()
-        cid=str(conductor[4])
-        CC.execute('select Autos.matricula, Autos.modelo,Autos.marca,Autos.color,Autos.poliza from Autos inner join Conductores on Conductores.id_auto=Autos.id where Conductores.id='+cid)
+        CC.execute('select Autos.matricula, Autos.modelo,Autos.marca,Autos.color,Autos.poliza from Autos inner join Conductores on Conductores.id_auto=Autos.id where Conductores.id='+conductorid)
         auto=CC.fetchone()
-        CC.execute('select Personas.nombre,Personas.matricula,Personas.ap,Personas.am from Viajes inner join Pasajeros on Pasajeros.id=Viajes.id_pasajero inner join Personas on Personas.id=Pasajeros.id_persona where Viajes.id_viaje_global='+pvc)
+        CC.execute('select Personas.nombre,Personas.matricula,Personas.ap,Personas.am from Viajes inner join Pasajeros on Pasajeros.id=Viajes.id_pasajero inner join Personas on Personas.id=Pasajeros.id_persona where Viajes.id_viaje_global='+pvg)
         pasajeros=CC.fetchall()
-        print(pasajeros[0])
-        print(pasajeros[1])
-
         return render_template('pagina_principal_conductor.html',cond=conductor,pas=pasajeros,auto=auto)
     else:
         CC.execute('select id, nombre from Rutas')
-        rutas=CC.fetchall()
-        
+        rutas=CC.fetchall() 
         return render_template('pagina_principal_conductor.html',pvg=pvg,rutas=rutas,personaid=personaid)
 
+#crear viaje por parte del condcuctor
+@app.route('/crearviaje/<personaid>', methods=['POST'])
+def crearviaje(personaid):
+    if request.method == 'POST':
+        a=personaid
+        print("ndvjansindoivnsoian")
+        rutaid=request.form['txtRuta']
+        CC=connection.cursor()
+        CC.execute('select id from Conductores where id_persona= '+personaid)
+        conductorid=CC.fetchone()
+        rutaid=str(rutaid)
+        conductorid=str(conductorid[0])
+        CC.execute("exec sp_crear_viaje "+conductorid+","+rutaid)
+        flash('Se reservó tu viaje con éxito')
+        return redirect(url_for('homepagec',personaid=a))
+    
+#perfil del conductor
+@app.route('/homepage/conductor/perfil/<personaid>')
+def perfilconductor(personaid):
+    CC=connection.cursor()
+    CC.execute('select nombre,matricula,ap,am,telefono,id_genero from Personas where id='+personaid)
+    conductor=CC.fetchone()
+    CC.execute('select Autos.id, matricula, modelo, marca, color, poliza, id_tipo_auto from Autos inner join Conductores on Conductores.id_auto=Autos.id where Conductores.id_persona='+personaid)
+    automovil=CC.fetchone()
+    return render_template('Perfil_conductor.html',conductor=conductor,automovil=automovil,personaid=personaid)
+
+
+#actualizar conductor
+@app.route('/actualizarpersonaC/<personaid>', methods=['POST'])
+def actualizarpersonac(personaid):
+    if request.method == 'POST':
+        a=personaid
+        Vmatricula=request.form['txtMatricula']
+        Vnombre=request.form['txtNombre']
+        V_ap=request.form['txtAP']
+        V_am=request.form['txtAM']
+        Vtelefono=request.form['txtTelefono']
+        Vgenero=request.form['txtGenero']
+        CC=connection.cursor()
+        CC.execute("update Personas set nombre='"+Vnombre+"'where id="+personaid)
+        CC.execute("update Personas set matricula="+Vmatricula+"where id="+personaid)
+        CC.execute("update Personas set ap='"+V_ap+"'where id="+personaid)
+        CC.execute("update Personas set am='"+V_am+"'where id="+personaid)
+        CC.execute("update Personas set telefono='"+Vtelefono+"'where id="+personaid)
+        CC.execute("update Personas set id_genero="+Vgenero+"where id="+personaid)
+        CC.commit()
+        flash('Se actualizaron tus datos personales con éxito')
+        return redirect(url_for('homepagec',personaid=a))    
+
+#actualizar auto
+@app.route('/actualizarauto/<personaid>', methods=['POST'])
+def actualizarauto(personaid):
+    if request.method == 'POST':
+        a=personaid
+        VPlacas=request.form['txtPlacas']
+        VModelo=request.form['txtModelo']
+        VMarca=request.form['txtMarca']
+        VColor=request.form['txtColor']
+        VPoliza=request.form['txtPoliza']
+        VTipo=request.form['txtTipo']
+        CC=connection.cursor()
+        CC.execute("select id_auto from Conductores where id_persona="+personaid)
+        auto=CC.fetchone()
+        auto=str(auto[0])
+        print(auto)
+        CC.execute("update Autos set matricula='"+VPlacas+"'where id="+auto)
+        CC.execute("update Autos set modelo='"+VModelo+"'where id="+auto)
+        CC.execute("update Autos set marca='"+VMarca+"'where id="+auto)
+        CC.execute("update Autos set color='"+VColor+"'where id="+auto)
+        CC.execute("update Autos set poliza='"+VPoliza+"'where id="+auto)
+        CC.execute("update Autos set id_tipo_auto="+VTipo+" where id="+auto)
+        CC.commit()
+        CC.execute('exec sp_restablecer_lugares '+auto)
+        flash('Se actualizaron los datos de tu vehiculo con éxito')
+        return redirect(url_for('homepagec',personaid=a)) 
+
+@app.route('/actualizarpassword/<personaid>', methods=['POST'])
+def actualizarpassword(personaid):
+    if request.method == 'POST':
+        a=personaid
+        Vpassword=request.form['txtPassword']
+        Vcpassword=request.form['txtConfirmPassword']
+        if (Vpassword==Vcpassword):
+            CC=connection.cursor()
+            Vpassword=str(Vpassword)
+            CC.execute("update Personas set contraseña='"+Vpassword+"'")
+            CC.commit()
+            flash('Se actualizaron tu contraseña con éxito')
+            return redirect(url_for('homepage',personaid=a))  
+        else:
+            flash('No se actualizó tu contraseña')
+            return redirect(url_for('homepage',personaid=a))  
+        
+@app.route('/actualizarpasswordc/<personaid>', methods=['POST'])
+def actualizarpasswordc(personaid):
+    if request.method == 'POST':
+        a=personaid
+        Vpassword=request.form['txtPassword']
+        Vcpassword=request.form['txtConfirmPassword']
+        if (Vpassword==Vcpassword):
+            CC=connection.cursor()
+            Vpassword=str(Vpassword)
+            CC.execute("update Personas set contraseña='"+Vpassword+"'")
+            CC.commit()
+            flash('Se actualizaron tu contraseña con éxito')
+            return redirect(url_for('homepagec',personaid=a))  
+        else:
+            flash('No se actualizó tu contraseña')
+            return redirect(url_for('homepagec',personaid=a))  
 
 #ejecucion del servidor y asignacion del puerto a trabajar
 if __name__ == '__main__':

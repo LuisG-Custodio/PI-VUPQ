@@ -24,39 +24,39 @@
                 <div class=" card card-body ">
                     <!--Forma para mostrar datos del usuario-->
                     <h2 class=" text-center">Datos del conductor</h2>
-                    <form action="#" method="POST">
+                    <form action="/actualizarpersonac/{{personaid}}" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputMatricula" class="form-label">Matricula</label>
-                                <input type="number" class="form-control" id="inputMatricula" name="inputMatricula">
+                                <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" value="{{conductor.1}}"  required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputNombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="inputNombre" name="inputNombre">
+                                <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{conductor.0}}"  required>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputAP" class="form-label">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="inputAP" name="inputAP">
+                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{conductor.2}}"  required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputAM" class="form-label">Apellido Materno</label>
-                                <input type="text" class="form-control" id="inputAM" name="inputAM">
+                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{conductor.3}}"  required>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputAP" class="form-label">Telefono</label>
-                                <input type="text" class="form-control" id="inputTelefono" name="inputTelefono">
+                                <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{conductor.4}}"  required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputGenero" class="form-label">Genero</label>
-                                <select class="form-select" aria-label="Default select example" id="inputGenero" name="inputGenero">
-                                    <option selected>Open this select menu</option>
-                                    <option value="1">Mujer</option>
-                                    <option value="2">Hombre</option>
-                                  </select>
+                                            <select class="form-select" aria-label="Default select example" id="inputGenero" name="txtGenero" required>
+                                                <option selected value="">Open this select menu</option>
+                                                <option value="1">Mujer</option>
+                                                <option value="2">Hombre</option>
+                                              </select>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3 mt-2">
@@ -81,21 +81,21 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="#" method="POST">
+                                <form action="/actualizarpasswordc/{{personaid}}" method="POST">
                                     <div class="row g-3">
                                         <div class="col-md-12">
                                             <label for="inputPassword" class="form-label">Nueva Contraseña</label>
-                                            <input type="password" class="form-control" id="inputPassword">
+                                            <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
                                         </div>
                                     </div>
                                     <div class="row g-3">
                                         <div class="col-md-12">
                                             <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
-                                            <input type="password" class="form-control" id="inputConfirmPassword">
+                                            <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
                                         </div>
                                     </div>
                                     
-                                </form>
+                                
                             </div>
                             <div class="modal-footer">
                                 <button type="Guardar" class="btn btn-primary">Guardar</button>
@@ -104,6 +104,7 @@
                           </div>
                         </div>
                       </div>
+                    </form>
                 </div><!--Cierre Card-->
             </div><!--Cierre col-->
 
@@ -112,36 +113,36 @@
                 <div class=" card card-body ">
                     <!--Forma para mostrar datos del uvehiculp-->
                     <h2 class=" text-center">Datos del vehiculo</h2>
-                    <form action="#" method="POST">
+                    <form action="/actualizarauto/{{personaid}}" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputPlacas" class="form-label">Numero de placas</label>
-                                <input type="text" class="form-control" id="inputPlacas" name="inputPlacas">
+                                <input type="text" class="form-control" id="inputPlacas" name="txtPlacas" value="{{automovil.1}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputModelo" class="form-label">Modelo</label>
-                                <input type="text" class="form-control" id="inputModelo" name="inputModelo">
+                                <input type="text" class="form-control" id="inputModelo" name="txtModelo" value="{{automovil.2}}" required>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputMarca" class="form-label">Marca</label>
-                                <input type="text" class="form-control" id="inputMarca" name="inputMarca">
+                                <input type="text" class="form-control" id="inputMarca" name="txtMarca" value="{{automovil.3}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputColor" class="form-label">Color</label>
-                                <input type="text" class="form-control" id="inputColor" name="inputColor">
+                                <input type="text" class="form-control" id="inputColor" name="txtColor" value="{{automovil.4}}" required>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputPoliza" class="form-label">Poliza</label>
-                                <input type="text" class="form-control" id="inputPoliza" name="inputPoliza">
+                                <input type="text" class="form-control" id="inputPoliza" name="txtPoliza" value="{{automovil.5}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputTipo" class="form-label">Tipo de auto</label>
-                                <select class="form-select" aria-label="Default select example" id="inputTipo" name="inputTipo">
-                                    <option selected>Open this select menu</option>
+                                <select class="form-select" aria-label="Default select example" id="inputTipo" name="txtTipo" required>
+                                    <option selected value="">Open this select menu</option>
                                     <option value="1">Hatchback</option>
                                     <option value="2">Sedan</option>
                                     <option value="3">Crossover</option>

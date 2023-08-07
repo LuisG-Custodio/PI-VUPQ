@@ -22,36 +22,36 @@
             <div class="col ">
                 <div class=" card card-body ">
                     <!--Forma para mostrar datos del usuario-->
-                    <form action="#" method="POST">
+                    <form action="/actualizarpersona/{{personaid}}" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputMatricula" class="form-label">Matricula</label>
-                                <input type="number" class="form-control" id="inputMatricula" name="inputMatricula">
+                                <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" value="{{pasajero.1}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputNombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="inputNombre" name="inputNombre">
+                                <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{pasajero.0}}" required>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputAP" class="form-label">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="inputAP" name="inputAP">
+                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{pasajero.2}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputAM" class="form-label">Apellido Materno</label>
-                                <input type="text" class="form-control" id="inputAM" name="inputAM">
+                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{pasajero.3}}" required>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputAP" class="form-label">Telefono</label>
-                                <input type="text" class="form-control" id="inputTelefono" name="inputTelefono">
+                                <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{pasajero.4}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputGenero" class="form-label">Genero</label>
-                                <select class="form-select" aria-label="Default select example" id="inputGenero" name="inputGenero">
-                                    <option selected>Open this select menu</option>
+                                <select class="form-select" aria-label="Default select example" id="inputGenero" name="txtGenero" required>
+                                    <option selected value="">Open this select menu</option>
                                     <option value="1">Mujer</option>
                                     <option value="2">Hombre</option>
                                   </select>
@@ -79,29 +79,30 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="#" method="POST">
+                                <form action="/actualizarpassword/{{personaid}}" method="POST">
                                     <div class="row g-3">
                                         <div class="col-md-12">
                                             <label for="inputPassword" class="form-label">Nueva Contraseña</label>
-                                            <input type="password" class="form-control" id="inputPassword">
+                                            <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
                                         </div>
                                     </div>
                                     <div class="row g-3">
                                         <div class="col-md-12">
                                             <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
-                                            <input type="password" class="form-control" id="inputConfirmPassword">
+                                            <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
                                         </div>
                                     </div>
                                     
-                                </form>
+                                
                             </div>
                             <div class="modal-footer">
-                                <button type="Guardar" class="btn btn-primary">Guardar</button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             </div>
                           </div>
                         </div>
                       </div>
+                    </form>
                 </div><!--Cierre Card-->
             </div><!--Cierre col-->
         </div><!--Cierre row-->
