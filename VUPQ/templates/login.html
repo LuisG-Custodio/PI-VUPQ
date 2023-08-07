@@ -11,6 +11,18 @@
 </head>
 
 <body>
+    {% with mensajes= get_flashed_messages()  %}
+    {% if mensajes %}
+        {% for msj in mensajes %}
+            <script>
+                Swal.fire(
+                '',
+                '{{ msj }}',
+                'info')
+            </script>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
     <div class="mt-5 mb-5">
         <h1 class="display-1 text-center">V-UPQ</h1>
     </div>
@@ -19,18 +31,29 @@
             <div class="col col-md-5">
                 <div class=" card card-body align-items-center">
                     <!--Forma para mostrar datos del usuario-->
-                    <form action="#" method="POST">
+                    <form action="/login" method="POST">
                         <div class="row g-3">
                             <div class="col-md-12">
                                 <label for="inputMatricula" class="form-label">Usuario</label>
-                                <input type="text" class="form-control" id="inputMatricula" name="inputMatricula">
+                                <input type="text" class="form-control" id="inputMatricula" name="txtMatricula" required>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3 ">
                             <div class="col-md-12">
                                 <label for="inputPassword" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="inputPassword" name="inputPassword">
+                                <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
                             </div><!--Cierre col-->
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label for="inputTipo" class="form-label">Ingresar como: </label>
+                                    <select class="form-select" aria-label="Default select example" id="inputTipo" name="txtTipo" required>
+                                        <option selected value="">Selecciona uno</option>
+                                        <option value="1">Conductor</option>
+                                        <option value="2">Pasajero</option>
+                                      </select>
+                                </div><!--Cierre col-->
+                            </div><!--Cierre row-->
+                            <div class="row g-3">
                         </div><!--Cierre row-->
                         <div class="row g-3 mt-2">
                             <div class="col-md-12">
@@ -52,35 +75,35 @@
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="#" method="POST">
+                                <form action="/registro" method="POST">
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="inputMatricula" class="form-label">Matricula</label>
-                                            <input type="number" class="form-control" id="inputMatricula" name="inputMatricula">
+                                            <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" required>
                                         </div><!--Cierre col-->
                                         <div class="col-md-6">
                                             <label for="inputNombre" class="form-label">Nombre</label>
-                                            <input type="text" class="form-control" id="inputNombre" name="inputNombre">
+                                            <input type="text" class="form-control" id="inputNombre" name="txtNombre" required>
                                         </div><!--Cierre col-->
                                     </div><!--Cierre row-->
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="inputAP" class="form-label">Apellido Paterno</label>
-                                            <input type="text" class="form-control" id="inputAP" name="inputAP">
+                                            <input type="text" class="form-control" id="inputAP" name="txtAP" required>
                                         </div><!--Cierre col-->
                                         <div class="col-md-6">
                                             <label for="inputAM" class="form-label">Apellido Materno</label>
-                                            <input type="text" class="form-control" id="inputAM" name="inputAM">
+                                            <input type="text" class="form-control" id="inputAM" name="txtAM" required>
                                         </div><!--Cierre col-->
                                     </div><!--Cierre row-->
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="inputAP" class="form-label">Telefono</label>
-                                            <input type="text" class="form-control" id="inputTelefono" name="inputTelefono">
+                                            <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" required>
                                         </div><!--Cierre col-->
                                         <div class="col-md-6">
                                             <label for="inputGenero" class="form-label">Genero</label>
-                                            <select class="form-select" aria-label="Default select example" id="inputGenero" name="inputGenero">
+                                            <select class="form-select" aria-label="Default select example" id="inputGenero" name="txtGenero" required>
                                                 <option selected>Open this select menu</option>
                                                 <option value="1">Mujer</option>
                                                 <option value="2">Hombre</option>
@@ -90,19 +113,20 @@
                                     <div class="row g-3">
                                         <div class="col-md-6">
                                             <label for="inputPassword" class="form-label">Nueva Contraseña</label>
-                                            <input type="password" class="form-control" id="inputPassword">
+                                            <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
                                         </div><!--Cierre col-->
                                         <div class="col-md-6">
                                             <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
-                                            <input type="password" class="form-control" id="inputConfirmPassword">
+                                            <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
                                         </div><!--Cierre col-->
                                     </div><!--Cierre row-->
-                                </form>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="Guardar" class="btn btn-primary">Guardar</button>
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                             </div>
+                                </form>
                           </div>
                         </div>
                       </div>

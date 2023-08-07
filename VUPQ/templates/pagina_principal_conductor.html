@@ -13,25 +13,14 @@
             
             <div class="modal-body">
                 {% if 'None' in pvg%}
-                <form method="POST" action="/reservarviaje/{{personaid}}">
+                <form method="POST" action="/crearviaje/{{personaid}}">
                     <div class="row g-3">
                         <div class="col-md-12">
                             <label for="inputRuta" class="form-label">Nombre de la Ruta:</label>
                             <select class="form-select" aria-label="Default select example" id="inputTipo" name="txtRuta" required>
                                 <option selected value="">Selecciona uno</option>
-                                {%for ruta in viajes_disponibles %}
-                                <option value="{{ruta.0}}">{{ruta.1}}</option>
-                                {%endfor%}
-                              </select>
-                        </div><!--Cierre col-->
-                    </div><!--Cierre row-->
-                    <div class="row g-3 ">
-                        <div class="col-md-12">
-                            <label for="inputParada" class="form-label">Nombre de la Parada:</label>
-                            <select class="form-select" aria-label="Default select example" id="inputTipo" name="txtParada" required>
-                                <option selected value="">Selecciona uno</option>
-                                {%for para in paradas %}
-                                <option value="{{para.0}}">{{para.1}}</option>
+                                {%for rut in rutas %}
+                                <option value="{{rut.0}}">{{rut.1}}</option>
                                 {%endfor%}
                               </select>
                         </div><!--Cierre col-->
@@ -59,7 +48,7 @@
                       </div>
                 
                 {% else %}
-                <p>Ya existe un viaje en curso</p>
+                <p>Ya existe un viaje registrado</p>
                 {%endif%}
             </div>
             <div class="modal-footer">
@@ -95,7 +84,7 @@
         <div class="row justify-content-md-center">
             <div class="col ">
                 <div class=" card card-body ">
-                    <p>Aun no hay viajes en curso</p>
+                    <p>Aun no hay viaje registrado</p>
                 </div><!--Cierre Card-->
             </div><!--Cierre col-->
         </div><!--Cierre row-->
