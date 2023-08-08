@@ -1,6 +1,8 @@
 {% extends 'master_template.html' %}
 {% block viaje %}
+    {% if 'None' in pvg%}   
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viaje_modal">Nuevo Viaje</button>
+    {%endif%}
     <!--Modal de viaje-->
 
     <div class="modal fade" id="viaje_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -18,9 +20,9 @@
                         <div class="col-md-12">
                             <label for="inputRuta" class="form-label">Nombre de la Ruta:</label>
                             <select class="form-select" aria-label="Default select example" id="inputTipo" name="txtRuta" required>
-                                <option selected value="">Selecciona uno</option>
+                                <option selected value="">Rutas disponibles</option>
                                 {%for ruta in viajes_disponibles %}
-                                <option value="{{ruta.0}}">{{ruta.1}}</option>
+                                <option value="{{ruta.0}}">Ruta: {{ruta.1}} Conductor: {{ruta.2}}</option>
                                 {%endfor%}
                               </select>
                         </div><!--Cierre col-->
@@ -31,7 +33,7 @@
                             <select class="form-select" aria-label="Default select example" id="inputTipo" name="txtParada" required>
                                 <option selected value="">Selecciona uno</option>
                                 {%for para in paradas %}
-                                <option value="{{para.0}}">{{para.1}}</option>
+                                <option value="{{para.0}}">{{para.1}} </option>
                                 {%endfor%}
                               </select>
                         </div><!--Cierre col-->

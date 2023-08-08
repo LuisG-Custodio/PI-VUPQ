@@ -1,6 +1,13 @@
-{% extends 'master_template.html' %}
+{% extends 'master_template_conductor.html' %}
 {% block viaje %}
+    
+    {% if 'None' in pvg%}
     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#viaje_modal">Nuevo Viaje</button>
+    {% else %}
+    <form method="POST" action="/finalizarviaje/{{personaid}}">
+        <button type="submit" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#viaje_modal">Finalizar Viaje</button>
+    </form>
+    {%endif%}
     <!--Modal de viaje-->
 
     <div class="modal fade" id="viaje_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

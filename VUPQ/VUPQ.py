@@ -103,7 +103,7 @@ def homepage(personaid):
 
         return render_template('pagina_principal.html',cond=conductor,pas=pasajeros,auto=auto)
     else:
-        CC.execute('select Viajes_globales.id,Viajes_globales.id_ruta from Viajes_globales inner join Conductores on Conductores.id=Viajes_globales.id_conductor inner join Autos on Autos.id=Conductores.id_auto where Viajes_globales.estado=0 and Autos.lugares_disponibles!=0')
+        CC.execute("select Viajes_globales.id,Viajes_globales.id_ruta,Personas.nombre+' '+Personas.ap+' '+personas.am from Viajes_globales inner join Conductores on Conductores.id=Viajes_globales.id_conductor inner join Autos on Autos.id=Conductores.id_auto inner join Personas on Personas.id=Conductores.id_persona where Viajes_globales.estado=0 and Autos.lugares_disponibles!=0")
         viajes_disponibles=CC.fetchall()
         CC.execute('select id,nombre from Paradas')
         paradas=CC.fetchall()
@@ -179,7 +179,7 @@ def homepagec(personaid):
         auto=CC.fetchone()
         CC.execute('select Personas.nombre,Personas.matricula,Personas.ap,Personas.am from Viajes inner join Pasajeros on Pasajeros.id=Viajes.id_pasajero inner join Personas on Personas.id=Pasajeros.id_persona where Viajes.id_viaje_global='+pvg)
         pasajeros=CC.fetchall()
-        return render_template('pagina_principal_conductor.html',cond=conductor,pas=pasajeros,auto=auto)
+        return render_template('pagina_principal_conductor.html',cond=conductor,pas=pasajeros,auto=auto,personaid=personaid)
     else:
         CC.execute('select id, nombre from Rutas')
         rutas=CC.fetchall() 
@@ -294,6 +294,37 @@ def actualizarpasswordc(personaid):
         else:
             flash('No se actualizó tu contraseña')
             return redirect(url_for('homepagec',personaid=a))  
+        
+@app.route('/finalizarviaje/<personaid>', methods=['POST'])
+def finalizarviaje(personaid):
+    if request.method == 'POST':
+        a=personaid
+        CC=connection.cursor()
+        CC.execute('select id from Conductores where id_persona='+personaid)
+        conductor=CC.fetchone()
+        conductor=str(conductor[0])
+        CC.execute('select id from Viajes_globales where id_conductor='+conductor+'and estado=0')
+        vg=CC.fetchone()
+        vg=str(vg[0])
+        CC.execute('update Viajes_globales set estado=1 where id='+vg)
+        CC.commit()
+        CC.execute("select id_auto from Conductores where id_persona="+personaid)
+        auto=CC.fetchone()
+        auto=str(auto[0])
+        CC.execute('exec sp_restablecer_lugares '+auto)
+        flash('Viaje finalizado')
+        return redirect(url_for('homepagec',personaid=a)) 
+    
+
+#pagos pendientes de pasajero
+@app.route('/homepage/conductor/pagos/<personaid>')
+def pagospasajero(personaid):
+    CC=connection.cursor()
+    CC.execute('select nombre,matricula,ap,am,telefono,id_genero from Personas where id='+personaid)
+    CC.execute('select Autos.id, matricula, modelo, marca, color, poliza, id_tipo_auto from Autos inner join Conductores on Conductores.id_auto=Autos.id where Conductores.id_persona='+personaid)
+    automovil=CC.fetchone()
+    return render_template('Perfil_conductor.html',conductor=conductor,automovil=automovil,personaid=personaid)
+
 
 #ejecucion del servidor y asignacion del puerto a trabajar
 if __name__ == '__main__':
