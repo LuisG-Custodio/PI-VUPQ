@@ -525,6 +525,24 @@ if(@incidente != 1)
 	end
 end
 
+go
+alter trigger tr_nuevo_usuario
+on Personas
+after insert
+as
+begin
+	declare @id int,
+			@autoid int
+	set @id=(select id from inserted)
+	insert into Pasajeros(id_persona) values (@id)
+	insert into Autos(matricula) values (CAST(@id as varchar(50)))
+	set @autoid=(select id from Autos where matricula=@id)
+	insert into Conductores(id_auto,id_persona) values (@autoid,@id)
+	commit
+end
+
+drop trigger tr_nuevo_usuario
+
 exec sp_crear_viaje 1,1
 exec sp_reserva_viaje 1,1,1
 
