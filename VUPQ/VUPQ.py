@@ -270,7 +270,7 @@ def actualizarpassword(personaid):
         if (Vpassword==Vcpassword):
             CC=connection.cursor()
             Vpassword=str(Vpassword)
-            CC.execute("update Personas set contraseña='"+Vpassword+"'")
+            CC.execute("update Personas set contraseña='"+Vpassword+"' where id="+personaid)
             CC.commit()
             flash('Se actualizaron tu contraseña con éxito')
             return redirect(url_for('homepage',personaid=a))  
@@ -287,7 +287,7 @@ def actualizarpasswordc(personaid):
         if (Vpassword==Vcpassword):
             CC=connection.cursor()
             Vpassword=str(Vpassword)
-            CC.execute("update Personas set contraseña='"+Vpassword+"'")
+            CC.execute("update Personas set contraseña='"+Vpassword+"' where id="+personaid)
             CC.commit()
             flash('Se actualizaron tu contraseña con éxito')
             return redirect(url_for('homepagec',personaid=a))  
@@ -317,14 +317,20 @@ def finalizarviaje(personaid):
     
 
 #pagos pendientes de pasajero
-@app.route('/homepage/conductor/pagos/<personaid>')
+@app.route('/homepage/pasajero/pagos/<personaid>')
 def pagospasajero(personaid):
     CC=connection.cursor()
-    CC.execute('select nombre,matricula,ap,am,telefono,id_genero from Personas where id='+personaid)
-    CC.execute('select Autos.id, matricula, modelo, marca, color, poliza, id_tipo_auto from Autos inner join Conductores on Conductores.id_auto=Autos.id where Conductores.id_persona='+personaid)
-    automovil=CC.fetchone()
-    return render_template('Perfil_conductor.html',conductor=conductor,automovil=automovil,personaid=personaid)
+    CC.execute('select Pagos.id_viaje,Pagos.fecha,Pagos.id_tipo_pago,Rutas.nombre,Paradas.nombre, Pagos.monto from Pagos inner join Viajes on Viajes.id=Pagos.id_viaje inner join Pasajeros on Pasajeros.id=Viajes.id_pasajero inner join Paradas on Paradas.id=Viajes.id_parada inner join Viajes_globales on Viajes_globales.id=Viajes.id_viaje_global inner join Rutas on Rutas.id=Viajes_globales.id_ruta where Pasajeros.id_persona='+personaid)
+    datospago=CC.fetchall()
+    return render_template('pagos.html',datos=datospago,personaid=personaid)
 
+#pagos pendientes de pasajero
+@app.route('/homepage/conductor/pagos/<personaid>')
+def pagosconductor(personaid):
+    CC=connection.cursor()
+    CC.execute('select Pagos.id_viaje,Pagos.fecha,Pagos.id_tipo_pago,Rutas.nombre,Paradas.nombre,Pagos.monto from Pagos inner join Viajes on Viajes.id=Pagos.id_viaje inner join Paradas on Paradas.id=Viajes.id_parada inner join Viajes_globales on Viajes_globales.id=Viajes.id_viaje_global inner join Rutas on Rutas.id=Viajes_globales.id_ruta inner join Conductores on Conductores.id=Viajes_globales.id_conductor where Conductores.id_persona='+personaid)
+    datospago=CC.fetchall()
+    return render_template('pagos.html',datos=datospago,personaid=personaid)
 
 #ejecucion del servidor y asignacion del puerto a trabajar
 if __name__ == '__main__':

@@ -26,21 +26,26 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
+                                    <th scope="col">ID</th>
                                     <th scope="col">Ruta: </th>
                                     <th scope="col">Parada: </th>
                                     <th scope="col">Fecha: </th>
                                     <th scope="col">Monto: </th>
-                                    <th scope="col">Estatus:</th>
+                                    <th scope="col">Tipo de Pago:</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                {%for d in datos%}
                                 <tr>
-                                    <th scope="row"></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <form method="POST" action="/confirmarpago/{{personaid}}"></form>
+                                    <th scope="row" value="{{d.0}}" name="txtIdPago">{{loop.index}}</td>
+                                    <td>{{d.3}}</td>
+                                    <td>{{d.4}}</td>
+                                    <td>{{d.1}}</td>
+                                    <td>{{d.5}}</td>
+                                    <td>{{d.2}}</td>
                                 </tr>
+                                {%endfor%}
                             </tbody>
                         </table>
                         </div>
