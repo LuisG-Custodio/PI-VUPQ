@@ -213,7 +213,7 @@ def perfilconductor(personaid):
 
 
 #actualizar conductor
-@app.route('/actualizarpersonac/<personaid>', methods=['POST'])
+@app.route('/actualizarpersonaC/<personaid>', methods=['POST'])
 def actualizarpersonac(personaid):
     if request.method == 'POST':
         a=personaid
@@ -330,9 +330,10 @@ def pagosconductor(personaid):
     CC=connection.cursor()
     CC.execute('select Pagos.id_viaje,Pagos.fecha,Pagos.id_tipo_pago,Rutas.nombre,Paradas.nombre,Pagos.monto from Pagos inner join Viajes on Viajes.id=Pagos.id_viaje inner join Paradas on Paradas.id=Viajes.id_parada inner join Viajes_globales on Viajes_globales.id=Viajes.id_viaje_global inner join Rutas on Rutas.id=Viajes_globales.id_ruta inner join Conductores on Conductores.id=Viajes_globales.id_conductor where Conductores.id_persona='+personaid)
     datospago=CC.fetchall()
-    return render_template('pagos_conductor.html',datos=datospago,personaid=personaid)
+    return render_template('pagos.html',datos=datospago,personaid=personaid)
 
 #ejecucion del servidor y asignacion del puerto a trabajar
 if __name__ == '__main__':
-        app.run(port=5000 ,debug= True)
+    app.run(host='0.0.0.0', port=5000, debug=True)
+
 
