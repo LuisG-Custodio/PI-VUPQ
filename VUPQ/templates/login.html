@@ -7,7 +7,113 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="sweetalert2.all.min.js"></script>
     <title>V-UPQ</title>
-    
+    <style>
+        body {
+            background-image: url('https://www.upq.mx/media/slider/MASCOTAS.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .wrapper {
+            max-width: 350px;
+            min-height: 500px;
+            margin: 80px auto;
+            padding: 40px 30px 30px 30px;
+            background-color: rgba(236, 240, 243, 0.9);
+            border-radius: 15px;
+            box-shadow: 13px 13px 20px #cbced1, -13px -13px 20px #fff;
+        }
+
+        .logo {
+            width: 80px;
+            margin: auto;
+        }
+
+        .logo-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .wrapper .name {
+            font-size: 2rem;
+            color: rgba(255, 0, 0, 0.7);
+        }
+
+        .wrapper .form-field input {
+            width: 100%;
+            display: block;
+            border: none;
+            outline: none;
+            background: none;
+            font-size: 1.2rem;
+            color: #666;
+            padding: 10px 15px 10px 10px;
+        }
+
+        .wrapper .form-field {
+            padding-left: 10px;
+            margin-bottom: 20px;
+            border-radius: 20px;
+            box-shadow: inset 8px 8px 8px #cbced1, inset -8px -8px 8px #fff;
+        }
+
+        .wrapper .form-field .fas {
+            color: #555;
+        }
+
+        .wrapper .btn {
+            box-shadow: none;
+            width: 100%;
+            height: 40px;
+            background-color: rgba(204, 0, 0, 0.7);
+            color: #fff;
+            border-radius: 25px;
+            box-shadow: 3px 3px 3px #b1b1b1, -3px -3px 3px #fff;
+            letter-spacing: 1.3px;
+        }
+
+        .wrapper .btn:hover {
+            background-color: rgba(255, 0, 0, 0.8);
+        }
+
+        .wrapper a {
+            text-decoration: none;
+            font-size: 0.8rem;
+            color: rgba(204, 0, 0, 0.7);
+        }
+
+        .wrapper a:hover {
+            color: rgba(255, 0, 0, 0.8);
+        }
+
+        @media (max-width: 380px) {
+            .wrapper {
+                margin: 30px 20px;
+                padding: 40px 15px 15px 15px;
+            }
+        }
+        .modal-content, .btn {
+            border-color: transparent !important;
+            border: none;
+    box-shadow: none;
+        }
+
+        /* Borde de los botones del modal */
+        .btn {
+            border-color: rgba(204, 0, 0, 0.7);
+        }
+
+        /* Increase the width of the modal */
+        .modal-dialog {
+            max-width: 600px; /* Adjust the width as needed */
+        }
+       
+    </style>
 </head>
 
 <body>
@@ -23,62 +129,71 @@
         {% endfor %}
     {% endif %}
     {% endwith %}
-    <div class="mt-5 mb-5">
-        <h1 class="display-1 text-center">V-UPQ</h1>
-    </div>
-    <div class="container text-center mt-5">
-        <div class="row justify-content-md-center md-5">
-            <div class="col col-md-5">
-                <div class=" card card-body align-items-center">
-                    <!--Forma para mostrar datos del usuario-->
-                    <form action="/login" method="POST">
-                        <div class="row g-3">
-                            <div class="col-md-12">
-                                <label for="inputMatricula" class="form-label">Usuario</label>
-                                <input type="text" class="form-control" id="inputMatricula" name="txtMatricula" required>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
-                        <div class="row g-3 ">
-                            <div class="col-md-12">
-                                <label for="inputPassword" class="form-label">Contraseña</label>
-                                <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
-                            </div><!--Cierre col-->
-                            <div class="row g-3">
-                                <div class="col-md-12">
-                                    <label for="inputTipo" class="form-label">Ingresar como: </label>
-                                    <select class="form-select" aria-label="Default select example" id="inputTipo" name="txtTipo" required>
-                                        <option selected value="">Selecciona uno</option>
+    
+        <div class="bg-image d-flex align-items-center justify-content-center">
+        <div class="container text-center">
+            <div class="wrapper">
+                <div class="logo d-flex justify-content-center align-items-center ">
+                    <img src="https://th.bing.com/th/id/R.7a7283cbff11c46f89c489b56d14b18f?rik=sq9A9FDNFRw6fg&riu=http%3a%2f%2f1000logos.net%2fwp-content%2fuploads%2f2016%2f10%2fArizona-Cardinals-Logo.png&ehk=RaoTrf3EtK6gHSj2tSkJ1ifO%2beeiye8NO%2fpR%2fr1Hvuk%3d&risl=&pid=ImgRaw&r=0"
+                        alt="V-UPQ Logo" class="logo-image" style="max-width: 150px;"> <!-- Adjust the max-width value -->
+                </div>
+                <div class="mt-2 mb-2">
+                    <h1 class="display-5 text-center text-DARK">V-UPQ</h1>
+                </div>
+                            <form action="/login" method="POST">
+                                <div class="row g-2 py-2">
+                                    <div class="col-md-12 form-floating">
+                                        <input type="text" class="form-control" id="inputMatricula" name="txtMatricula" placeholder="Matrícula" required>
+                                        <label for="inputMatricula">Usuario</label>
+                                    </div>
+                                </div>  
+                                <div class="row g-2 py-2">
+                                    <div class="col-md-12 form-floating">
+                                        <input type="password" class="form-control" id="inputPassword" name="txtPassword" placeholder="Contraseña" required>
+                                        <label for="inputMatricula">Contraseña</label>
+                                    </div>
+                                </div>  
+                                <div class="col-md  py-2">
+                                    <div class="form-floating">
+                                      <select class="form-select" id="floatingSelectGrid" id="inputTipo" name="txtTipo">
+                                        <option value="#"></option>
                                         <option value="1">Conductor</option>
                                         <option value="2">Pasajero</option>
                                       </select>
-                                </div><!--Cierre col-->
-                            </div><!--Cierre row-->
-                            <div class="row g-3">
-                        </div><!--Cierre row-->
-                        <div class="row g-3 mt-2">
-                            <div class="col-md-12">
-                                <div class="col-md-12 d-grid gap-2 d-md-block ">
-                                    <!--Iniciar sesion-->
-                                    <button type="submit" class="btn btn-primary"> Iniciar sesion</button>
-                                    <!--Toggle modal de registro-->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registro_modal">Registrarse</button>
-                                </div>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
-                    </form>
+                                      <label for="floatingSelectGrid">Ingresar como: </label>
+                                    </div>
+                                  </div>
+                                    
+                                    <div class="row g-3">
+                                </div><!--Cierre row-->
+                                <div class="row g-3 mt-2">
+                                    <div class="col-md-12">
+                                        <div class="col-md-12 d-grid gap-2 d-md-block">
+                                            <!--Iniciar sesion-->
+                                            <button type="submit" class="btn btn-primary p-2 g-col-6"> Iniciar Sesión</button>
+                                            <br><br>
+                                            <!--Toggle modal de registro-->
+                                            <button type="button" class="btn btn-primary p-2 g-col-6" data-bs-toggle="modal" data-bs-target="#registro_modal">Registrarse</button>
+                                        </div>
+                                    </div><!--Cierre col-->
+                                </div><!--Cierre row-->
+                            </form>   
+                        </div>
                     <!--Modal de registro-->
                     <div class="modal fade" id="registro_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
                             <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Registro</h1>
+                                <div class="mt-2 mb-2">
+                                    <h1 class="display-6 text-center text-DARK">Registro</h1>
+                                </div>
                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 <form action="/registro" method="POST">
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="inputMatricula" class="form-label">Matricula</label>
+                                            <label for="inputMatricula" class="form-label">Matrícula</label>
                                             <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" required>
                                         </div><!--Cierre col-->
                                         <div class="col-md-6">
@@ -98,13 +213,13 @@
                                     </div><!--Cierre row-->
                                     <div class="row g-3">
                                         <div class="col-md-6">
-                                            <label for="inputAP" class="form-label">Telefono</label>
+                                            <label for="inputAP" class="form-label">Teléfono</label>
                                             <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" required>
                                         </div><!--Cierre col-->
                                         <div class="col-md-6">
-                                            <label for="inputGenero" class="form-label">Genero</label>
+                                            <label for="inputGenero" class="form-label">Género</label>
                                             <select class="form-select" aria-label="Default select example" id="inputGenero" name="txtGenero" required>
-                                                <option selected>Open this select menu</option>
+                                                <option selected>Selecciona:</option>
                                                 <option value="1">Mujer</option>
                                                 <option value="2">Hombre</option>
                                               </select>
@@ -122,10 +237,12 @@
                                     </div><!--Cierre row-->
 
                             </div>
-                            <div class="modal-footer">
-                                <button type="Guardar" class="btn btn-primary">Guardar</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                            </div>
+                            <div class="modal-footer justify-content-end">
+                                <!--Guardar cambios-->
+                                <button type="submit" class="btn btn-primary"><i class="bi bi-trash"> Guardar cambios</i></button>
+                                <!--Regresar a pagina principal-->
+                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"> Cancelar</i></button>
+                           </div>
                                 </form>
                           </div>
                         </div>

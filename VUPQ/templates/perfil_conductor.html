@@ -13,9 +13,30 @@
         {% endfor %}
     {% endif %}
     {% endwith %}
-
+    <style>
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth) value for transparency */
+        }
+        .table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .btn-blue:hover {
+            background-color: #0a4275;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth) value for transparency */
+        }
+        .table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+         /* Ajustar el tamaño de las imágenes del carrusel */
+         .carousel-item img {
+            max-width: 350px;
+            height: 350px;
+        }
+    </style>
     <div class="mt-5 mb-5">
-        <h1 class="display-1 text-center">Perfil de Conductor</h1>
+        <h1 class="display-1 text-center text-white">Perfil de Conductor</h1>
     </div>
     <div class="container text-center">
         <div class="row justify-content-md-center">
@@ -23,11 +44,11 @@
                 
                 <div class=" card card-body ">
                     <!--Forma para mostrar datos del usuario-->
-                    <h2 class=" text-center">Datos del conductor</h2>
+                    <h2 class=" text-center">Datos del Conductor</h2>
                     <form action="/actualizarpersonac/{{personaid}}" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="inputMatricula" class="form-label">Matricula</label>
+                                <label for="inputMatricula" class="form-label">Matrícula</label>
                                 <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" value="{{conductor.1}}"  required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
@@ -47,11 +68,11 @@
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="inputAP" class="form-label">Telefono</label>
+                                <label for="inputAP" class="form-label">Teléfono</label>
                                 <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{conductor.4}}"  required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
-                                <label for="inputGenero" class="form-label">Genero</label>
+                                <label for="inputGenero" class="form-label">Género</label>
                                             <select class="form-select" aria-label="Default select example" id="inputGenero" name="txtGenero" required>
                                                 <option selected value="">Open this select menu</option>
                                                 <option value="1">Mujer</option>
@@ -112,11 +133,11 @@
                 
                 <div class=" card card-body ">
                     <!--Forma para mostrar datos del uvehiculp-->
-                    <h2 class=" text-center">Datos del vehiculo</h2>
+                    <h2 class=" text-center">Datos del Vehículo</h2>
                     <form action="/actualizarauto/{{personaid}}" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="inputPlacas" class="form-label">Numero de placas</label>
+                                <label for="inputPlacas" class="form-label">Número de placas</label>
                                 <input type="text" class="form-control" id="inputPlacas" name="txtPlacas" value="{{automovil.1}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
@@ -136,7 +157,7 @@
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="inputPoliza" class="form-label">Poliza</label>
+                                <label for="inputPoliza" class="form-label">Póliza</label>
                                 <input type="text" class="form-control" id="inputPoliza" name="txtPoliza" value="{{automovil.5}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
@@ -174,4 +195,5 @@
             
         </div><!--row-->
 </div><!--container-->
+<br><br><br><br>    
 {% endblock %}

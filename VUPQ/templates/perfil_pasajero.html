@@ -13,9 +13,17 @@
         {% endfor %}
     {% endif %}
     {% endwith %}
+    <style>
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth) value for transparency */
+        }
+        .table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
 
     <div class="mt-5 mb-5">
-        <h1 class="display-1 text-center">Perfil de Pasajero</h1>
+        <h1 class="display-1 text-center text-white">Perfil de Pasajero</h1>
     </div>
     <div class="container text-center">
         <div class="row justify-content-md-center">
@@ -25,7 +33,7 @@
                     <form action="/actualizarpersona/{{personaid}}" method="POST">
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="inputMatricula" class="form-label">Matricula</label>
+                                <label for="inputMatricula" class="form-label">Matrícula</label>
                                 <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" value="{{pasajero.1}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
@@ -45,13 +53,13 @@
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
-                                <label for="inputAP" class="form-label">Telefono</label>
+                                <label for="inputAP" class="form-label">Teléfono</label>
                                 <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{pasajero.4}}" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
-                                <label for="inputGenero" class="form-label">Genero</label>
+                                <label for="inputGenero" class="form-label">Género</label>
                                 <select class="form-select" aria-label="Default select example" id="inputGenero" name="txtGenero" required>
-                                    <option selected value="">Open this select menu</option>
+                                    <option selected value="">Ingresar como: </option>
                                     <option value="1">Mujer</option>
                                     <option value="2">Hombre</option>
                                   </select>
@@ -96,8 +104,9 @@
                                 
                             </div>
                             <div class="modal-footer">
+                                <button type="reset" class="btn btn-warning"><i class="bi bi-arrow-return-left"> Cancelar</i></button>
                                 <button type="submit" class="btn btn-primary">Guardar</button>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                
                             </div>
                           </div>
                         </div>
@@ -107,4 +116,5 @@
             </div><!--Cierre col-->
         </div><!--Cierre row-->
     </div><!--Cierre container-->
+    <br><br><br><br>
 {% endblock %}
