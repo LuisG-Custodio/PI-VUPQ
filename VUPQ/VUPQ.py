@@ -77,6 +77,9 @@ def registro():
             CC.commit()
             flash('Registro realizado correctamente')
             return redirect("/")
+        else:
+            flash('Tus contraseñas no coinciden, tu registro no fue realizado')
+            return redirect("/")
 
 #menu principal de pasajero
 @app.route('/homepage/pasajero/<personaid>')
