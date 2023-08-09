@@ -325,12 +325,12 @@ def pagospasajero(personaid):
     return render_template('pagos.html',datos=datospago,personaid=personaid)
 
 #pagos pendientes de pasajero
-@app.route('/homepage/conductor/pagos_conductor/<personaid>')
+@app.route('/homepage/conductor/pagos/<personaid>')
 def pagosconductor(personaid):
     CC=connection.cursor()
     CC.execute('select Pagos.id_viaje,Pagos.fecha,Pagos.id_tipo_pago,Rutas.nombre,Paradas.nombre,Pagos.monto from Pagos inner join Viajes on Viajes.id=Pagos.id_viaje inner join Paradas on Paradas.id=Viajes.id_parada inner join Viajes_globales on Viajes_globales.id=Viajes.id_viaje_global inner join Rutas on Rutas.id=Viajes_globales.id_ruta inner join Conductores on Conductores.id=Viajes_globales.id_conductor where Conductores.id_persona='+personaid)
     datospago=CC.fetchall()
-    return render_template('pagos.html',datos=datospago,personaid=personaid)
+    return render_template('pagos_conductor.html',datos=datospago,personaid=personaid)
 
 #ejecucion del servidor y asignacion del puerto a trabajar
 if __name__ == '__main__':
