@@ -213,7 +213,7 @@ def perfilconductor(personaid):
 
 
 #actualizar conductor
-@app.route('/actualizarpersonaC/<personaid>', methods=['POST'])
+@app.route('/actualizarpersonac/<personaid>', methods=['POST'])
 def actualizarpersonac(personaid):
     if request.method == 'POST':
         a=personaid
@@ -325,7 +325,7 @@ def pagospasajero(personaid):
     return render_template('pagos.html',datos=datospago,personaid=personaid)
 
 #pagos pendientes de pasajero
-@app.route('/homepage/conductor/pagos/<personaid>')
+@app.route('/homepage/conductor/pagos_conductor/<personaid>')
 def pagosconductor(personaid):
     CC=connection.cursor()
     CC.execute('select Pagos.id_viaje,Pagos.fecha,Pagos.id_tipo_pago,Rutas.nombre,Paradas.nombre,Pagos.monto from Pagos inner join Viajes on Viajes.id=Pagos.id_viaje inner join Paradas on Paradas.id=Viajes.id_parada inner join Viajes_globales on Viajes_globales.id=Viajes.id_viaje_global inner join Rutas on Rutas.id=Viajes_globales.id_ruta inner join Conductores on Conductores.id=Viajes_globales.id_conductor where Conductores.id_persona='+personaid)
