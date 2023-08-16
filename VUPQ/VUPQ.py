@@ -319,6 +319,29 @@ def finalizarviaje(personaid):
         flash('Viaje finalizado')
         return redirect(url_for('homepagec',personaid=a)) 
     
+@app.route('/notificaraccidente/<personaid>', methods=['POST'])
+def notificaraccidente(personaid):
+    if request.method == 'POST':
+        a=personaid
+        CC=connection.cursor()
+        CC.execute('select id from Conductores where id_persona='+personaid)
+        conductor=CC.fetchone()
+        conductor=str(conductor[0])
+        CC.execute('select id from Viajes_globales where id_conductor='+conductor+'and estado=0')
+        vg=CC.fetchone()
+        vg=str(vg[0])
+        CC.commit()
+        CC.execute('update Viajes_globales set estado=1 where id='+vg)
+        CC.execute('update Viajes_globales set id_incidente=2 where id='+vg)
+        CC.commit()
+        CC.execute("select id_auto from Conductores where id_persona="+personaid)
+        auto=CC.fetchone()
+        auto=str(auto[0])
+        CC.execute('exec sp_restablecer_lugares '+auto)
+        CC.commit()
+        flash('Ha finalizado el viaje por accidente.')
+        return redirect(url_for('homepagec',personaid=a)) 
+    
 
 #pagos pendientes de pasajero
 @app.route('/homepage/pasajero/pagos/<personaid>')

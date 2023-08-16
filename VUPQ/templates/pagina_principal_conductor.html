@@ -5,8 +5,10 @@
     <button type="button" class="btn btn-blue text-white"  data-bs-toggle="modal" data-bs-target="#viaje_modal">Nuevo Viaje</button>
     {% else %}
     <form method="POST" action="/finalizarviaje/{{personaid}}">
-        <button type="button" class="btn btn-blue text-white"  data-bs-toggle="modal" data-bs-target="#viaje_modal">Nuevo Viaje</button>
         <button type="submit" class="btn btn-danger mx-2" data-bs-toggle="modal" data-bs-target="#viaje_modal">Finalizar Viaje</button>
+    </form>
+    <form method="POST" action="/notificaraccidente/{{personaid}}">
+        <button type="submit" class="btn btn-warning mx-2" data-bs-toggle="modal" data-bs-target="#viaje_modal">Notificar Accidente</button>
     </form>
     {%endif%}
     <!--Modal de viaje-->

@@ -508,7 +508,7 @@ full join fn_parada_de_viajero(@id_viaje) as Parada on Parada.id=Viajes.id
 where Viajes.id=@id_viaje)
 
 go 
-create trigger tr_actualizar_estado
+alter trigger tr_actualizar_estado
 on Viajes_globales
 after update
 as
@@ -519,9 +519,8 @@ set @incidente = (select id_incidente from inserted)
 set @id_viaje=(select id from inserted)
 if(@incidente != 1)
 	begin
-		update Pagos set Pagos.monto=0,Pagos.fecha_actualizacion=GETDATE() from Viajes inner join Pagos on Pagos.id_viaje=Viajes.id where Viajes.id_viaje_global=@id_viaje
+		update Pagos set monto=0,fecha_actualizacion=GETDATE() where id_viaje in (select id from Viajes where id_viaje_global=@id_viaje)
 		update Viajes set fecha_actualizacion=GETDATE() where id_viaje_global=@id_viaje
-		print 'El viaje fue cancelado por incidente'
 	end
 end
 
@@ -555,8 +554,50 @@ select * from Autos
 
 select * from fn_datos_pasajero(1)
 
-update Viajes_globales set id_incidente=2 where id=1
+update Viajes_globales set id_incidente=2 where id=6
 
-select * from Viajes
+select id_incidente from Viajes_globales where id=19
 select * from Pagos
 
+select * from Pagos where id_viaje in (select id from Viajes where id_viaje_global=6)
+
+select * from Viajes
+go
+select id from Viajes where id_viaje_global=6
+declare @id_viaje int,
+		@contador int=0
+while @contador<(select count(id) from Viajes where id_viaje_global=6)
+begin
+	set @id_viaje=(select id from (select ROW_NUMBER() over(order by id) as Row#,id from Viajes where id_viaje_global=6) as P where Row#=(@contador+1))
+	print(@id_viaje)
+	set @contador=@contador+1
+end
+
+
+
+create trigger tr_actualizar_estado
+on Viajes_globales
+after update
+as
+begin
+declare @incidente int,
+		@id_viaje_global int
+set @incidente = (select id_incidente from inserted)
+set @id_viaje_global=(select id from inserted)
+if(@incidente != 1)
+	begin
+		declare @id_viaje int,
+		@contador int=0
+		while @contador<(select count(id) from Viajes where id_viaje_global=@id_viaje_global)
+		begin
+			set @id_viaje=(select id from (select ROW_NUMBER() over(order by id) as Row#,id from Viajes where id_viaje_global=@id_viaje_global) as P where Row#=(@contador+1))
+			update Pagos set monto=0,fecha_actualizacion=GETDATE() where id_viaje=@id_viaje
+			update Viajes set fecha_actualizacion=GETDATE() where id_viaje_global=@id_viaje
+			set @contador=@contador+1
+		end
+	end
+end
+
+
+
+select * from Pagos
