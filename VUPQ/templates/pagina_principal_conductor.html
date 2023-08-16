@@ -208,6 +208,11 @@
                     <!--Forma para mostrar datos del usuario-->
                     <h2 class=" text-center">Datos del pasajero {{loop.index}} </h2>
                         <div class="row g-3">
+                            <div class="col-md-12">
+                                <label class="form-label">Parada: {{p.4}}</label>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputMatricula" class="form-label">Matrícula</label>
                                 <input type="number" class="form-control" id="inputMatricula" name="inputMatricula" value="{{p.1}}" disabled>

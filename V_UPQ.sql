@@ -575,7 +575,7 @@ end
 
 
 
-create trigger tr_actualizar_estado
+alter trigger tr_actualizar_estado
 on Viajes_globales
 after update
 as

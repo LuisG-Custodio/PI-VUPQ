@@ -180,7 +180,7 @@ def homepagec(personaid):
         conductor=CC.fetchone()
         CC.execute('select Autos.matricula, Autos.modelo,Autos.marca,Autos.color,Autos.poliza from Autos inner join Conductores on Conductores.id_auto=Autos.id where Conductores.id='+conductorid)
         auto=CC.fetchone()
-        CC.execute('select Personas.nombre,Personas.matricula,Personas.ap,Personas.am from Viajes inner join Pasajeros on Pasajeros.id=Viajes.id_pasajero inner join Personas on Personas.id=Pasajeros.id_persona where Viajes.id_viaje_global='+pvg)
+        CC.execute('select Personas.nombre,Personas.matricula,Personas.ap,Personas.am,Paradas.nombre from Viajes inner join Pasajeros on Pasajeros.id=Viajes.id_pasajero inner join Personas on Personas.id=Pasajeros.id_persona inner join Paradas on Paradas.id=Viajes.id_parada where Viajes.id_viaje_global='+pvg)
         pasajeros=CC.fetchall()
         return render_template('pagina_principal_conductor.html',cond=conductor,pas=pasajeros,auto=auto,personaid=personaid)
     else:
