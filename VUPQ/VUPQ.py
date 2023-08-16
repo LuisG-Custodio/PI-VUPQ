@@ -315,6 +315,7 @@ def finalizarviaje(personaid):
         auto=CC.fetchone()
         auto=str(auto[0])
         CC.execute('exec sp_restablecer_lugares '+auto)
+        CC.commit()
         flash('Viaje finalizado')
         return redirect(url_for('homepagec',personaid=a)) 
     
