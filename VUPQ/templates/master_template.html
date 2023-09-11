@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <title>V-UPQ</title>
+    <style>
+      body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    justify-content: space-between;
+}
+      body {
+            background-image: url('https://www.liderempresarial.com/wp-content/uploads/2022/05/UPQ.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+      /* Sticky footer */
+      .footer {
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          background-color: #0a4275;
+          color: white;
+          text-align: center;
+          padding: 10px 0;
+      }
+      .footer-container {
+    background-color: #0a4275; /* Cambio de color */
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+footer {
+    margin: 0;
+    background: transparent;
+}
+      .navbar-light .navbar-nav .nav-link:hover {
+            background-color: #0a4275;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+            border-radius: 6px; /* Corrección de typo */
+        }
+    </style>
+</head>
+
+<body>
+  <!-- Navbar -->
+  
+  <nav class="navbar navbar-expand-lg navbar-light  navbar-scroll style=" style="background-color: #072846;">
+      <!-- Container wrapper -->
+      <div class="container-fluid">
+          <!-- Toggle button -->
+          <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+          >
+              <i class="fas fa-bars"></i>
+          </button>
+          <!-- Collapsible wrapper -->
+          <div class="collapse navbar-collapse" id="navbarDropdown">
+              <!-- Navbar brand -->
+              <a class="navbar-brand mt-2 mt-lg-0" href="#">
+                <img src="https://calareo.ca/wp-content/uploads/2020/10/UPQ-logo.png" alt="V-UPQ Logo" height="60">
+            </a>           
+              <!-- Left links -->
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link text-white" href="/homepage/pasajero/{{personaid}}">Home</a>
+                </li>
+                
+                  <li class="nav-item">
+                      <a class="nav-link text-white" href="/homepage/pasajero/pagos/{{personaid}}">Pagos</a>
+                  </li>
+                  <!-- Block viaje -->
+                  {% block viaje %}
+                  {% endblock %}
+              </ul>
+              <!-- Right elements -->
+              <div class="d-flex align-items-center">
+      
+                <!-- Avatar -->
+                <div class="dropdown">
+                  <a
+                    class="dropdown-toggle d-flex align-items-center hidden-arrow"
+                    href="#"
+                    id="navbarDropdownMenuAvatar"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                  <img
+                  src="https://th.bing.com/th/id/R.7a7283cbff11c46f89c489b56d14b18f?rik=sq9A9FDNFRw6fg&riu=http%3a%2f%2f1000logos.net%2fwp-content%2fuploads%2f2016%2f10%2fArizona-Cardinals-Logo.png&ehk=RaoTrf3EtK6gHSj2tSkJ1ifO%2beeiye8NO%2fpR%2fr1Hvuk%3d&risl=&pid=ImgRaw&r=0"
+                  class="rounded-circle"
+                  height="45"
+                  alt="Avatar Image"
+                  loading="lazy"
+              />
+                  </a>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="navbarDropdownMenuAvatar"
+                  >
+                    <li>
+                      <a class="dropdown-item" href="/homepage/pasajero/perfil/{{personaid}}">Perfil</a>
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="/">Cerrar Sesión</a>
+                    </li>
+                  </ul>
+                </div> 
+              </div>
+              <!-- Right elements -->
+            </div>
+            <!-- Collapsible wrapper -->
+          </div>
+          <!-- Container wrapper -->
+        </nav>
+        <!-- Navbar -->
+  {% block body %}
+  {% endblock %}
+     <!-- Footer -->
+     <footer class="text-center text-white" style="background-color: #0a4275;">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: CTA -->
+        <!-- Section: Social media -->
+  <section class="mb-4">
+    <!-- Facebook -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-facebook-f"></i
+    ></a>
+
+    <!-- Twitter -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-twitter"></i
+    ></a>
+
+    <!-- Google -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-google"></i
+    ></a>
+
+    <!-- Instagram -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-instagram"></i
+    ></a>
+
+    <!-- Linkedin -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-linkedin-in"></i
+    ></a>
+
+    <!-- Github -->
+    <a class="btn btn-outline-light btn-floating m-1" href="#!" role="button"
+      ><i class="fab fa-github"></i
+    ></a>
+  </section>
+  <!-- Section: Social media -->
+        <!-- Section: CTA -->
+      </div>
+      <!-- Grid container -->
+  
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="/">V-UPQ</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <!-- Footer -->
+  </section>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    
+</body>
+</html>

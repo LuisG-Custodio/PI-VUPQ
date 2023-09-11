@@ -1,0 +1,65 @@
+{% extends 'master_template.html' %}
+{% block body %}
+
+    {% with mensajes= get_flashed_messages()  %}
+    {% if mensajes %}
+        {% for msj in mensajes %}
+            <script>
+                Swal.fire(
+                'Éxito',
+                '{{ msj }}',
+                'success')
+            </script>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <Style>
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth) value for transparency */
+        }
+        .table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    </Style>
+
+    <div class="mt-5 mb-5">
+        <h1 class="display-1 text-center text-white">Historial de Pagos</h1>
+    </div>
+    <div class="container text-center">
+        <div class="row justify-content-md-center">
+            <div class="col ">
+                <div class=" card card-body shadow border-1 bg-active">
+                    <!--Forma para mostrar datos del usuario-->
+                    <form action="#" method="POST">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Ruta: </th>
+                                    <th scope="col">Parada: </th>
+                                    <th scope="col">Fecha: </th>
+                                    <th scope="col">Monto: </th>
+                                    <th scope="col">Tipo de Pago:</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {%for d in datos%}
+                                <tr>
+                                    <form method="POST" action="/confirmarpago/{{personaid}}"></form>
+                                    <th scope="row" value="{{d.0}}" name="txtIdPago">{{loop.index}}</td>
+                                    <td>{{d.3}}</td>
+                                    <td>{{d.4}}</td>
+                                    <td>{{d.1}}</td>
+                                    <td>{{d.5}}</td>
+                                    <td>{{d.2}}</td>
+                                </tr>
+                                {%endfor%}
+                            </tbody>
+                        </table>
+                        </div>
+                    </form>
+                </div><!--Cierre Card-->
+            </div><!--Cierre col-->
+        </div><!--Cierre row-->
+    </div><!--Cierre container-->
+{% endblock %}

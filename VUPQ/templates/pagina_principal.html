@@ -1,0 +1,233 @@
+{% extends 'master_template.html' %}
+{% block viaje %}
+    {% if 'None' in pvg%}   
+    <button type="button" class="btn btn-blue text-white"  data-bs-toggle="modal" data-bs-target="#viaje_modal">Nuevo Viaje</button>
+    {%endif%}
+    <!--Modal de viaje-->
+    <STyle>
+        .btn-blue:hover {
+            background-color: #0a4275;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth) value for transparency */
+        }
+        .table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+         /* Ajustar el tamaño de las imágenes del carrusel */
+         .carousel-item img {
+            max-width: 350px;
+            height: 350px;
+        }
+    </Style>
+    <div class="modal fade" id="viaje_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Nuevo Viaje</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            
+            <div class="modal-body">
+                {% if 'None' in pvg%}
+                <form method="POST" action="/reservarviaje/{{personaid}}">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label for="inputRuta" class="form-label">Nombre de la Ruta:</label>
+                            <select class="form-select" aria-label="Default select example" id="inputTipo" name="txtRuta" required>
+                                <option selected value="">Rutas disponibles</option>
+                                {%for ruta in viajes_disponibles %}
+                                <option value="{{ruta.0}}">Ruta: {{ruta.1}} Conductor: {{ruta.2}}</option>
+                                {%endfor%}
+                              </select>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3 ">
+                        <div class="col-md-12">
+                            <label for="inputParada" class="form-label">Nombre de la Parada:</label>
+                            <select class="form-select" aria-label="Default select example" id="inputTipo" name="txtParada" required>
+                                <option selected value="">Selecciona uno</option>
+                                {%for para in paradas %}
+                                <option value="{{para.0}}">{{para.1}} </option>
+                                {%endfor%}
+                              </select>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div id="carouselExample" class="carousel slide rounded mt-4">
+                        <div class="carousel-inner">
+                          
+                          <div class="carousel-item active">
+                            <img src="https://i.ibb.co/ByGzSNj/R-Centro.jpg" class="d-block w-100 rounded" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="https://i.ibb.co/pz04Wtb/R-Huimilpan.jpg" class="d-block w-100 rounded" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="https://i.ibb.co/BrK1RDy/R-Pedro-Escobedo.jpg" class="d-block w-100 rounded" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="https://i.ibb.co/WVpnstH/R-El-Marques.jpg" class="d-block w-100 rounded" alt="...">
+                          </div>
+                          <div class="carousel-item">
+                            <img src="https://i.ibb.co/2jBkQsc/R-Corregidora.jpg" class="d-block w-100 rounded" alt="...">
+                          </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                          <span class="visually-hidden">Next</span>
+                        </button>
+                      </div>
+                
+                {% else %}
+                <p>Ya existe un viaje en curso</p>
+                {%endif%}
+            </div>
+            <div class="modal-footer justify-content-end">
+                <!--Guardar cambios-->
+                <button type="submit" class="btn btn-primary"> Reservar Viaje</button>
+                <!--Regresar a pagina principal-->
+                <button type="button" class="btn btn-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"> Cancelar</i></button>
+           </div>
+            
+             </form>
+          </div>
+        </div>
+      </div>
+{% endblock %}
+{% block body %}
+
+    {% with mensajes= get_flashed_messages()  %}
+    {% if mensajes %}
+        {% for msj in mensajes %}
+            <script>
+                Swal.fire(
+                'Éxito',
+                '{{ msj }}',
+                'success')
+            </script>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    
+    
+    <div class="mt-5 mb-5">
+        <h1 class="display-1 text-center text-white">Viaje en Curso</h1>
+    </div>
+    {% if 'None' in pvg%}
+    <div class="container text-center">
+        <div class="row justify-content-md-center">
+            <div class="col ">
+                <div class=" card card-body ">
+                    <p>Aún no hay viajes en curso</p>
+                </div><!--Cierre Card-->
+            </div><!--Cierre col-->
+        </div><!--Cierre row-->
+    </div><!--Cierre container-->
+    {% else %}
+    <div class="container text-center">
+        <div class="row justify-content-md-center">
+            <div class="col-md-6">
+                
+                <div class=" card card-body ">
+                    <!--Forma para mostrar datos del usuario-->
+                    <h2 class=" text-center">Datos del conductor</h2>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputMatricula" class="form-label">Matricula</label>
+                                <input type="number" class="form-control" id="inputMatricula" name="inputMatricula" value="{{cond.1}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputNombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="inputNombre" name="inputNombre" value="{{cond.0}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputAP" class="form-label">Apellido Paterno</label>
+                                <input type="text" class="form-control" id="inputAP" name="inputAP" value="{{cond.2}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputAM" class="form-label">Apellido Materno</label>
+                                <input type="text" class="form-control" id="inputAM" name="inputAM" value="{{cond.3}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                </div><!--Cierre Card-->
+            </div><!--Cierre col-->
+
+            <div class="col-md-6">
+                
+                <div class=" card card-body ">
+                    <!--Forma para mostrar datos del uvehiculp-->
+                    <h2 class=" text-center">Datos del Vehículo</h2>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputPlacas" class="form-label">Número de placas</label>
+                                <input type="text" class="form-control" id="inputPlacas" name="inputPlacas" value="{{auto.0}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputModelo" class="form-label">Modelo</label>
+                                <input type="text" class="form-control" id="inputModelo" name="inputModelo" value="{{auto.1}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputMarca" class="form-label">Marca</label>
+                                <input type="text" class="form-control" id="inputMarca" name="inputMarca" value="{{auto.2}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputColor" class="form-label">Color</label>
+                                <input type="text" class="form-control" id="inputColor" name="inputColor" value="{{auto.3}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputPoliza" class="form-label">Póliza</label>
+                                <input type="text" class="form-control" id="inputPoliza" name="inputPoliza" value="{{auto.4}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                </div><!--Cierre Card-->
+            </div><!--Cierre col-->
+        </div><!--Cierre row-->
+    </div><!--Cierre container-->
+
+
+    
+
+    <div class="container text-center mt-5 mb-5">
+        <div class="row justify-content-md-center">
+            {%for p in pas %}
+            <div class="col-md-6 mt-2">
+                
+                <div class=" card card-body ">
+                    <!--Forma para mostrar datos del usuario-->
+                    <h2 class=" text-center">Datos del pasajero {{loop.index}} </h2>
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputMatricula" class="form-label">Matrícula</label>
+                                <input type="number" class="form-control" id="inputMatricula" name="inputMatricula" value="{{p.1}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputNombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="inputNombre" name="inputNombre" value="{{p.0}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputAP" class="form-label">Apellido Paterno</label>
+                                <input type="text" class="form-control" id="inputAP" name="inputAP" value="{{p.2}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputAM" class="form-label">Apellido Materno</label>
+                                <input type="text" class="form-control" id="inputAM" name="inputAM" value="{{p.3}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                </div><!--Cierre Card-->
+            </div><!--Cierre col-->
+            {%endfor%}
+    {% endif %}
+
+{% endblock %}
