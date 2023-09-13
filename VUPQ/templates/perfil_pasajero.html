@@ -53,6 +53,25 @@
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
+                                <label for="inputNSS" class="form-label">Numero de Seguridad Social</label>
+                                <input type="text" class="form-control" id="inputNSS" name="txtNSS" value="{{pasajero.5}}" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputCarrera" class="form-label">Carrera</label>
+                                <select class="form-select" aria-label="Default select example" id="inputCarrera" name="txtCarrera" required>
+                                    <option selected value="">Selecciona una opción:</option>
+                                    <option value="1">Ingeniería Mecatronica</option>
+                                    <option value="2">Ingeniería en Sistemas Computacionales</option>
+                                    <option value="3">Ingeniería en Tecnología Automotriz</option>
+                                    <option value="4">Ingeniería en Tecnología en Manufactura</option>
+                                    <option value="5">Ingeniería en Redes y Telecomunicaciones</option>
+                                    <option value="6">Licenciatura en Administración y Gesion Empresarial</option>
+                                    <option value="7">Licenciatura en Negocios Internacionales</option>
+                                  </select>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
                                 <label for="inputAP" class="form-label">Teléfono</label>
                                 <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{pasajero.4}}" required>
                             </div><!--Cierre col-->
@@ -63,6 +82,17 @@
                                     <option value="1">Mujer</option>
                                     <option value="2">Hombre</option>
                                   </select>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputMail" class="form-label">Correo Institucional</label>
+                                <input type="text" class="form-control" id="inputMail" name="txtMail" value="{{pasajero.7}}" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputFoto" class="form-label">Foto personal</label>
+                                <input type="file" class="form-control" id="inputFile" name="uploadFile" value="{{pasajero.8}}" required>
+                                <input type="submit" value="Subir archivo" /> 
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3 mt-2">
