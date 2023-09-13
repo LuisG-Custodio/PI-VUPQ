@@ -10,33 +10,34 @@
 <body> 
     <section class="container">
         <header>REGISTRO PERSONA</header>
-        <form action="#" class="form">
+
+        <form action="/guardarpersonas" class="form" method="POST">
             <div class="column">
                 <div class="input-box">
                     <label>Nombre</label>
-                    <input type="text" placeholder="Nombre">
+                    <input type="text" name="txtNombre" placeholder="Nombre">
 
                 </div>
                 <div class="input-box">
                     <label>Apellido Paterno</label>
-                    <input type="text" placeholder="Apellido Paterno">
+                    <input type="text" name="txtAP" placeholder="Apellido Paterno">
 
                 </div>
                 <div class="input-box">
                     <label>Apellido Materno</label>
-                    <input type="text" placeholder="Apellido Materno">
+                    <input type="text" name="txtAM" placeholder="Apellido Materno">
 
                 </div>
             </div>
             <div class="column">
                 <div class="input-box">
                     <label>Phone number</label>
-                    <input type="number" placeholder="Enter phone number">
+                    <input type="number" name="txtTelefono" placeholder="Enter phone number">
 
                 </div>
                 <div class="input-box">
                     <label>Fecha</label>
-                    <input type="date" placeholder="fecha de nacimiento">
+                    <input type="date" name="txtFecha" placeholder="fecha de nacimiento">
 
                 </div>
 
@@ -46,22 +47,22 @@
                 <h3>Genero</h3>
                 <div class="gender-option">
                     <div class="gender">
-                        <input type="radio" id="check-female" name="gender">
+                        <input type="radio" name="genero" value="Femenino">
                         <label for="charset-female">Femenino</label>
                     </div>
                     <br>
                     <div class="gender-option"/>
                         <div class="gender">
-                            <input type="radio" id="check-female" name="gender">
+                            <input type="radio" name="genero" value="Masculino">
                             <label for="charset-male">Masculino</label>
                         </div>
                 </div>
             </div>
             
             </div>
-            <button>Guardar</button>
+            <button type="submit">Guardar</button>
             <div class="login-button">
-                <button><a href="http://localhost:5000\index">Atras</a></button>
+                <a href=/index><button type="button">Atras</button></a>
             </div> 
         </form>
 
