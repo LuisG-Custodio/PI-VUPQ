@@ -1,0 +1,366 @@
+CREATE DATABASE V_Unity1
+USE V_Unity1
+
+CREATE TABLE Roles(
+id int identity(1,1),
+nombre varchar(200),
+primary key(id)
+)
+
+INSERT INTO Roles (nombre)
+VALUES
+('Pasajero'),
+('Conductor')
+
+CREATE TABLE Generos(
+id int identity(1,1),
+nombre varchar(200),
+primary key(id)
+)
+
+INSERT INTO Generos (nombre)
+VALUES
+('Mujer'),
+('Hombre')
+
+CREATE TABLE Requisitos(
+id int identity(1,1),
+descripcion varchar(200),
+primary key(id)
+)
+
+INSERT INTO Requisitos (descripcion)
+VALUES
+('Vehículo limpio y en buen estado'),
+('Conductor amable y cortés'),
+('Conocimiento de rutas y destinos'),
+('Buena habilidad de manejo'),
+('Respeto a las normas de tránsito'),
+('Buena comunicación'),
+('Puntualidad'),
+('Conductor experimentado'),
+('Confort durante el viaje'),
+('Seguridad en el trayecto'),
+('Conocimiento básico de primeros auxilios'),
+('Conductor responsable'),
+('Disponibilidad de música o entretenimiento a bordo'),
+('Conocimiento de lugares de interés turístico'),
+('Flexibilidad en horarios')
+
+CREATE TABLE Tipos_Pagos(
+id int identity(1,1),
+tipo varchar(200),
+primary key(id)
+)
+
+INSERT INTO Tipos_Pagos (tipo)
+VALUES
+('Tarjeta'),
+('Transferencia')
+
+CREATE TABLE Incidentes(
+id int identity(1,1),
+nombre varchar(200),
+primary key(id)
+)
+
+INSERT INTO Incidentes (nombre)
+VALUES
+('Colisión frontal con otro vehículo.'),
+('Accidente por exceso de velocidad.'),
+('Choque lateral en una intersección.'),
+('Deslizamiento en una curva y salida de la carretera.'),
+('Choque trasero por falta de distancia de seguimiento.'),
+('Accidente por conducir distraído (uso de teléfono móvil).'),
+('Daño causado por un objeto caído en la carretera.'),
+('Choque con un animal en la vía.'),
+('Vehículo vandalizado (rayones, rotura de ventanas, etc.).'),
+('Vehículo vandalizado (rayones, rotura de ventanas, etc.).'),
+('Robo del automóvil.'),
+('Daño causado por inundación o tormenta.'),
+('Accidente por conducir bajo los efectos del alcohol.'),
+('Aparcamiento incorrecto y daño a otros vehículos.'),
+('Neumático reventado y pérdida de control del vehículo.')
+
+CREATE TABLE Rutas(
+id int identity(1,1),
+nombre varchar(200),
+descripcion varchar(200),
+primary key(id)
+)
+
+INSERT INTO Rutas (nombre, descripcion)
+VALUES
+('UPQ - Santiago de Querétaro', 'Ruta que conecta la UPQ con el centro de Santiago de Querétaro, pasando por avenidas principales y calles céntricas.'),
+('UPQ - Huimilpan', 'Ruta escénica que te lleva desde la UPQ hacia el municipio de Huimilpan.'),
+('UPQ - Pedro Escobedo', 'Ruta que te lleva desde la UPQ hacia el municipio de Pedro Escobedo, pasando por carreteras panorámicas y zonas de cultivos agrícolas.'),
+('UPQ - El Marqués', 'Ruta que conecta la UPQ con el municipio de El Marqués, pasando por vialidades modernas y zonas industriales.'),
+('UPQ - Corregidora', 'Ruta que te lleva desde la UPQ hacia el municipio de Corregidora, pasando por avenidas comerciales y áreas residenciales.'),
+('UPQ - San Juan del Río', 'Ruta de larga distancia que conecta la UPQ con la ciudad de San Juan del Río, pasando por la autopista principal y ofreciendo vistas panorámicas.'),
+('UPQ - Tequisquiapan', 'Ruta turística que te lleva desde la UPQ hacia la pintoresca ciudad de Tequisquiapan.'),
+('UPQ - Ezequiel Montes', 'Ruta que te lleva desde la UPQ hacia el municipio de Ezequiel Montes, atravesando caminos rurales y hermosos paisajes naturales.'),
+('UPQ - Colón', 'Ruta que te lleva desde la UPQ hacia el municipio de Colón, pasando por caminos rurales y zonas de producción agropecuaria.'),
+('Santiago de Querétaro - UPQ', 'Ruta que conecta el centro de Santiago de Queretaro y la UPQ, pasando por avenidas principales y calles céntricas para llegar a UPQ.'),
+('Huimilpan - UPQ', 'Ruta escénica que te lleva desde el municipio de Huimilpan hacia la UPQ, atravesando paisajes rurales.'),
+('El Marqués - UPQ', 'Ruta que conecta el municipio de El Marqués con la UPQ, pasando por vialidades modernas y zonas industriales.'),
+('Corregidora - UPQ', 'Ruta que te lleva desde el municipio de Corregidora hacia la UPQ, pasando por avenidas comerciales y áreas residenciales.'),
+('Colón - UPQ', 'Ruta que te lleva desde el municipio de Colón hacia la UPQ, pasando por caminos rurales y zonas de producción agropecuaria.'),
+('Ezequiel Mondes - UPQ', 'Ruta que te lleva desde el municipio de Ezequiel Montes hacia la UPQ.')
+
+CREATE TABLE Paradas(
+id int identity(1,1),
+nombre varchar(200),
+distancia int,
+primary key(id)
+)
+
+INSERT INTO Paradas (nombre, distancia)
+VALUES
+('Parque Bicentenario', '5'),
+('Ex-Hacienda El Cerrito', '12'),
+('Puente de Milenio', '20'),
+('Parque Industrial Bernardo Quintana', '15'),
+('Centro Comercial Antea', '8'),
+('Puente de la Historia', '60'),
+('Mercado de Artesanías', '45'),
+('Viñedos La Redonda', '30'),
+('Zona Arqueológica El Cerrito', '25'),
+('Auditorio Josefa Ortiz de Domínguez', '5'),
+('Parroquia de Huimilpan', '12'),
+('Parque Industrial Querétaro', '15'),
+('Centro Cívico de Corregidora', '8'),
+('Parroquia de Colón', '25'),
+('Plaza Principal de Ezequiel Montes', '30')
+
+CREATE TABLE Autos(
+id int identity(1,1),
+matricula varchar(200),
+marca varchar(200),
+color varchar(200),
+poliza varchar(200),
+tipo_auto varchar(200),
+capacidad int,
+fecha_ingreso date,
+fecha_actualizacion datetime,
+estatus bit,
+primary key(id)
+)
+
+INSERT INTO Autos (matricula, marca, color, poliza, tipo_auto, capacidad, fecha_ingreso, fecha_actualizacion, estatus)
+VALUES
+
+('ABC123', 'Toyota', 'Rojo', 'A1B2C3D4', 'Sedán, SUV, Camioneta', '5', GETDATE(), CONVERT(DATETIME, '2023-01-15', 120), '1'),
+('XYZ789', 'Ford', 'Azul', 'E5F6G7H8', 'Sedán, SUV, Camioneta', '7', GETDATE(), CONVERT(DATETIME, '2023-02-28', 120), '1'),
+('DEF456', 'Chevrolet', 'Negro', 'I9J0K1L2', 'Sedán, SUV, Camioneta', '7', GETDATE(), CONVERT(DATETIME, '2023-03-10', 120), '1'),
+('GHI987', 'Honda', 'Plata', 'M3N4O5P6', 'Sedán, SUV, Hatchback', '7', GETDATE(), CONVERT(DATETIME, '2023-04-05', 120), '1'),
+('JKL321', 'Volkswagen', 'Blanco', 'Q7R8S9T0', 'Sedán, SUV, Hatchback', '7', GETDATE(), CONVERT(DATETIME, '2023-05-22', 120), '1'),
+('MNO654', 'Mercedes-Benz', 'Gris', 'U1V2W3X4', 'Sedán, SUV, Coupé', '5', GETDATE(), CONVERT(DATETIME, '2023-06-11', 120), '1'),
+('PQR876', 'Nissan', 'Azul Marino', 'U1V2W3X4', 'Sedán, SUV, Camioneta', '5', GETDATE(), CONVERT(DATETIME, '2023-07-19', 120), '1'),
+('STU543', 'Hyundai', 'Rojo Oscuro', 'C9D0E1F2', 'Sedán, SUV, Hatchback', '7', GETDATE(), CONVERT(DATETIME, '2023-08-02', 120), '1'),
+('VWX210', 'Kia', 'Plateado', 'C9D0E1F2', 'Sedán, SUV, Hatchback', '7', GETDATE(), CONVERT(DATETIME, '2023-09-14', 120), '1'),
+('YZA789', 'Jeep', 'Verde', 'C9D0E1F2', 'SUV, Camioneta todoterreno', '5', GETDATE(), CONVERT(DATETIME, '2023-10-29', 120), '1'),
+('BCD456', 'Subaru', 'Naranja', 'P1Q2R3S4', 'Sedán, SUV, Hatchback', '7', GETDATE(), CONVERT(DATETIME, '2023-11-07', 120), '1'),
+('EFG987', 'Mazda', 'Gris Oscuro', 'T5U6V7W8', 'Sedán, SUV, Hatchback', '5', GETDATE(), CONVERT(DATETIME, '2023-12-18', 120), '1'),
+('HIJ321', 'Toyota', 'Blanco Perla', 'X9Y0Z1A2', 'Sedán, SUV, Camioneta', '6', GETDATE(), CONVERT(DATETIME, '2023-01-02', 120), '1'),
+('KLM654', 'Honda', 'Negro Mate', 'B3C4D5E6', 'Sedán, SUV, Camioneta', '5', GETDATE(), CONVERT(DATETIME, '2023-02-14', 120), '1'),
+('NOP876', 'Volkswagen', 'Plata Metalico', 'F7G8H9I0', 'Sedán, SUV, Coupé', '7', GETDATE(), CONVERT(DATETIME, '2023-03-27', 120), '1');
+
+
+CREATE TABLE Personas(
+matricula int,
+nombre varchar(200),
+ap varchar(200),
+am varchar(200),
+telefono varchar(10),
+contraseña varchar(12),
+fecha_ingreso date,
+fecha_actualizacion datetime,
+estatus bit,
+id_genero int,
+id_rol int,
+primary key(matricula),
+foreign key(id_genero) references Generos(id),
+foreign key(id_rol) references Roles(id)
+)
+
+INSERT INTO Personas (matricula, nombre, ap, am, telefono, contraseña, fecha_ingreso, fecha_actualizacion, estatus, id_genero, id_rol)
+VALUES
+('121045812', 'Luis', 'Garcia', 'Rodriguez', '55 1234 5678', '4T7y9P2q5R6w', 'GETDATE()', '2023-01-01', '1', '2', '1'),
+('121057193', 'Maria', 'Lopez', 'Martinez', '81 9876 5432', '3G6h8E1b4D9s', 'GETDATE()', '2023-02-15', '1', '1', '1'),
+('121060274', 'Carlos', 'Gonzalez', 'Hernandez', '33 2468 1357', '2J5k7L3m6N1v', 'GETDATE()', '2023-03-10', '1', '2', '2'),
+('121073455', 'Ana', 'Medina', 'Delgado', '664 987 6543', '9C2x4Z8v7B1n', 'GETDATE()', '2023-04-22', '1', '1', '1'),
+('121085636', 'Juan Carlos', 'Mendoza', 'Ortega', '686 543 2109', '6R9t3Y2h5N8s', 'GETDATE()', '2023-05-05', '1', '2', '2'),
+('121091817', 'Laura Andrea', 'Rivas', 'Espinoza', '998 765 4321', '5X8s2F4d7G3h', 'GETDATE()', '2023-06-18', '1', '1', '2'),
+('121102998', 'Pedro', 'Torres', 'Cruz', '444 321 0987', '1V3b6N4m9K7l', 'GETDATE()', '2023-07-02', '1', '2', '1'),
+('121116179', 'Isabel', 'Romero', 'Rios', '477 654 3210', '7M5n1B8v2C4x', 'GETDATE()', '2023-08-14', '1', '1', '1'),
+('121122350', 'Miguel Angel', 'Silva', 'Mendoza', '662 109 8765', '8T1y9P3q5R6w', 'GETDATE()', '2023-09-28', '1', '2', '1'),
+('121139531', 'Sofia', 'Jimenez', 'Navarro', '222 543 2109', '3S6d8H1f4G9j', 'GETDATE()', '2023-10-10', '1', '1', '1'),
+('121142712', 'Diego Adrian', 'Morales', 'Castro', '618 876 5432', '2L5k7M3n6B1v', 'GETDATE()', '2023-11-25', '1', '2', '2'),
+('121157893', 'Valentina', 'Vargas', 'Flores', '322 109 8765', '9X2c4Z8v7B1n', 'GETDATE()', '2023-12-08', '1', '1', '2'),
+('121169074', 'Jose Maria', 'Gonzalez', 'Flores', '744 543 2109', '6R9t3Y2h5N8s', 'GETDATE()', '2024-01-20', '1', '2', '1'),
+('121178255', 'Camila', 'Castillo', 'Blanco', '999 876 5432', '5Q8s2P4w7O3k', 'GETDATE()', '2024-02-09', '1', '1', '1'),
+('121036985', 'Omar', 'Figueroa', 'Salazar', '449 321 0987', '1I3u6B4y9T7r', 'GETDATE()', '2024-03-16', '1', '2', '2'),
+('121184436', 'Elena', 'Hernandez', 'Gomez', '555 987 6543', '4R7v9Y2u5I6o', 'GETDATE()', '2024-04-01', '1', '1', '2'),
+('121193617', 'Francisco', 'Vega', 'Santos', '999 123 4567', '3A6s8D1f4G9h', 'GETDATE()', '2024-05-12', '1', '2', '2'),
+('121202798', 'Paulina', 'Jimenez', 'Ramirez', '222 987 6543', '2W5e7R3t6Y1u', 'GETDATE()', '2024-06-24', '1', '1', '2'),
+('121215979', 'Roberto', 'Lara', 'Perez', '444 765 4321', '9I2u4B8y7T1r', 'GETDATE()', '2024-07-08', '1', '2', '2'),
+('121225160', 'Cristina', 'Mendoza', 'Hernandez', '666 543 2109', '6R9t3Y2h5N8s', 'GETDATE()', '2024-08-19', '1', '1', '2'),
+('121238341', 'Alejandro', 'Castillo', 'Rios', '333 109 8765', '3X6z8A1s4Q9w', 'GETDATE()', '2024-09-03', '1', '2', '2'),
+('121247522', 'Daniela', 'Gutierrez', 'Fuentes', '777 876 5432', '2L5k7M3n6B1v', 'GETDATE()', '2024-10-15', '1', '1', '2'),
+('121256703', 'Arturo', 'Hernandez', 'Vargas', '999 543 2109', '9X2c4Z8v7B1n', 'GETDATE()', '2024-11-28', '1', '2', '2'),
+('121265884', 'Mariana', 'Gomez', 'Torres', '888 109 8765', '8A1s3Z6x9C2v', 'GETDATE()', '2024-12-11', '1', '1', '2'),
+('121123467', 'Alejandra', 'Ramirez', 'Santos', '333 222 1111', '1A2B3C4D', 'GETDATE()', '2024-01-01', '1', '2', '1'),
+('121234578', 'Ricardo', 'Hernandez', 'Garcia', '555 444 3333', '5F4E3D2C1B', 'GETDATE()', '2024-02-02', '1', '1', '1'),
+('121345689', 'Isabella', 'Lopez', 'Mendoza', '777 666 5555', '9K8J7H6G5F', 'GETDATE()', '2024-03-03', '1', '2', '1'),
+('121456790', 'Daniel', 'Gonzalez', 'Silva', '999 888 7777', '3Q2W1E4R5T', 'GETDATE()', '2024-04-04', '1', '1', '1'),
+('121567801', 'Fernanda', 'Martinez', 'Rios', '222 111 0000', '6Y5U4I3O2P', 'GETDATE()', '2024-05-05', '1', '2', '1'),
+('121678912', 'Santiago', 'Mendoza', 'Torres', '444 333 2222', '8R7T6Y5U4I', 'GETDATE()', '2024-06-06', '1', '1', '1')
+
+CREATE TABLE Pasajeros(
+id int identity(1,1),
+id_persona int,
+primary key(id),
+foreign key(id_persona)references Personas(matricula)
+)
+
+INSERT INTO Pasajeros (id_persona)
+VALUES
+('1'),
+('2'),
+('3'),
+('4'),
+('5'),
+('6'),
+('7'),
+('8'),
+('9'),
+('10'),
+('11'),
+('12'),
+('13'),
+('14'),
+('15')
+
+CREATE TABLE Conductores(
+id int identity(1,1),
+id_persona int,
+id_auto int,
+primary key(id),
+foreign key(id_persona) references Personas(matricula),
+foreign key(id_auto) references Autos(id)
+)
+
+INSERT INTO Conductores (id_persona, id_auto)
+VALUES
+('3', '1'),
+('5', '2'),
+('6', '3'),
+('11', '4'),
+('12', '5'),
+('15', '6'),
+('16', '7'),
+('17', '8'),
+('18', '9'),
+('19', '10'),
+('20', '11'),
+('21', '12'),
+('22', '13'),
+('23', '14'),
+('24', '15')
+
+CREATE TABLE Viajes_globales(
+id int identity(1,1),
+fecha_ingreso date,
+fecha_actualizacion datetime,
+id_ruta int,
+id_incidente int,
+id_requisitos int,
+id_conductor int,
+primary key(id),
+foreign key(id_ruta) references Rutas(id),
+foreign key(id_conductor) references Conductores(id),
+foreign key(id_requisitos) references Requisitos(id),
+foreign key(id_incidente) references Incidentes(id),
+)
+
+INSERT INTO Viajes_globales(fecha_ingreso, fecha_actualizacion, id_ruta, id_incidente, id_requisitos, id_conductor)
+VALUES
+('2023-01-01', 'GETDATE()', '1', '1', '1', '3'),
+('2023-02-15', 'GETDATE()', '2', '2', '1', '5'),
+('2023-03-10', 'GETDATE()', '3', '3', '2', '6'),
+('2023-04-22', 'GETDATE()', '4', '4', '1', '11'),
+('2023-05-05', 'GETDATE()', '5', '5', '2', '12'),
+('2023-06-18', 'GETDATE()', '6', '6', '1', '15'),
+('2023-07-02', 'GETDATE()', '7', '7', '1', '16'),
+('2023-08-14', 'GETDATE()', '8', '8', '1', '17'),
+('2023-09-28', 'GETDATE()', '9', '9', '2', '18'),
+('2023-10-10', 'GETDATE()', '10', '10', '1', '19'),
+('2023-11-25', 'GETDATE()', '11', '11', '2', '20'),
+('2023-12-08', 'GETDATE()', '12', '12', '1', '21'),
+('2024-01-20', 'GETDATE()', '13', '13', '2', '22'),
+('2024-02-09', 'GETDATE()', '14', '14', '1', '23'),
+('2024-03-16', 'GETDATE()', '15', '15', '2', '24')
+
+CREATE TABLE Viajes(
+id int identity(1,1),
+id_viaje_global int,
+id_pasajero int,
+id_parada int,
+fecha_ingreso date,
+fecha_actualizacion datetime,
+primary key(id),
+foreign key(id_viaje_global) references Viajes_globales(id),
+foreign key(id_pasajero) references Pasajeros(id),
+foreign key(id_parada) references Paradas(id)
+)
+
+INSERT INTO Viajes(id_viaje_global, id_pasajero, id_parada ,fecha_ingreso, fecha_actualizacion)
+VALUES
+('1', '1', '1', '2023-01-01', 'GETDATE()'),
+('2', '2', '2', '2023-02-15', 'GETDATE()'),
+('3', '4', '3', '2023-03-10', 'GETDATE()'),
+('4', '7', '4', '2023-04-22', 'GETDATE()'),
+('5', '8', '5', '2023-05-05', 'GETDATE()'),
+('6', '9', '6', '2023-06-18', 'GETDATE()'),
+('7', '10', '7', '2023-07-02', 'GETDATE()'),
+('8', '13', '8', '2023-08-14', 'GETDATE()'),
+('9', '14', '9', '2023-09-28', 'GETDATE()'),
+('10', '25', '10', '2023-10-10', 'GETDATE()'),
+('11', '26', '11', '2023-11-25', 'GETDATE()'),
+('12', '27', '12', '2023-12-08', 'GETDATE()'),
+('13', '28', '13', '2024-01-20', 'GETDATE()'),
+('14', '29', '14', '2024-02-09', 'GETDATE()'),
+('15', '30', '15', '2024-03-16', 'GETDATE()')
+
+
+CREATE TABLE Pagos(
+id int identity(1,1),
+id_viaje int,
+fecha date,
+monto varchar(200),
+id_tipo_pago int,
+fecha_ingreso date,
+fecha_actualizacion date,
+estatus bit,
+primary key(id),
+foreign key(id_tipo_pago) references Tipos_Pagos(id),
+foreign key(id_viaje) references Viajes(id)
+)
+
+INSERT INTO Pagos (id_viaje, fecha, monto, id_tipo_pago, fecha_ingreso, fecha_actualizacion, estatus)
+VALUES
+('1', 'GETDATE()', '100', '1', 'GETDATE()', 'GETDATE()', '1'),
+('2', 'GETDATE()', '150', '1', 'GETDATE()', 'GETDATE()', '1'),
+('3', 'GETDATE()', '200', '2', 'GETDATE()', 'GETDATE()', '1'),
+('4', 'GETDATE()', '250', '2', 'GETDATE()', 'GETDATE()', '1'),
+('5', 'GETDATE()', '190', '1', 'GETDATE()', 'GETDATE()', '1'),
+('6', 'GETDATE()', '110', '2', 'GETDATE()', 'GETDATE()', '1'),
+('7', 'GETDATE()', '150', '2', 'GETDATE()', 'GETDATE()', '1'),
+('8', 'GETDATE()', '190', '1', 'GETDATE()', 'GETDATE()', '1'),
+('9', 'GETDATE()', '210', '2', 'GETDATE()', 'GETDATE()', '1'),
+('10', 'GETDATE()', '250', '2', 'GETDATE()', 'GETDATE()', '1'),
+('11', 'GETDATE()', '170', '1', 'GETDATE()', 'GETDATE()', '1'),
+('12', 'GETDATE()', '160', '2', 'GETDATE()', 'GETDATE()', '1'),
+('13', 'GETDATE()', '180', '1', 'GETDATE()', 'GETDATE()', '1'),
+('14', 'GETDATE()', '200', '2', 'GETDATE()', 'GETDATE()', '1'),
+('15', 'GETDATE()', '290', '1', 'GETDATE()', 'GETDATE()', '1')

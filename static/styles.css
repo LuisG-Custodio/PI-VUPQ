@@ -18,6 +18,9 @@ body{
 h1{
     color:white;
 }
+h3{
+    color:white;
+}
 .formulario{
     position: absolute;
     top: 50%;
@@ -95,26 +98,7 @@ form .username{
 .Recordar:hover{
     text-decoration: underline;
 }
-a{
-    display: block;
-    width: 50px;
-    font-weight: 100;
-    background-color: #05031f;
-    border: 1px solid;
-    border-radius: 25px;
-    font-size: 18px;
-    margin: 30px 30px;
-    padding: 15px 100px;
-    color: white;
-    cursor: pointer;
-    outline: none;
 
-}
-a:hover{
-   border-color: rgb(255, 255, 255);
-   transition:none;
-  
-}
 .input-group{
     display: flex;
     flex-wrap: wrap;
