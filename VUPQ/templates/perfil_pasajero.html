@@ -34,31 +34,32 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputMatricula" class="form-label">Matrícula</label>
-                                <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" value="{{pasajero.1}}" required>
+                                <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" value="{{pasajero.1}}" required readonly>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputNombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{pasajero.0}}" required>
+                                <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{pasajero.0}}" required readonly>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputAP" class="form-label">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{pasajero.2}}" required>
+                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{pasajero.2}}" required readonly>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputAM" class="form-label">Apellido Materno</label>
-                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{pasajero.3}}" required>
+                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{pasajero.3}}" required readonly>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputNSS" class="form-label">Numero de Seguridad Social</label>
-                                <input type="text" class="form-control" id="inputNSS" name="txtNSS" value="{{pasajero.5}}" required>
+                                <input type="text" class="form-control" id="inputNSS" name="txtNSS" value="{{pasajero.5}}" required readonly>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputCarrera" class="form-label">Carrera</label>
-                                <select class="form-select" aria-label="Default select example" id="inputCarrera" name="txtCarrera" required>
+                                    <input type="text" class="form-control" id="inputCarrera" name="txtCarrera" value="{{pasajero.6}}" required readonly>
+                                <!--<select class="form-select" aria-label="Default select example" id="inputCarrera" name="txtCarrera" required readonly>
                                     <option selected value="">Selecciona una opción:</option>
                                     <option value="1">Ingeniería Mecatronica</option>
                                     <option value="2">Ingeniería en Sistemas Computacionales</option>
@@ -67,7 +68,7 @@
                                     <option value="5">Ingeniería en Redes y Telecomunicaciones</option>
                                     <option value="6">Licenciatura en Administración y Gesion Empresarial</option>
                                     <option value="7">Licenciatura en Negocios Internacionales</option>
-                                  </select>
+                                  </select>-->
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
@@ -87,12 +88,12 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputMail" class="form-label">Correo Institucional</label>
-                                <input type="text" class="form-control" id="inputMail" name="txtMail" value="{{pasajero.7}}" required>
+                                <input type="text" class="form-control" id="inputMail" name="txtMail" value="{{pasajero.7}}" required readonly>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputFoto" class="form-label">Foto personal</label>
                                 <input type="file" class="form-control" id="inputFile" name="uploadFile" value="{{pasajero.8}}" required>
-                                <input type="submit" value="Subir archivo" />
+                                <!--<input type="submit" value="Subir archivo" />-->
                                 
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
