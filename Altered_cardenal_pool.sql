@@ -6,9 +6,9 @@ id_conductor int not null primary key auto_increment,
 matricula varchar(9),
 primer_ingreso_flag bit default 0,
 telefono varchar(10),
-##foto binary,
-##INE binary,
-##CredencialUPQ binary,
+foto mediumblob,
+INE mediumblob,
+CredencialUPQ mediumblob,
 foreign key (matricula) references Placeholder(matricula)
 );
 
@@ -70,9 +70,9 @@ id_conductor int not null primary key auto_increment,
 matricula varchar(9),
 primer_ingreso_flag bit default 0,
 telefono varchar(10),
-##foto binary,
-##INE binary,
-##CredencialUPQ binary,
+foto mediumblob,
+INE mediumblob,
+CredencialUPQ mediumblob,
 foreign key (matricula) references Placeholder(matricula)
 );
 
