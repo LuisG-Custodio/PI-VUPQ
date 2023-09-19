@@ -1,0 +1,269 @@
+{% extends 'master_template_conductor.html' %}
+{% block body %}
+
+    {% with mensajes= get_flashed_messages()  %}
+    {% if mensajes %}
+        {% for msj in mensajes %}
+            <script>
+                Swal.fire(
+                'Éxito',
+                '{{ msj }}',
+                'success')
+            </script>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <style>
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth) value for transparency */
+        }
+        .table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        .btn-blue:hover {
+            background-color: #0a4275;
+        }
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth) value for transparency */
+        }
+        .table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+         /* Ajustar el tamaño de las imágenes del carrusel */
+         .carousel-item img {
+            max-width: 350px;
+            height: 350px;
+        }
+    </style>
+ <div class="container">
+    <div class="row">
+        <div class="col-md-12 py-5">
+            <ul class="list-group list-group-flush col-md-4 rounded">
+                    <li class="list-group-item">
+                        <figure class="figure text-center col-md-12 my-3">
+                        <img src="https://i.ibb.co/L9D9XN8/Conductor1.png" width="200" height="200">
+                        <figcaption class="figure-caption">
+                            <h1>José Luis</h1>
+                            <h1>Sanchez Castillo</h1>
+                        </figcaption>
+                    </figure>
+                </li>
+                <li class="list-group-item px-5">
+                    <ul class="list-group">
+                        <li>
+                            Matrícula: 121039631 
+                        </li>
+                        <li>
+                            Carrera: Lic. Negocios Internacionales 
+                        </li>
+                        <li>
+                            NSS: 124569875
+                        </li>
+                        <li>
+                            Teléfono: 442-589-63-25
+                        </li>
+                        <li>
+                            Correo Institucional: 121039631@upq.edu.mx 
+                        </li>
+                        <li>
+                            Sexo: Hombre
+                        </li>
+                    </ul>
+                </li>
+                <li class="list-group-item">
+                    <div class="row p-4">
+                        <div class="col d-flex justify-content-between">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-outline-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                <i class="bi bi-person-add"></i> Agregar Auto
+                            </button>
+                            <button type="button" class="btn btn-outline-primary mb-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                                <i class="bi bi-file-lock"></i> Cambiar Contraseña
+                            </button>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+  <!-- Modal Contraseña -->
+  <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/cambiar_contraseña" method="POST">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label for="inputPassword" class="form-label">Nueva Contraseña</label>
+                            <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
+                            <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-info"><i class="bi bi-file-lock"></i> Guardar Contraseña</button>
+                    <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+ 
+ <!-- Modal Agregar Auto -->
+ <div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Auto</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/actualizarauto/{{personaid}}" method="POST">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputAP" class="form-label">Marca</label>
+                            <input type="text" class="form-control" id="inputAP" name="txtAP" required>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputAM" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" id="inputAM" name="txtAM" required>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputAP" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="inputAP" name="txtAP" required>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputAM" class="form-label">Capacidad</label>
+                            <input type="text" class="form-control" id="inputAM" name="txtAM" required>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputTelefono" class="form-label">No. Placa</label>
+                            <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" required>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">Tarjeta de circulación</label>
+                                <input class="form-control" type="file" id="formFile">
+                              </div>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="formFile" class="form-label">Credencial UPQ (Vigente)</label>
+                                <input class="form-control" type="file" id="formFile">
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="formFile" class="form-label">INE</label>
+                                <input class="form-control" type="file" id="formFile">
+                              </div>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="col-md-6">
+                    <div class="row g-3">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Póliza de Seguro (Vigente)</label>
+                            <input class="form-control" type="file" id="formFile">
+                          </div>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-info"><i class="bi bi-person-add"></i> Agregar Auto</button>
+                    <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+
+{% endblock%}
+
+{% block datos%}
+<div class=" card card-body mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>
+                Pasajeros
+                <hr>
+            </h1>
+            <div class="container mt-2">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for pac in pacientes %}
+                    <div class="col">
+                        <div class="card h-100">
+                            <img src="https://th.bing.com/th/id/R.d9c39ee1e8feae8cb028625772f41051?rik=em1benq%2bxUM%2f6Q&pid=ImgRaw&r=0" class="card-img-top" alt="Imagen de perfil">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="/paciente/{{pac.0}}">{{pac.1}}</a></h5>
+                                <!-- Aquí puedes agregar más información sobre el paciente si es necesario -->
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" card card-body mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>
+                Autos registrados
+                <hr> <!-- CREA UNA LÍNEA DE SEPARACIÓN -->
+            </h1>
+            <table class="table table-withe table-hover">
+                <thead>
+                </thead>
+                <tbody>
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        <div class="col">
+                          <div class="card h-100">
+                            <img src="https://th.bing.com/th/id/OIP.3coiyto2KN6KK7zUtyDotAHaEK?pid=ImgDet&rs=1" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card h-100">
+                            <img src="https://th.bing.com/th/id/OIP.3coiyto2KN6KK7zUtyDotAHaEK?pid=ImgDet&rs=1" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">This is a short card.</p>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col">
+                          <div class="card h-100">
+                            <img src="https://th.bing.com/th/id/OIP.3coiyto2KN6KK7zUtyDotAHaEK?pid=ImgDet&rs=1" class="card-img-top" alt="...">
+                            <div class="card-body">
+                              <h5 class="card-title">Card title</h5>
+                              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

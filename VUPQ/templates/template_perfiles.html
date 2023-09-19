@@ -1,0 +1,31 @@
+{% extends 'nav_template.html' %}
+{% block content%}
+<style>
+    body {
+            background-image: url('https://www.afspa.org/wp-content/uploads/2023/01/crop-surgeon-with-stethoscope-on-light-background-2021-10-21-02-30-33-utc-scaled.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-4">
+            <div class=" card card-body mt-5 mb-5">
+                {% block perfil %}
+                {% endblock %}
+            </div>
+        </div>
+        <div class="col-8">
+            {% block datos%}
+            {% endblock %}
+        </div>
+    </div>
+  </div>
+
+
+{% endblock %}

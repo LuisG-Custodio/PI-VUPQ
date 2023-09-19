@@ -1,0 +1,258 @@
+{% extends 'master_template.html' %}
+{% block body %}
+
+    {% with mensajes = get_flashed_messages() %}
+    {% if mensajes %}
+        {% for msj in mensajes %}
+            <script>
+                Swal.fire(
+                'Éxito',
+                '{{ msj }}',
+                'success')
+            </script>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <style>
+        body {
+            background-image: url("https://www.liderempresarial.com/wp-content/uploads/2022/05/UPQ.jpg");
+            height: 1150px;
+        }
+        .custom-btn {
+    background-color: #1c4c9b; /* Cambia el color del botón */
+    color: #ffffff; /* Cambia el color del texto del botón */
+}
+
+        /* Para tener tablas transparentes */
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Ajusta el valor alfa (cuarto valor) para la transparencia */
+        }
+
+        .table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+   <div class="container">
+    <div class="row">
+        <div class="col-md-12 ">
+            <ul class="list-group list-group-flush col-md-4 rounded">
+                    <li class="list-group-item">
+                        <figure class="figure text-center col-md-12 my-3">
+                            <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="200px">
+                            <figcaption class="figure-caption">
+                                <h1 class="text-center">Sofía</h1>
+                                <h1 class="text-center">Naranjos Granado</h1>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="list-group-item px-5">
+                        <ul class="list-group">
+                            <li>
+                                Matrícula: 121039631 
+                            </li>
+                            <li>
+                                Carrera: Lic. Negocios Internacionales 
+                            </li>
+                            <li>
+                                NSS: 124569875 
+                            </li>
+                            <li>
+                                Teléfono: 442-589-63-25 
+                            </li>
+                            <li>
+                                Correo Institucional: 121039631@upq.edu.mx 
+                            </li>
+                            <li>
+                                Sexo: Mujer
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row p-4">
+                            <div class="col d-flex justify-content-between">
+                                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="bi bi-pencil-square"></i> Editar Datos
+                                </button>
+                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#password_modal">
+                                    <i class="bi bi-file-lock"></i> Cambiar Contraseña
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Datos del Pasajero</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/editar_pasajero/{{ personaid }}" method="POST">
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="formFile" class="form-label">Foto del pasajero</label>
+                                <input class="form-control" type="file" id="formFile">
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputNombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="{{ pasajero.0 }}" required>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputAP" class="form-label">Apellido Paterno</label>
+                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{ pasajero.0 }}" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputAM" class="form-label">Apellido Materno</label>
+                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{ pasajero.1 }}" required>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputNombre" class="form-label">Carrera</label>
+                                <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="Lic. Negocios Internacionales" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputNombre" class="form-label">Matrícula</label>
+                                <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="121039631" required>
+                            </div>
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputTelefono" class="form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{ pasajero.4 }}" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputCorreo" class="form-label">Correo Institucional</label>
+                                <input type="email" class="form-control" id="inputCorreo" name="txtCorreo" value="{{ pasajero.3 }}" required>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputNacimiento" class="form-label">NSS</label>
+                                <input type="text" class="form-control" id="inputNacimiento" name="txtNacimiento" value="124569875" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputSexo" class="form-label">Sexo</label>
+                                <select class="form-select" aria-label="Default select example" id="inputSexo" name="txtSexo" required>
+                                    <option value="" selected>Selecciona:</option>
+                                    <option value="1">Femenino</option>
+                                    <option value="2">Masculino</option>
+                                    <option value="3">Prefiero no decirlo</option>
+                                </select>
+                            </div><!--Cierre col-->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> Guardar Cambios</button>
+                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<!--Modal de contraseña-->
+<div class="modal fade" id="password_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form action="/actualizarpasswordc/{{personaid}}" method="POST">
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label for="inputPassword" class="form-label">Nueva Contraseña</label>
+                        <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
+                        <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
+                    </div>
+                </div>
+                
+            
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> Guardar Cambios</button>
+            <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+</div><!--Cierre Card-->
+</div><!--Cierre col-->
+  
+
+{% endblock %}
+
+{%block datos%}
+{% if 'None' in Vnone%}
+<div class=" card card-body mt-5 mb-5">
+    <div class="row">
+        <div class="col">
+            Este paciente aún no tiene viajes regstrados
+        </div>
+    </div>
+</div>
+
+{%else%}
+<div class=" card card-body mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>
+                Viaje en Curso
+            </h1>
+            
+        </div>
+    </div>
+</div>
+
+<div class=" card card-body mt-5 mb-5">
+    <div class="row">
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <ul class="list-group list-group-flush">
+                        <h1>
+                             Historial de Viajes
+                        </h1>
+                        <li class="list-group-item">
+                            <table class="table table-striped">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                    {%for con in pas%}
+                                    <tr>
+                                        <td><a href="/persona/{{personaid}}/{{con.0}}">{{con.2}}</a></td>
+                                    </tr>
+                                    {%endfor%}
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </li>
+              </ul>
+        </div>
+    </div>
+</div>
+
+{% endif %}
+{% endblock %}
+
+<!-- Añade jQuery y Bootstrap JavaScript -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

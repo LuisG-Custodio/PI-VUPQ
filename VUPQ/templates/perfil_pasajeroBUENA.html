@@ -1,0 +1,118 @@
+{% extends 'master_template.html' %}
+{% block body %}
+
+    {% with mensajes= get_flashed_messages()  %}
+    {% if mensajes %}
+        {% for msj in mensajes %}
+            <script>
+                Swal.fire(
+                'Éxito',
+                '{{ msj }}',
+                'success')
+            </script>
+        {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <style>
+        .card {
+            background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth) value for transparency */
+        }
+        .table th {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+    </style>
+
+    <div class="mt-5 mb-5">
+        <h1 class="display-1 text-center text-white">Perfil de Pasajero</h1>
+    </div>
+    <div class="container text-center">
+        <div class="row justify-content-md-center">
+            <div class="col ">
+                <div class=" card card-body ">
+                    <!--Forma para mostrar datos del usuario-->
+                    <form action="/actualizarpersona/{{personaid}}" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputMatricula" class="form-label">Matrícula</label>
+                                <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" value="{{pasajero.1}}" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputNombre" class="form-label">Nombre</label>
+                                <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{pasajero.0}}" required>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputAP" class="form-label">Apellido Paterno</label>
+                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{pasajero.2}}" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputAM" class="form-label">Apellido Materno</label>
+                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{pasajero.3}}" required>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="inputAP" class="form-label">Teléfono</label>
+                                <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{pasajero.4}}" required>
+                            </div><!--Cierre col-->
+                            <div class="col-md-6">
+                                <label for="inputGenero" class="form-label">Género</label>
+                                <select class="form-select" aria-label="Default select example" id="inputGenero" name="txtGenero" required>
+                                    <option selected value="">Selecciona una opción:</option>
+                                    <option value="1">Mujer</option>
+                                    <option value="2">Hombre</option>
+                                  </select>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3 mt-2">
+                            <div class="col-md-12">
+                                <div class="col-md-12 d-grid gap-2 d-md-block ">
+                                    <!--Guardar cambios-->
+                                    <button type="submit" class="btn btn-primary"> Guardar cambios</button>
+                                    <!--Toggle modal de contraseña-->
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#password_modal">Cambiar contraseña</button>
+                                    <!--Cancelar cambios-->
+                                    <button type="reset" class="btn btn-warning"><i class="bi bi-arrow-return-left"> Cancelar</i></button>
+                                </div>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                    </form>
+                    <!--Modal de contraseña-->
+                    <div class="modal fade" id="password_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/actualizarpassword/{{personaid}}" method="POST">
+                                    <div class="row g-3">
+                                        <div class="col-md-12">
+                                            <label for="inputPassword" class="form-label">Nueva Contraseña</label>
+                                            <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
+                                        </div>
+                                    </div>
+                                    <div class="row g-3">
+                                        <div class="col-md-12">
+                                            <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
+                                            <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="reset" class="btn btn-warning"><i class="bi bi-arrow-return-left"> Cancelar</i></button>
+                                <button type="submit" class="btn btn-primary">Guardar</button>  
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </form>
+                </div><!--Cierre Card-->
+            </div><!--Cierre col-->
+        </div><!--Cierre row-->
+    </div><!--Cierre container-->
+    <br><br><br><br>
+{% endblock %}
