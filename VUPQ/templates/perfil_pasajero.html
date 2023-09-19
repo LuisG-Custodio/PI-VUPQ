@@ -13,138 +13,261 @@
         {% endfor %}
     {% endif %}
     {% endwith %}
-    <style>
-        .card {
+<style>
+    body {
+        background-image: url("https://www.liderempresarial.com/wp-content/uploads/2022/05/UPQ.jpg");
+        height: 1150px;
+    }
+    .custom-btn {
+    background-color: #1c4c9b; /* Cambia el color del botón */
+    color: #ffffff; /* Cambia el color del texto del botón */
+    }
+    /* Para tener tablas transparentes */
+    .card {
             background-color: rgba(255, 255, 255, 0.9); /* Adjust the alpha (fourth) value for transparency */
-        }
-        .table th {
+    }
+    .table th {
             background-color: rgba(255, 255, 255, 0.9);
-        }
-    </style>
-
-    <div class="mt-5 mb-5">
-        <h1 class="display-1 text-center text-white">Perfil de Pasajero</h1>
-    </div>
-    <div class="container text-center">
-        <div class="row justify-content-md-center">
-            <div class="col ">
-                <div class=" card card-body ">
-                    <!--Forma para mostrar datos del usuario-->
-                    <form action="/actualizarpersona/{{personaid}}" method="POST">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputMatricula" class="form-label">Matrícula</label>
-                                <input type="number" class="form-control" id="inputMatricula" name="txtMatricula" value="{{pasajero.1}}" required>
-                            </div><!--Cierre col-->
-                            <div class="col-md-6">
-                                <label for="inputNombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{pasajero.0}}" required>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputAP" class="form-label">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{pasajero.2}}" required>
-                            </div><!--Cierre col-->
-                            <div class="col-md-6">
-                                <label for="inputAM" class="form-label">Apellido Materno</label>
-                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{pasajero.3}}" required>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputNSS" class="form-label">Numero de Seguridad Social</label>
-                                <input type="text" class="form-control" id="inputNSS" name="txtNSS" value="{{pasajero.5}}" required>
-                            </div><!--Cierre col-->
-                            <div class="col-md-6">
-                                <label for="inputCarrera" class="form-label">Carrera</label>
-                                <select class="form-select" aria-label="Default select example" id="inputCarrera" name="txtCarrera" required>
-                                    <option selected value="">Selecciona una opción:</option>
-                                    <option value="1">Ingeniería Mecatronica</option>
-                                    <option value="2">Ingeniería en Sistemas Computacionales</option>
-                                    <option value="3">Ingeniería en Tecnología Automotriz</option>
-                                    <option value="4">Ingeniería en Tecnología en Manufactura</option>
-                                    <option value="5">Ingeniería en Redes y Telecomunicaciones</option>
-                                    <option value="6">Licenciatura en Administración y Gesion Empresarial</option>
-                                    <option value="7">Licenciatura en Negocios Internacionales</option>
-                                  </select>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputAP" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{pasajero.4}}" required>
-                            </div><!--Cierre col-->
-                            <div class="col-md-6">
-                                <label for="inputGenero" class="form-label">Género</label>
-                                <select class="form-select" aria-label="Default select example" id="inputGenero" name="txtGenero" required>
-                                    <option selected value="">Selecciona una opción:</option>
-                                    <option value="1">Mujer</option>
-                                    <option value="2">Hombre</option>
-                                  </select>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputMail" class="form-label">Correo Institucional</label>
-                                <input type="text" class="form-control" id="inputMail" name="txtMail" value="{{pasajero.7}}" required>
-                            </div><!--Cierre col-->
-                            <div class="col-md-6">
-                                <label for="inputFoto" class="form-label">Foto personal</label>
-                                <input type="file" class="form-control" id="inputFile" name="uploadFile" value="{{pasajero.8}}" required>
-                                <input type="submit" value="Subir archivo" /> 
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
-                        <div class="row g-3 mt-2">
-                            <div class="col-md-12">
-                                <div class="col-md-12 d-grid gap-2 d-md-block ">
-                                    <!--Guardar cambios-->
-                                    <button type="submit" class="btn btn-primary"> Guardar cambios</button>
-                                    <!--Toggle modal de contraseña-->
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#password_modal">Cambiar contraseña</button>
-                                    <!--Cancelar cambios-->
-                                    <button type="reset" class="btn btn-warning"><i class="bi bi-arrow-return-left"> Cancelar</i></button>
-                                </div>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
-                    </form>
-                    <!--Modal de contraseña-->
-                    <div class="modal fade" id="password_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    }
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <figure class="figure text-center col-md-12">
+                    <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="200px">
+                    <figcaption class="figure-caption">
+                        <h1 class="text-center">#</h1>
+                        <h1 class="text-center">#</h1>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="list-group-item">
+                <ul class="list-group">
+                    <li>
+                        Matrícula: 121039631 
+                    </li>
+                    <li>
+                        Carrera: Lic. Negocios Internacionales 
+                    </li>
+                    <li>
+                        NSS: 124569875 
+                    </li>
+                    <li>
+                        Teléfono: 442-589-63-25 
+                    </li>
+                    <li>
+                        Correo Institucional: 121039631@upq.edu.mx  
+                    </li>
+                    <li>
+                        Sexo: Mujer
+                    </li>
+                </ul>
+            </li>
+            <li class="list-group-item">
+                <div class="row">
+                    <div class="col">
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-outline-info mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <i class="bi bi-pencil-square"></i> Editar Datos
+                        </button>
+                        <br>
+                        <br>
+                        <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                            <i class="bi bi-file-lock"></i> Cambiar Contraseña
+                        </button>
+                        <br>
+                        <br>
+                        <form>
+                            <a href="/crearviaje/{{personaid}}">
+                                <button type="button" class="btn custom-btn">
+                                    <i class="bi bi-file-earmark-plus"></i> Nuevo Viaje
+                                </button>
+                            </a>
+                        </form>
+                        <BR></BR>
+                        <!-- Agrega la llamada de emergencia -->
+                        <div class="row">
+                            <div class="col">
+                                <a href="tel:7355421771" class="btn btn-danger">
+                                    <i class="bi bi-phone"></i> Llamada de Emergencia
+                                </a>
                             </div>
-                            <div class="modal-body">
-                                <form action="/actualizarpassword/{{personaid}}" method="POST">
-                                    <div class="row g-3">
-                                        <div class="col-md-12">
-                                            <label for="inputPassword" class="form-label">Nueva Contraseña</label>
-                                            <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
-                                        </div>
-                                    </div>
-                                    <div class="row g-3">
-                                        <div class="col-md-12">
-                                            <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
-                                            <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
-                                        </div>
-                                    </div>
-                                    
-                                
-                            </div>
-                            <div class="modal-footer">
-                                <button type="reset" class="btn btn-warning"><i class="bi bi-arrow-return-left"> Cancelar</i></button>
-                                <button type="submit" class="btn btn-primary">Guardar</button>
-                                
-                            </div>
-                          </div>
                         </div>
-                      </div>
-                    </form>
-                </div><!--Cierre Card-->
-            </div><!--Cierre col-->
-        </div><!--Cierre row-->
-    </div><!--Cierre container-->
-    <br><br><br><br>
-{% endblock %}
+                    </div>
+                </div>
+            </li>
+          </ul>
+    </div>
+</div>
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Datos del Pasajero</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="/editar_pasajero/{{personaid}}" method="POST">
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="formFile" class="form-label">Foto del pasajero</label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="{{pasajero.0}}" required>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputAP" class="form-label">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{pasajero.0}}" required>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputAM" class="form-label">Apellido Materno</label>
+                            <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{pasajero.1}}" required>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputNombre" class="form-label">Carrera</label>
+                            <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="Lic. Negocios Internacionales" required>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputNombre" class="form-label">Matrícula</label>
+                            <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="121039631" required>
+                        </div>
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputTelefono" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{pasajero.4}}" required>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputCorreo" class="form-label">Correo Institucional</label>
+                            <input type="email" class="form-control" id="inputCorreo" name="txtCorreo" value="{{pasajero.3}}" required>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputNacimiento" class="form-label">NSS</label>
+                            <input type="text" class="form-control" id="inputNacimiento" name="txtNacimiento" value="124569875" required>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputSexo" class="form-label">Sexo</label>
+                            <select class="form-select" aria-label="Default select example" id="inputSexo" name="txtSexo" required>
+                                <option value="" selected>Selecciona:</option>
+                                <option value="1">Femenino</option>
+                                <option value="2">Masculino</option>
+                                <option value="2">Prefiero no decirlo</option>
+                              </select>
+                        </div><!--Cierre col-->
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> Guardar Cambios</button>
+                    <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Modal Contraseña -->
+ <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <!--Modal de contraseña-->
+            <div class="modal fade" id="password_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/actualizarpassword/{{personaid}}" method="POST">
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label for="inputPassword" class="form-label">Nueva Contraseña</label>
+                                    <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
+                                </div>
+                            </div>
+                            <div class="row g-3">
+                                <div class="col-md-12">
+                                    <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
+                                    <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-warning"><i class="bi bi-arrow-return-left"> Cancelar</i></button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>  
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+{% endblock%}
+
+{%block datos%}
+{% if 'None' in Vnone%}
+<div class=" card card-body mt-5 mb-5">
+    <div class="row">
+        <div class="col">
+            Este pasajero aún no tiene viajes regstrados
+        </div>
+    </div>
+</div>
+
+{%else%}
+<div class=" card card-body mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>
+                Viaje en Curso
+            </h1>
+            
+        </div>
+    </div>
+</div>
+
+<div class=" card card-body mt-5 mb-5">
+    <div class="row">
+        <div class="col">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <ul class="list-group list-group-flush">
+                        <h1>
+                             Historial de Viajes
+                        </h1>
+                        <li class="list-group-item">
+                            <table class="table table-striped">
+                                <thead>
+                                </thead>
+                                <tbody>
+                                    
+                                </tbody>
+                            </table>
+                        </li>
+                    </ul>
+                </li>
+              </ul>
+        </div>
+    </div>
+</div>
+
+{%endif%}
+{%endblock%}
