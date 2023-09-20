@@ -1,0 +1,198 @@
+{% extends 'nav_template.html' %}
+{% block content%}
+<style>
+    body {
+        background-image: url("https://www.elationhealth.com/wp-content/uploads/2020/08/iStock-1178201255.jpg");
+        height: 1000px;
+    }
+</style>
+<div class="container" >
+    <div class="row">
+        <div class="col-4">
+            <div class=" card card-body mt-2">
+                <button id="download-button" class="btn btn-outline-success"><i class="bi bi-filetype-pdf"></i> Descargar PDF</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="invoice">
+<div class="container text-center mt-2">
+    <div class="row justify-content-md-center">
+      <div class="col col-lg-2">
+      </div>
+      
+      <div class="col col-lg-2">
+      </div>
+    </div>
+</div>
+<div class="container" >
+    <div class="row">
+        <div class="col-4">
+            <div class=" card card-body mb-5">
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <figure class="figure">
+                                    <img src="https://i.ibb.co/1bT35Lh/Frida.png" alt="" width="200px">
+                                    <figcaption class="figure-caption">
+                                        <h1>{{paciente.0}}</h1>
+                                        <h1>{{paciente.1}}</h1>
+                                    </figcaption>
+                                </figure>
+                            </li>
+                            <li class="list-group-item">
+                                <ul class="list-group">
+                                    <li>
+                                        Medico: {{data_medico.0}}
+                                    </li>
+                                    <li>
+                                        Fecha de Nacimiento: {{paciente.2}}
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-envelope-at"> {{paciente.3}}</i>
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-phone"> {{paciente.4}}</i>
+                                    </li>
+                                    <li>
+                                        Sexo: {{paciente.5}}
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="list-group-item">
+                                <ul class="list-group list-group-flush">
+                                    <li>
+                                        Enfermedades Crónicas
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{paciente.6}}
+                                    </li>
+                                    <li>
+                                        Alergias
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{paciente.7}}
+                                    </li>
+                                    <li>
+                                        Antecedentes familiares
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{paciente.8}}
+                                    </li>
+                                </ul>
+                            </li>
+                          </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-8">
+            <div class=" card card-body">
+                <div class="row">
+                    <div class="col">
+                        <h1>
+                            Consulta {{consulta.2}}
+                        </h1>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="inputPeso" class="form-label">Peso (kg)</label>
+                                <input type="number" step="any" class="form-control" id="inputPeso" name="txtPeso" value="{{consulta.3}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-4">
+                                <label for="inputAltura" class="form-label">Estatura (cm)</label>
+                                <input type="number" class="form-control" id="inputEstatura" name="txtEstatura" value="{{consulta.4}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-4">
+                                <label for="inputTemperatura" class="form-label">Temperatura (°C)</label>
+                                <input type="number" step="any" class="form-control" id="inputTemperatura" name="txtTemperatura" value="{{consulta.5}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="inputRitmo_Cardiaco" class="form-label">Ritmo Cardiaco (bpm)</label>
+                                <input type="number" class="form-control" id="inputRitmo_Cardiaco" name="txtRitmo_Cardiaco" value="{{consulta.6}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-4">
+                                <label for="inputPresion" class="form-label">Presion (mmHg)</label>
+                                <input type="text" class="form-control" id="inputPresion" name="txtPresion" value="{{consulta.7}}" disabled>
+                            </div><!--Cierre col-->
+                            <div class="col-md-4">
+                                <label for="inputSaturacion_Oxigeno" class="form-label">Saturacion de Oxígeno (%)</label>
+                                <input type="number" step="any" class="form-control" id="inputSaturacion_Oxigeno" name="txtSaturacion_Oxigeno" value="{{consulta.8}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="inputGlucosa" class="form-label">Glucosa (bpm)</label>
+                                <input type="number" class="form-control" id="inputGlucosa" name="txtGlucosa" value="{{consulta.9}}" disabled>
+                            </div><!--Cierre col-->
+                        </div><!--Cierre row-->
+                    </div>
+                </div>
+            </div>
+            <div class=" card card-body mt-3">
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <ul class="list-group list-group-flush">
+                                    <li>
+                                        <h3>Sintomatología</h3>
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{consulta.10}} 
+                                    </li>
+                                    <li>
+                                        <h3>Diagnóstico</h3>
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{consulta.11}}
+                                    </li>
+                                </ul>
+                            </li>
+                          </ul>
+                    </div>
+                </div>
+            </div>
+            <div class=" card card-body mt-3">
+                <div class="row">
+                    <div class="col">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">
+                                <ul class="list-group list-group-flush">
+                                    <li>
+                                        <h3>Receta</h3>
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{consulta.12}}
+                                    </li>
+                                    <li>
+                                        <h3>Exámenes</h3>
+                                    </li>
+                                    <li class="list-group-item">
+                                        {{consulta.13}}
+                                    </li>
+                                </ul>
+                            </li>
+                          </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>
+<script>
+    const button = document.getElementById('download-button');
+
+    function generatePDF() {
+        // Choose the element that your content will be rendered to.
+        const element = document.getElementById('invoice');
+        // Choose the element and save the PDF for your user.
+        html2pdf().from(element).save();
+    }
+
+    button.addEventListener('click', generatePDF);
+</script>
+  {% endblock %}

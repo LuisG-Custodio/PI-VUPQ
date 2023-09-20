@@ -1,0 +1,186 @@
+{% extends 'template_perfiles.html' %}
+{%block perfil%}
+<style>
+    body {
+        background-image: url("https://www.elationhealth.com/wp-content/uploads/2020/08/iStock-1178201255.jpg");
+        height: 1400px;
+    }
+</style>
+<div class="row">
+    <div class="col">
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+                <figure class="figure">
+                    <img src="https://i.ibb.co/1bT35Lh/Frida.png" width="200px">
+                    <figcaption class="figure-caption">
+                        <h1>{{paciente.0}}</h1>
+                        <h1>{{paciente.1}}</h1>
+                    </figcaption>
+                </figure>
+            </li>
+            <li class="list-group-item">
+                <ul class="list-group">
+                    <li>
+                        Medico: {{data_medico.0}}
+                    </li>
+                    <li>
+                        Fecha de Nacimiento: {{paciente.2}}
+                    </li>
+                    <li>
+                        <i class="bi bi-envelope-at"> {{paciente.3}}</i>
+                    </li>
+                    <li>
+                        <i class="bi bi-phone"> {{paciente.4}}</i>
+                    </li>
+                    <li>
+                        Sexo: {{paciente.5}}
+                    </li>
+                </ul>
+            </li>
+            <li class="list-group-item">
+                <ul class="list-group list-group-flush">
+                    <li>
+                        Enfermedades Crónicas
+                    </li>
+                    <li class="list-group-item">
+                        {{paciente.6}}
+                    </li>
+                    <li>
+                        Alergias
+                    </li>
+                    <li class="list-group-item">
+                        {{paciente.7}}
+                    </li>
+                    <li>
+                        Antecedentes familiares
+                    </li>
+                    <li class="list-group-item">
+                        {{paciente.8}}
+                    </li>
+                </ul>
+            </li>
+          </ul>
+    </div>
+</div>
+{% endblock%}
+
+{% block datos%}
+<form action="/nueva_consulta/{{id_paciente}}" method="POST">
+    <div class=" card card-body mt-5">
+        <div class="row">
+            <div class="col">
+                <h1>
+                    Consulta en Curso
+                </h1>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="inputPeso" class="form-label">Peso (kg)</label>
+                        <input type="number" step="any" class="form-control" id="inputPeso" name="txtPeso" required>
+                    </div><!--Cierre col-->
+                    <div class="col-md-4">
+                        <label for="inputAltura" class="form-label">Estatura (cm)</label>
+                        <input type="number" class="form-control" id="inputEstatura" name="txtEstatura" required>
+                    </div><!--Cierre col-->
+                    <div class="col-md-4">
+                        <label for="inputTemperatura" class="form-label">Temperatura (°C)</label>
+                        <input type="number" step="any" class="form-control" id="inputTemperatura" name="txtTemperatura" required>
+                    </div><!--Cierre col-->
+                </div><!--Cierre row-->
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="inputRitmo_Cardiaco" class="form-label">Ritmo Cardiaco (bpm)</label>
+                        <input type="number" class="form-control" id="inputRitmo_Cardiaco" name="txtRitmo_Cardiaco" required>
+                    </div><!--Cierre col-->
+                    <div class="col-md-4">
+                        <label for="inputPresion" class="form-label">Presion (mmHg)</label>
+                        <input type="text" class="form-control" id="inputPresion" name="txtPresion" required>
+                    </div><!--Cierre col-->
+                    <div class="col-md-4">
+                        <label for="inputSaturacion_Oxigeno" class="form-label">Saturacion de Oxígeno (%)</label>
+                        <input type="number" step="any" class="form-control" id="inputSaturacion_Oxigeno" name="txtSaturacion_Oxigeno" required>
+                    </div><!--Cierre col-->
+                </div><!--Cierre row-->
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="inputGlucosa" class="form-label">Glucosa (bpm)</label>
+                        <input type="number" class="form-control" id="inputGlucosa" name="txtGlucosa" required>
+                    </div><!--Cierre col-->
+                </div><!--Cierre row-->
+            </div>
+        </div>
+    </div>
+    <div class=" card card-body mt-3">
+        <div class="row">
+            <div class="col">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <ul class="list-group list-group-flush">
+                            <li>
+                                <h3>Sintomatología</h3>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" id="inputSintomatologia" rows="4" name="txtSintomatologia" required></textarea>
+                                    </div><!--Cierre col-->
+                                </div><!--Cierre row-->
+                            </li>
+                            <li>
+                                <h3>Diagnóstico</h3>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" id="inputDiagnostico" rows="4" name="txtDiagnostico" required></textarea>
+                                    </div><!--Cierre col-->
+                                </div><!--Cierre row-->
+                            </li>
+                        </ul>
+                    </li>
+                  </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card card-body mt-3">
+        <div class="row">
+            <div class="col">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <ul class="list-group list-group-flush">
+                            <li>
+                                <h3>Receta</h3>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" id="inputReceta" rows="4" name="txtReceta" required></textarea>
+                                    </div><!--Cierre col-->
+                                </div><!--Cierre row-->
+                            </li>
+                            <li>
+                                <h3>Exámenes</h3>
+                            </li>
+                            <li class="list-group-item">
+                                <div class="row g-3">
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" id="inputExamenes" rows="4" name="txtExamenes" required></textarea>
+                                    </div><!--Cierre col-->
+                                </div><!--Cierre row-->
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="card card-body mt-3 text-center">
+        <div class="col">
+            <!-- Button trigger modal -->
+            <button type="submit" class="btn btn-outline-info">
+                <i class="bi bi-file-earmark-plus"></i> Guardar datos
+            </button>
+            <a href="/paciente/{{id_paciente}}"><button type="button" class="btn btn-outline-warning"><i class="bi bi-arrow-return-left"></i> Cancelar</button></a>
+        </div>
+    </div>
+</form>
+{% endblock %}

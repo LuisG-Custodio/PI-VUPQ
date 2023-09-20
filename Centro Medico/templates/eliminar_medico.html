@@ -1,0 +1,82 @@
+{% extends 'nav_template.html' %}
+{% block content%}
+<div class="container text-center mt-5 mb-5">
+    <div class="row justify-content-md-center">
+        <div class="col ">
+            <div class=" card card-body ">
+                <form action="/eliminar_medico/{{id_persona}}" method="POST">
+                    <div class="row g-3">
+                        <div class="col-md-3"></div>
+                        <div class="col-md-6">
+                            <label for="inputNombre" class="form-label">Nombre</label>
+                            <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{medicos.0}}" disabled>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputAP" class="form-label">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{medicos.1}}" disabled>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputAM" class="form-label">Apellido Materno</label>
+                            <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{medicos.2}}" disabled>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputTelefono" class="form-label">Teléfono</label>
+                            <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{medicos.3}}" disabled>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputCorreo" class="form-label">Correo</label>
+                            <input type="email" class="form-control" id="inputCorreo" name="txtCorreo" value="{{medicos.4}}" disabled>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputRFC" class="form-label">RFC</label>
+                            <input type="text" class="form-control" id="inputRFC" name="txtRFC" value="{{medicos.5}}" disabled>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputCedula" class="form-label">Cedula</label>
+                            <input type="text" class="form-control" id="inputCedula" name="txtCedula" value="{{medicos.6}}" disabled>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputRol" class="form-label">Rol</label>
+                            <select class="form-select" aria-label="Default select example" id="inputRol" name="txtRol" value="{{medicos.7}}" disabled>
+                                <option selected>Selecciona:</option>
+                                <option value="1">Administrador</option>
+                                <option value="2">Usuario</option>
+                                </select>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputDepartamento" class="form-label">Departamento</label>
+                            <select class="form-select" aria-label="Default select example" id="inputDepartamento" name="txtDepartamento" value="{{medicos.8}}" disabled>
+                                <option value="" selected>Selecciona:</option>
+                                {%for dep in departamentos%}
+                                <option value="{{dep.0}}">{{dep.1}}</option>
+                                {%endfor%}
+                                </select>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputConsultorio" class="form-label">Consultorio</label>
+                            <input type="text" class="form-control" id="inputConsultorio" name="txtConsultorio" value="{{medicos.9}}" disabled>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3 mt-2">
+                        <div class="col-md-12">
+                            <button type="submit" class="btn btn-outline-danger"><i class="bi bi-trash"></i> Eliminar</button>
+                            <a href="/administracion"><button type="button" class="btn btn-outline-warning"><i class="bi bi-arrow-return-left"></i> Cancelar</button></a>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    
+                </form>
+            </div><!--Cierre Card-->
+        </div>
+    </div>
+</div>
+{% endblock%}
