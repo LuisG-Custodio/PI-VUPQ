@@ -33,59 +33,71 @@
         }
     </style>
    <div class="container">
-    <div class="row">
-        <div class="col-md-12 ">
-            <ul class="list-group list-group-flush col-md-4 rounded">
-                    <li class="list-group-item">
-                        <figure class="figure text-center col-md-12 my-3">
-                            <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="200px">
-                            <figcaption class="figure-caption">
-                                <h1 class="text-center">Sofía</h1>
-                                <h1 class="text-center">Naranjos Granado</h1>
-                            </figcaption>
-                        </figure>
-                    </li>
-                    <li class="list-group-item px-5">
-                        <ul class="list-group">
-                            <li>
-                                Matrícula: 121039631 
-                            </li>
-                            <li>
-                                Carrera: Lic. Negocios Internacionales 
-                            </li>
-                            <li>
-                                NSS: 124569875 
-                            </li>
-                            <li>
-                                Teléfono: 442-589-63-25 
-                            </li>
-                            <li>
-                                Correo Institucional: 121039631@upq.edu.mx 
-                            </li>
-                            <li>
-                                Sexo: Mujer
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="list-group-item">
-                        <div class="row p-4">
-                            <div class="col d-flex justify-content-between">
-                                <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    <i class="bi bi-pencil-square"></i> Editar Datos
-                                </button>
-                                <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#password_modal">
-                                    <i class="bi bi-file-lock"></i> Cambiar Contraseña
-                                </button>
+    <form action="" method="GET">
+        <div class="row">
+            <div class="col-md-12 ">
+                <ul class="list-group list-group-flush col-md-4 rounded">
+                        <li class="list-group-item">
+                            <figure class="figure text-center col-md-12 my-3">
+                                <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="200px">
+                                <figcaption class="figure-caption">
+                                    <label for="inputNombre" class="form-label"></label>
+                                    <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{pasajero.0}}" readonly>
+                                    
+                                    <label for="inputAP" class="form-label"></label>
+                                    <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{pasajero.2}}" readonly>
+                                    
+                                    <label for="inputAM" class="form-label"></label>
+                                    <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{pasajero.3}}" readonly>
+                                </figcaption>
+                            </figure>
+                        </li>
+                        <li class="list-group-item px-5">
+                            <ul class="list-group">
+                                <li>
+                                    <label for="inputMatricula" class="form-label">Matrícula</label>
+                                    <input type="text" class="form-control" id="inputMatricula" name="txtMatricula" value="{{pasajero.1}}" readonly> 
+                                </li>
+                                <li>
+                                    <label for="inputCarrera" class="form-label">Carrera</label>
+                                    <input type="text" class="form-control" id="inputCarrera" name="txtCarrera" value="{{pasaje}}" readonly> 
+                                </li>
+                                <li>
+                                    <label for="inputNSS" class="form-label">NSS</label>
+                                    <input type="text" class="form-control" id="inputNSS" name="txtNSS" value="{{pasaje}}" readonly>
+                                </li>
+                                <li>
+                                    <label for="inputTel" class="form-label">Teléfono</label>
+                                    <input type="tel" class="form-control" id="inputTel" name="txtTel" maxlength="10" minlength="10" value="{{pasajero.4}}" required>
+
+                                </li>
+                                <li>
+                                    <label for="inputMail" class="form-label">Correo Institucional</label>
+                                    <input type="email" class="form-control" id="inputMail" name="txtMail" readonly>
+                                </li>
+                                <li>
+                                    <label for="inputSexo" class="form-label">Sexo</label>
+                                    <input type="text" class="form-control" id="inputSexo" name="txtSexo" readonly>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="list-group-item">
+                            <div class="row p-4">
+                                <div class="col d-flex justify-content-between">
+                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#password_modal">
+                                        <i class="bi bi-file-lock"></i> Cambiar Contraseña
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                        
-                    </li>
-                </ul>
+                            
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
+    </form>
 
-    <!-- Modal -->
+    <!-- Modal 
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -99,47 +111,47 @@
                             <div class="col-md-6">
                                 <label for="formFile" class="form-label">Foto del pasajero</label>
                                 <input class="form-control" type="file" id="formFile">
-                            </div><!--Cierre col-->
+                            </div><!--Cierre col--
                             <div class="col-md-6">
                                 <label for="inputNombre" class="form-label">Nombre</label>
                                 <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="{{ pasajero.0 }}" required>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
+                            </div><!--Cierre col--
+                        </div><!--Cierre row--
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputAP" class="form-label">Apellido Paterno</label>
                                 <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{ pasajero.0 }}" required>
-                            </div><!--Cierre col-->
+                            </div><!--Cierre col--
                             <div class="col-md-6">
                                 <label for="inputAM" class="form-label">Apellido Materno</label>
                                 <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{ pasajero.1 }}" required>
                             </div><!--Cierre col-->
-                        </div><!--Cierre row-->
+                        </div><!--Cierre row--
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputNombre" class="form-label">Carrera</label>
                                 <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="Lic. Negocios Internacionales" required>
-                            </div><!--Cierre col-->
+                            </div><!--Cierre col--
                             <div class="col-md-6">
                                 <label for="inputNombre" class="form-label">Matrícula</label>
                                 <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="121039631" required>
                             </div>
-                        </div><!--Cierre row-->
+                        </div><!--Cierre row--
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputTelefono" class="form-label">Teléfono</label>
                                 <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{ pasajero.4 }}" required>
-                            </div><!--Cierre col-->
+                            </div><!--Cierre col--
                             <div class="col-md-6">
                                 <label for="inputCorreo" class="form-label">Correo Institucional</label>
                                 <input type="email" class="form-control" id="inputCorreo" name="txtCorreo" value="{{ pasajero.3 }}" required>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row-->
+                            </div><!--Cierre col--
+                        </div><!--Cierre row--
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputNacimiento" class="form-label">NSS</label>
                                 <input type="text" class="form-control" id="inputNacimiento" name="txtNacimiento" value="124569875" required>
-                            </div><!--Cierre col-->
+                            </div><!--Cierre col--
                             <div class="col-md-6">
                                 <label for="inputSexo" class="form-label">Sexo</label>
                                 <select class="form-select" aria-label="Default select example" id="inputSexo" name="txtSexo" required>
@@ -148,7 +160,7 @@
                                     <option value="2">Masculino</option>
                                     <option value="3">Prefiero no decirlo</option>
                                 </select>
-                            </div><!--Cierre col-->
+                            </div><!--Cierre col--
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -159,6 +171,7 @@
             </div>
         </div>
     </div>
+    -->
 
 <!--Modal de contraseña-->
 <div class="modal fade" id="password_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
