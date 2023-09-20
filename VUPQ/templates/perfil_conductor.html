@@ -36,56 +36,71 @@
         }
     </style>
  <div class="container">
-    <div class="row">
-        <div class="col-md-12 py-5">
-            <ul class="list-group list-group-flush col-md-4 rounded">
+    <form action="" method="get">
+        <div class="row">
+            <div class="col-md-12 py-5">
+                <ul class="list-group list-group-flush col-md-4 rounded">
+                        <li class="list-group-item">
+                            <figure class="figure text-center col-md-12 my-3">
+                            <img src="https://i.ibb.co/L9D9XN8/Conductor1.png" width="200" height="200">
+                            <figcaption class="figure-caption">
+                                <label for="inputNombre" class="form-label"></label>
+                                <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{conductor.0}}" readonly>
+                                    
+                                <label for="inputAP" class="form-label"></label>
+                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{conductor.2}}" readonly>
+                                    
+                                <label for="inputAM" class="form-label"></label>
+                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{conductor.3}}" readonly>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="list-group-item px-5">
+                        <ul class="list-group">
+                            <li>
+                                <label for="inputMatricula" class="form-label">Matrícula</label>
+                                <input type="text" class="form-control" id="inputMatricula" name="txtMatricula" value="{{conductor.1}}" readonly> 
+                            </li>
+                            <li>
+                                <label for="inputCarrera" class="form-label">Carrera</label>
+                                <input type="text" class="form-control" id="inputCarrera" name="txtCarrera" value="{{conduc}}" readonly> 
+                            </li>
+                            <li>
+                                <label for="inputNSS" class="form-label">NSS</label>
+                                <input type="text" class="form-control" id="inputNSS" name="txtNSS" value="{{conduc}}" readonly>
+                            </li>
+                            <li>
+                                <label for="inputTel" class="form-label">Teléfono</label>
+                                <input type="tel" class="form-control" id="inputTel" name="txtTel" maxlength="10" minlength="10" value="{{conductor.4}}" required>
+
+                            </li>
+                            <li>
+                                <label for="inputMail" class="form-label">Correo Institucional</label>
+                                <input type="email" class="form-control" id="inputMail" name="txtMail" readonly>
+                            </li>
+                            <li>
+                                <label for="inputSexo" class="form-label">Sexo</label>
+                                <input type="text" class="form-control" id="inputSexo" name="txtSexo" readonly>
+                            </li>
+                        </ul>
+                    </li>
                     <li class="list-group-item">
-                        <figure class="figure text-center col-md-12 my-3">
-                        <img src="https://i.ibb.co/L9D9XN8/Conductor1.png" width="200" height="200">
-                        <figcaption class="figure-caption">
-                            <h1>José Luis</h1>
-                            <h1>Sanchez Castillo</h1>
-                        </figcaption>
-                    </figure>
-                </li>
-                <li class="list-group-item px-5">
-                    <ul class="list-group">
-                        <li>
-                            Matrícula: 121039631 
-                        </li>
-                        <li>
-                            Carrera: Lic. Negocios Internacionales 
-                        </li>
-                        <li>
-                            NSS: 124569875
-                        </li>
-                        <li>
-                            Teléfono: 442-589-63-25
-                        </li>
-                        <li>
-                            Correo Institucional: 121039631@upq.edu.mx 
-                        </li>
-                        <li>
-                            Sexo: Hombre
-                        </li>
-                    </ul>
-                </li>
-                <li class="list-group-item">
-                    <div class="row p-4">
-                        <div class="col d-flex justify-content-between">
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-outline-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                <i class="bi bi-person-add"></i> Agregar Auto
-                            </button>
-                            <button type="button" class="btn btn-outline-primary mb-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                                <i class="bi bi-file-lock"></i> Cambiar Contraseña
-                            </button>
+                        <div class="row p-4">
+                            <div class="col d-flex justify-content-between">
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                    <i class="bi bi-person-add"></i> Agregar Auto
+                                </button>
+                                <button type="button" class="btn btn-outline-primary mb-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                                    <i class="bi bi-file-lock"></i> Cambiar Contraseña
+                                </button>
+                            </div>
                         </div>
-                    </div>
-                </li>
-            </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </form>
 </div>
 
   <!-- Modal Contraseña -->
@@ -132,57 +147,60 @@
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="inputAP" class="form-label">Marca</label>
-                            <input type="text" class="form-control" id="inputAP" name="txtAP" required>
+                            <label for="inputMarca" class="form-label">Marca</label>
+                            <input type="text" class="form-control" id="inputMarca" name="txtMarca" placeholder="Ford, Chevrolet, Mazda..." required>
                         </div><!--Cierre col-->
                         <div class="col-md-6">
-                            <label for="inputAM" class="form-label">Modelo</label>
-                            <input type="text" class="form-control" id="inputAM" name="txtAM" required>
-                        </div><!--Cierre col-->
-                    </div><!--Cierre row-->
-                    <div class="row g-3">
-                        <div class="col-md-6">
-                            <label for="inputAP" class="form-label">Color</label>
-                            <input type="text" class="form-control" id="inputAP" name="txtAP" required>
-                        </div><!--Cierre col-->
-                        <div class="col-md-6">
-                            <label for="inputAM" class="form-label">Capacidad</label>
-                            <input type="text" class="form-control" id="inputAM" name="txtAM" required>
+                            <label for="inputModelo" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" id="inputModelo" name="txtModelo" placeholder="Fiesta, Traker, CX5..." required>
                         </div><!--Cierre col-->
                     </div><!--Cierre row-->
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="inputTelefono" class="form-label">No. Placa</label>
-                            <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" required>
+                            <label for="inputColor" class="form-label">Color</label>
+                            <input type="text" class="form-control" id="inputColor" name="txtColor" required>
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                            <label for="inputYear" class="form-label">Año</label>
+                            <input type="text" class="form-control" id="inputYear" name="txtYear" required>
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="inputPlaca" class="form-label">No. Placa</label>
+                            <input type="text" class="form-control" id="inputPlaca" name="txtPlaca">
+                        </div><!--Cierre col-->
+                        <div class="col-md-6">
+                                <label for="inputCapacidad" class="form-label">Capacidad</label>
+                                <input type="number" class="form-control" id="inputCapacidad" name="txtCapacidad">
+                        </div><!--Cierre col-->
+                    </div><!--Cierre row-->
+                <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="formPoli" class="form-label">Póliza de Seguro</label>
+                                <input class="form-control" type="file" id="formPoli" name="">
+                            </div>
                         </div><!--Cierre col-->
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="formFile" class="form-label">Tarjeta de circulación</label>
-                                <input class="form-control" type="file" id="formFile">
-                              </div>
+                                <label for="formTC" class="form-label">Tarjeta de Circulación</label>
+                                <input class="form-control" type="file" id="formTC" name="">
+                            </div>
                         </div><!--Cierre col-->
-                    </div><!--Cierre row-->
+                    </div><!--Cierre row-->  
                     <div class="row g-3">
                         <div class="col-md-6">
-                            <label for="formFile" class="form-label">Credencial UPQ (Vigente)</label>
-                                <input class="form-control" type="file" id="formFile">
+                            <label for="formUPQ" class="form-label">Credencial UPQ (Vigente)</label>
+                                <input class="form-control" type="file" id="formUPQ">
                         </div><!--Cierre col-->
                         <div class="col-md-6">
                             <div class="mb-3">
-                                <label for="formFile" class="form-label">INE</label>
-                                <input class="form-control" type="file" id="formFile">
-                              </div>
+                                <label for="formINE" class="form-label">INE</label>
+                                <input class="form-control" type="file" id="formINE">
+                            </div>
                         </div><!--Cierre col-->
-                    </div><!--Cierre row-->
-                    <div class="col-md-6">
-                    <div class="row g-3">
-                        <div class="mb-3">
-                            <label for="formFile" class="form-label">Póliza de Seguro (Vigente)</label>
-                            <input class="form-control" type="file" id="formFile">
-                          </div>
-                        </div><!--Cierre col-->
-                    </div><!--Cierre row-->
-                    
+                    </div><!--Cierre row-->                   
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-outline-info"><i class="bi bi-person-add"></i> Agregar Auto</button>

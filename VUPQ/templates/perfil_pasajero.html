@@ -97,82 +97,6 @@
         </div>
     </form>
 
-    <!-- Modal 
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Editar Datos del Pasajero</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <form action="/editar_pasajero/{{ personaid }}" method="POST">
-                    <div class="modal-body">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="formFile" class="form-label">Foto del pasajero</label>
-                                <input class="form-control" type="file" id="formFile">
-                            </div><!--Cierre col--
-                            <div class="col-md-6">
-                                <label for="inputNombre" class="form-label">Nombre</label>
-                                <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="{{ pasajero.0 }}" required>
-                            </div><!--Cierre col--
-                        </div><!--Cierre row--
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputAP" class="form-label">Apellido Paterno</label>
-                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{ pasajero.0 }}" required>
-                            </div><!--Cierre col--
-                            <div class="col-md-6">
-                                <label for="inputAM" class="form-label">Apellido Materno</label>
-                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{ pasajero.1 }}" required>
-                            </div><!--Cierre col-->
-                        </div><!--Cierre row--
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputNombre" class="form-label">Carrera</label>
-                                <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="Lic. Negocios Internacionales" required>
-                            </div><!--Cierre col--
-                            <div class="col-md-6">
-                                <label for="inputNombre" class="form-label">Matrícula</label>
-                                <input type="text" class="form-control" id="inputMatricula" name="txtNombre" value="121039631" required>
-                            </div>
-                        </div><!--Cierre row--
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputTelefono" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" value="{{ pasajero.4 }}" required>
-                            </div><!--Cierre col--
-                            <div class="col-md-6">
-                                <label for="inputCorreo" class="form-label">Correo Institucional</label>
-                                <input type="email" class="form-control" id="inputCorreo" name="txtCorreo" value="{{ pasajero.3 }}" required>
-                            </div><!--Cierre col--
-                        </div><!--Cierre row--
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <label for="inputNacimiento" class="form-label">NSS</label>
-                                <input type="text" class="form-control" id="inputNacimiento" name="txtNacimiento" value="124569875" required>
-                            </div><!--Cierre col--
-                            <div class="col-md-6">
-                                <label for="inputSexo" class="form-label">Sexo</label>
-                                <select class="form-select" aria-label="Default select example" id="inputSexo" name="txtSexo" required>
-                                    <option value="" selected>Selecciona:</option>
-                                    <option value="1">Femenino</option>
-                                    <option value="2">Masculino</option>
-                                    <option value="3">Prefiero no decirlo</option>
-                                </select>
-                            </div><!--Cierre col--
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> Guardar Cambios</button>
-                        <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    -->
-
 <!--Modal de contraseña-->
 <div class="modal fade" id="password_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -194,9 +118,7 @@
                         <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
                         <input type="password" class="form-control" id="inputConfirmPassword" name="txtConfirmPassword" required>
                     </div>
-                </div>
-                
-            
+                </div>            
         </div>
         <div class="modal-footer">
             <button type="submit" class="btn btn-outline-info"><i class="bi bi-pencil-square"></i> Guardar Cambios</button>
