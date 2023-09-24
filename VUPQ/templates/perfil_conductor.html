@@ -35,52 +35,98 @@
             height: 350px;
         }
     </style>
+<!--
  <div class="container">
-    <form action="" method="get">
         <div class="row">
             <div class="col-md-12 py-5">
                 <ul class="list-group list-group-flush col-md-4 rounded">
-                        <li class="list-group-item">
-                            <figure class="figure text-center col-md-12 my-3">
+                    <li class="list-group-item">
+                        <figure class="figure text-center col-md-12 my-3">
                             <img src="https://i.ibb.co/L9D9XN8/Conductor1.png" width="200" height="200">
                             <figcaption class="figure-caption">
-                                <label for="inputNombre" class="form-label"></label>
-                                <input type="text" class="form-control" id="inputNombre" name="txtNombre" value="{{conductor.0}}" readonly>
-                                    
-                                <label for="inputAP" class="form-label"></label>
-                                <input type="text" class="form-control" id="inputAP" name="txtAP" value="{{conductor.2}}" readonly>
-                                    
-                                <label for="inputAM" class="form-label"></label>
-                                <input type="text" class="form-control" id="inputAM" name="txtAM" value="{{conductor.3}}" readonly>
+                                <h2>{{conductor.0}}</h2>
+
+                                <h2>{{conductor.2}} {{conductor.3}}</h2>
                             </figcaption>
                         </figure>
                     </li>
                     <li class="list-group-item px-5">
                         <ul class="list-group">
                             <li>
-                                <label for="inputMatricula" class="form-label">Matrícula</label>
-                                <input type="text" class="form-control" id="inputMatricula" name="txtMatricula" value="{{conductor.1}}" readonly> 
+                                Matrícula <strong>{{conductor.1}}</strong> 
                             </li>
                             <li>
-                                <label for="inputCarrera" class="form-label">Carrera</label>
-                                <input type="text" class="form-control" id="inputCarrera" name="txtCarrera" value="{{conduc}}" readonly> 
+                                Carrera <strong>{{conduc}}</strong> 
                             </li>
                             <li>
-                                <label for="inputNSS" class="form-label">NSS</label>
-                                <input type="text" class="form-control" id="inputNSS" name="txtNSS" value="{{conduc}}" readonly>
+                                NSS <strong>{{conduc}}</strong>
                             </li>
                             <li>
-                                <label for="inputTel" class="form-label">Teléfono</label>
-                                <input type="tel" class="form-control" id="inputTel" name="txtTel" maxlength="10" minlength="10" value="{{conductor.4}}" required>
+                                Teléfono <strong>{{conductor.4}}</strong>
 
                             </li>
                             <li>
-                                <label for="inputMail" class="form-label">Correo Institucional</label>
-                                <input type="email" class="form-control" id="inputMail" name="txtMail" readonly>
+                                Correo Institucional <strong>{{conduc}}</strong>
                             </li>
                             <li>
-                                <label for="inputSexo" class="form-label">Sexo</label>
-                                <input type="text" class="form-control" id="inputSexo" name="txtSexo" readonly>
+                                Sexo <strong>{{conduc}}</strong>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="row p-4">
+                            <div class="col d-flex justify-content-between">
+                                <!-- Button trigger modal --
+                                <button type="button" class="btn btn-outline-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                    <i class="bi bi-person-add"></i> Agregar Vehículos
+                                </button>
+                                <button type="button" class="btn btn-outline-primary mb-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                                    <i class="bi bi-file-lock"></i> Configuración
+                                </button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+</div>
+-->
+<div class="container">
+    <div class="row">
+        <!-- Card 1 -->
+        <div class="col-md-4">
+            <div class="card primera-card">
+                <div class="card-body">
+                    <li class="list-group-item">
+                        <figure class="figure text-center col-md-12 my-3">
+                            <img src="https://i.ibb.co/L9D9XN8/Conductor1.png" width="200" height="200">
+                            <figcaption class="figure-caption">
+                                <h2>{{conductor.0}}</h2>
+
+                                <h2>{{conductor.2}} {{conductor.3}}</h2>
+                            </figcaption>
+                        </figure>
+                    </li>
+                    <li class="list-group-item px-5">
+                        <ul class="list-group">
+                            <li>
+                                Matrícula <strong>{{conductor.1}}</strong> 
+                            </li>
+                            <li>
+                                Carrera <strong>{{conduc}}</strong> 
+                            </li>
+                            <li>
+                                NSS <strong>{{conduc}}</strong>
+                            </li>
+                            <li>
+                                Teléfono <strong>{{conductor.4}}</strong>
+
+                            </li>
+                            <li>
+                                Correo Institucional <strong>{{conduc}}</strong>
+                            </li>
+                            <li>
+                                Sexo <strong>{{conduc}}</strong>
                             </li>
                         </ul>
                     </li>
@@ -89,33 +135,122 @@
                             <div class="col d-flex justify-content-between">
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-outline-warning mb-2" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-                                    <i class="bi bi-person-add"></i> Agregar Auto
+                                    <i class="bi bi-person-add"></i> Agregar Vehículos
                                 </button>
                                 <button type="button" class="btn btn-outline-primary mb-2" data-bs-toggle="modal" data-bs-target="#passwordModal">
-                                    <i class="bi bi-file-lock"></i> Cambiar Contraseña
+                                    <i class="bi bi-file-lock"></i> Configuración
                                 </button>
                             </div>
                         </div>
                     </li>
-                </ul>
+                </div>
             </div>
         </div>
-    </form>
+        <!-- Card 2 -->
+        <div class="col-md-8">
+            <div class="card segunda-card">
+                <div class="card-body">
+                    <h2>Tus Pasajeros</h2>
+                        <div class="container text-center">
+                            <div class="row">
+                                <div class="col">
+                                    <img src="https://i.ibb.co/L9D9XN8/Conductor1.png" width="120" height="120">
+                                    <br>
+                                    Marco Mendoza
+                                    <br>
+                                    4421569758
+                                </div>
+                                <div class="col">
+                                    <img src="https://i.ibb.co/L9D9XN8/Conductor1.png" width="120" height="120">
+                                    <br>
+                                    Juan Fernandez
+                                    <br>
+                                    4422356987
+                                </div>
+                                <div class="col">
+                                    <img src="https://i.ibb.co/L9D9XN8/Conductor1.png" width="120" height="120">
+                                    <br>
+                                    Martha Martínez
+                                    <br>
+                                    4421436589
+                                </div>
+                                <div class="col">
+                                    <img src="https://i.ibb.co/L9D9XN8/Conductor1.png" width="120" height="120">
+                                    <br>
+                                    Luis Pedraza
+                                    <br>
+                                    4423569875
+                                </div>
+                            </div>
+                        </div>
+            </div>
+      <!-- Card 3 -->
+    <div class="col-md-12">
+        <div class="card third-card">
+            <div class="card-body">
+                <h2>Tus Rutas</h2>
+                <div class="container text-center">
+                    <div class="row">
+                        <div class="col">
+                            Salida-UPQ
+                        </div>
+                        <div class="col">
+                            UPQ-Salida
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Ruta 1</button>
+                            <br>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Ruta 2</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Card 4 -->
+    <div class="col-md-12">
+        <div class="card cuarta-card">
+            <div class="card-body">
+                <h2>Tus Vehículos</h2>
+                <div class="row">
+                    <div class="col">
+                        <img src="https://m.media-amazon.com/images/I/811VqN08VjL._UC256,256_CACC,256,256_.jpg" width="150" height="150" alt="">
+                    </div>
+                    <div class="col">
+                        <img src="https://m.media-amazon.com/images/I/61t9j2r8VLL._UC256,256_CACC,256,256_.jpg" width="150" height="150" alt="">
+                    </div>
+                    <div class="col">
+                        <img src="https://pictures.veekls.com/62dec0faadd5381acdbd8597?type=thumbnail&size=sm" width="150" height="150" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-
+</div>
   <!-- Modal Contraseña -->
   <div class="modal fade" id="passwordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Cambiar Contraseña</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Configuración</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/cambiar_contraseña" method="POST">
                 <div class="modal-body">
                     <div class="row g-3">
                         <div class="col-md-12">
-                            <label for="inputPassword" class="form-label">Nueva Contraseña</label>
+                            <label for="inputTel" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="inputTel" name="txtTel" maxlength="10" required>
+                        </div>
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label for="inputConfirmPassword" class="form-label">Confirmar contraseña</label>
                             <input type="password" class="form-control" id="inputPassword" name="txtPassword" required>
                         </div>
                     </div>
@@ -127,7 +262,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-info"><i class="bi bi-file-lock"></i> Guardar Contraseña</button>
+                    <button type="submit" class="btn btn-outline-info"><i class="bi bi-file-lock"></i> Guardar cambios</button>
                     <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cancelar</button>
                 </div>
             </form>
@@ -140,7 +275,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Auto</h1>
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Vehiculos</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="/actualizarauto/{{personaid}}" method="POST">
@@ -248,6 +383,8 @@
             </h1>
             <table class="table table-withe table-hover">
                 <thead>
+                    <th>M</th>
+                    <td>K</td>
                 </thead>
                 <tbody>
                     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -284,4 +421,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
