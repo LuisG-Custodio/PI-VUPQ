@@ -70,10 +70,11 @@
                                 <td>Graciela Álvarez González</td>
                                 <td>
                                     <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight"><i class="bi bi-person"></i>Perfil</button>
-                                        <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
+                                        data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight"><i class="bi bi-people-fill"></i> Perfil</button>
+                                    <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal2"><i class="bi bi-info-circle"></i> Información</button>
-                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal4"><i class="bi bi-chat-square-text-fill"></i> Comentarios</button>
+                                    <button type="button" class="btn btn-outline-warning me-2" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal4"><i class="bi bi-chat-right-text"></i> Comentarios</button>
                                 </td>
                             </tr>
                             <tr class="me-3 ms-5">
@@ -81,10 +82,11 @@
 
                                 <td>
                                     <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasRight2" aria-controls="offcanvasRight"><i class="bi bi-person"></i>Perfil</button>
+                                        data-bs-target="#offcanvasRight2" aria-controls="offcanvasRight"><i class="bi bi-people-fill"></i> Perfil</button>
                                     <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal1"><i class="bi bi-info-circle"></i> Información</button>
-                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal5"><i class="bi bi-chat-square-text-fill"></i> Comentarios</button>
+                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal5"><i class="bi bi-chat-right-text"></i> Comentarios</button>
 
                                 </td>
                             </tr>
@@ -97,7 +99,8 @@
                             <div class="modal-content">
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Conductor</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <table class="table table-striped table-hover table-bordered table-shadow">
@@ -142,8 +145,9 @@
                                             <img src="https://soloautos.li.csnstatic.com/soloautos/cars/private/4tnaoxhq81ju63v9ctmtwp2cu.jpg?pxc_method=fitfill&pxc_bgtype=self&height=725&width=1087"
                                                 class="card-img-top" alt="...">
                                             <div class="modal-footer d-grid gap-2">
-                                    <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal8" data-bs-whatever="@mdo">Más</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal8" data-bs-whatever="@mdo">Open modal
+                                                    for @mdo</button>
                                             </div>
                                         </div>
                                     </div>
@@ -152,13 +156,16 @@
                                             <img src="https://cdn-3.expansion.mx/dims4/default/27826cd/2147483647/strip/true/crop/1254x837+0+0/resize/1800x1201!/format/webp/quality/80/?url=https%3A%2F%2Fcdn-3.expansion.mx%2F9f%2F9e%2F00e50df74fdea0d309b36fa02878%2Fmarcas-de-autos-con-mejor-reputacion-en-mexico.jpg"
                                                 class="card-img-top" alt="...">
                                             <div class="modal-footer d-grid gap-2">
-                                                <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal8" data-bs-whatever="@mdo">Más</button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal8" data-bs-whatever="@mdo">Open modal
+                                                    for @mdo</button>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                        <button type="button" class="btn btn-outline-primary"
+                                            data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                                     </div>
                                 </div>
 
@@ -178,28 +185,20 @@
                                 </div>
                                 <div class="modal-body">
                                     <form>
-                                        <li class="list-group-item">
-                                            Marca: Ford
-                                        </li>
-                                        <li class="list-group-item">
-                                            Modelo: Fiesta
-                                        </li>
-                                        <li class="list-group-item">
-                                            Poliza de Seguro: 124569875
-                                        </li>
-                                        <li class="list-group-item">
-                                            Tarjeta de Circulación: 
-                                        </li>
-                                        <li class="list-group-item">
-                                            Placa: 121039631
-                                        </li>
-                                        <li class="list-group-item">
-                                            Color: Rojo
-                                        </li>
+                                        <div class="mb-3">
+                                            <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                            <input type="text" class="form-control" id="recipient-name">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="message-text" class="col-form-label">Message:</label>
+                                            <textarea class="form-control" id="message-text"></textarea>
+                                        </div>
                                     </form>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-warning"data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                    <button type="button" class="btn btn-primary">Send message</button>
                                 </div>
                             </div>
                         </div>
@@ -213,7 +212,8 @@
                                 <div class="modal-header">
                                     <h1 class="modal-title fs-5" id="exampleModalLabel">Información de Ruta
                                     </h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="modal-body">
@@ -253,14 +253,15 @@
                                                     <td>Ciudad Marques</td>
                                                     <td>Roberto Jimenez Sanches</td>
                                                     <td>6:00pm</td>
-                                                    <td>6:30 pm</td>
+                                                    <td>:30 pm</td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                    <button type="button" class="btn btn-outline-primary"
+                                        data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -313,9 +314,9 @@
                                             <label for="Idnombre" class="font-weight-bold">Edad:</label>
                                             <label for="Idnombre">21</label>
                                         </div>
-                                        <div class="d-grid gap-2 py-2">
-                                            <button class="btn btn-outline-warning" type="button">Baja</button>
-                                        </div>
+                                        <div class="d-grid gap-2 py-2 justify-content-center">
+                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-trash"></i> Baja</button>
+                                        </div>                                        
                                     </form>
 
                                 </div>
@@ -369,9 +370,9 @@
                                             <label for="Idnombre" class="font-weight-bold">Edad:</label>
                                             <label for="Idnombre">25</label>
                                         </div>
-                                        <div class="d-grid gap-2 py-2">
-                                            <button class="btn btn-outline-warning" type="button">Baja</button>
-                                        </div>
+                                        <div class="d-grid gap-2 py-2 justify-content-center">
+                                            <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal"><i class="bi bi-trash"></i> Baja</button>
+                                        </div> 
                                     </form>
 
                                 </div>
@@ -417,7 +418,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                    <button type="button" class="btn btn-outline-primary"
+                                        data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                                 </div>
                             </div>
                         </div>
@@ -462,7 +464,8 @@
                                     </div>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                    <button type="button" class="btn btn-outline-primary"
+                                        data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                                 </div>
                             </div>
                         </div>
