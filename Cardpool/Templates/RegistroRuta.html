@@ -173,6 +173,10 @@
                                     <label for="arrivalTime">Hora aproximada</label>
                                     <input id="arrivalTime" class="form-control" type="time" placeholder="2:15" required><br>
                                 </div>
+                                <div class="form-group">
+                                    <label for="description">Descripción de la Ruta Completa</label>
+                                    <input id="description" class="form-control" type="text" placeholder="Ingresa la descripción completa de tu ruta" required><br>
+                                </div>
                                 <button id="add" class="btn btn-outline-warning" type="button"><i class="bi bi-plus-circle"></i> Añadir punto de referencia</button>
                             </form>
                         </div>
@@ -188,6 +192,7 @@
                             <th scope="col">Punto de referencia</th>
                             <th scope="col">Descripción</th>
                             <th scope="col">Hora aproximada</th>
+                            <th scope="col">Ruta Completa</th>
                             <th scope="col">Eliminar</th>
                         </tr>
                     </table>
@@ -204,9 +209,10 @@
                 var reference = $('#reference').val();
                 var description = $('#description').val();
                 var arrivalTime = $('#arrivalTime').val();
+                var description1 = $('#description1').val();
                 
                 if (reference && description && arrivalTime) {
-                    var fila = '<tr id="row' + i + '"><td>' + reference + '</td><td>' + description + '</td><td>' + arrivalTime + '</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">Quitar</button></td></tr>';
+                    var fila = '<tr id="row' + i + '"><td>' + reference + '</td><td>' + description + '</td><td>' + arrivalTime + '</td><td>' + description1 +'</td><td><button type="button" name="remove" id="' + i + '" class="btn btn-danger btn_remove">Quitar</button></td></tr>' ;
                     
                     $('#referenceTable tr:first').after(fila);
                     
@@ -215,6 +221,7 @@
                     $('#reference').val("");
                     $('#description').val("");
                     $('#arrivalTime').val("");
+                    $('#description1').val("");
                     $('#reference').focus();
                 } else {
                     alert("Por favor, complete todos los campos.");
