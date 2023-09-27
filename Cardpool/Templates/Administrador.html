@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
       <!--fin-->
-    <title>Administrador</title>
+    <title>Administradors</title>
 </head>
 
 <body>
@@ -69,27 +69,43 @@
                             <tr class="me-3 ms-5">
                                 <td>Graciela Álvarez González</td>
                                 <td>
-                                    <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight"><i class="bi bi-person"></i>Perfil</button>
-                                        <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal2"><i class="bi bi-info-circle"></i> Información</button>
-                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal4"><i class="bi bi-chat-square-text-fill"></i> Comentarios</button>
+                                    <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight1" aria-controls="offcanvasRight"><i class="bi bi-person"></i>Perfil</button>
+                                    <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal2"><i class="bi bi-info-circle"></i> Información</button>
+                                    <button type="button" class="btn btn-outline-warning me-2" data-bs-toggle="modal" data-bs-target="#exampleModal4"><i class="bi bi-chat-square-text-fill"></i> Comentarios</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-outline-primary  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-check2-circle"></i>Action</button>
+                                        <ul class="dropdown-menu">
+                                          <li><a class="dropdown-item" href="#">Aprobado</a></li>
+                                          <li><a class="dropdown-item" href="#">Rechazado</a></li>
+                                          <li><a class="dropdown-item" href="#">En revisión</a></li>
+                                        </ul>
+                                    </div>
+
                                 </td>
                             </tr>
                             <tr class="me-3 ms-5">
                                 <td>Roberto Jimenez Sanches</td>
 
                                 <td>
-                                    <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="offcanvas"
-                                        data-bs-target="#offcanvasRight2" aria-controls="offcanvasRight"><i class="bi bi-person"></i>Perfil</button>
-                                    <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal1"><i class="bi bi-info-circle"></i> Información</button>
-                                    <button type="button" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#exampleModal5"><i class="bi bi-chat-square-text-fill"></i> Comentarios</button>
+                                    <button class="btn btn-outline-primary me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight2" aria-controls="offcanvasRight"><i class="bi bi-person"></i>Perfil</button>
+                                    <button type="button" class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#exampleModal1"><i class="bi bi-info-circle"></i> Información</button>
+                                    <button type="button" class="btn btn-outline-warning me-2" data-bs-toggle="modal" data-bs-target="#exampleModal4"><i class="bi bi-chat-square-text-fill"></i> Comentarios</button>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-outline-primary  dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-check2-circle"></i>
+                                          Action
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                          <li><a class="dropdown-item" href="#">Aprobado</a></li>
+                                          <li><a class="dropdown-item" href="#">Rechazado</a></li>
+                                          <li><a class="dropdown-item" href="#">En revisión</a></li>
+                                        </ul>
+                                    </div>
 
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
                     <!--MODAL DEL CONDUCTOR-->
                     <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -211,7 +227,7 @@
                         <div class="modal-dialog modal-dialog-scrollable">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Información de Ruta
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Registro de Rutas del Pasajero
                                     </h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
@@ -420,9 +436,9 @@
                                     <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                                 </div>
                             </div>
-                        </div>
+                        </div>  
                     </div>
-                    <!--SIERRE DE MODAL-->
+                    <!--CIERRE DE MODAL-->
                     <!--MODAL DEL PASAJERO COMENTARIOS-->
                     <div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">
@@ -467,7 +483,7 @@
                             </div>
                         </div>
                     </div>
-                    <!--SIERRE DE MODAL-->
+                    <!--CIERRE DE MODAL-->
                 </div>
             </div>
         </div>
