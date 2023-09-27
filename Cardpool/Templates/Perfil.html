@@ -46,7 +46,7 @@ justify-content: space-between;
             <!-- ELEMENTOS A LA IZQUIERDA "HOME" -->
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                  <a class="nav-link text-white" href="/homepage/pasajero/{{personaid}}">Home</a>
+                  <a class="nav-link text-white" href="/conductor">Home</a>
                 </li>
             </ul><!-- FIN ELEMENTOS A LA IZQUIERDA -->
             <!-- ELEMENTOS A LA DERECHA -->
@@ -58,10 +58,10 @@ justify-content: space-between;
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                         <li>
-                            <a id="perfilLink" class="dropdown-item" href="PerfilConductor.html">Perfil</a>
+                            <a id="perfilLink" class="dropdown-item" href="/conductor/perfil">Perfil</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="/">Cerrar Sesión</a>
+                            <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
                         </li>
                     </ul>
                 </div>
@@ -83,28 +83,36 @@ justify-content: space-between;
                                 <figure class="figure text-center col-md-12 my-3">
                                     <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
                                     <figcaption class="figure-caption">
-                                        <h2 class="text-center">Sofía</h2>
-                                        <h2 class="text-center">Naranjos Granado</h2S>
+                                        <h2 class="text-center">
+                                            {%for i in nombre%}
+                                            {{i}}
+                                            {%endfor%}
+                                        </h2>
+                                        <h2 class="text-center">
+                                            {%for i in apellidos%}
+                                            {{i}}
+                                            {%endfor%}
+                                        </h2S>
                                     </figcaption>
                                 </figure>
                             </li>
                             <li class="list-group-item">
-                                Matrícula: 121039631
+                                Matrícula: {{datos.0}}
                             </li>
                             <li class="list-group-item">
-                                Carrera: Lic. Negocios Internacionales
+                                Carrera: {{datos.3}}
                             </li>
                             <li class="list-group-item">
-                                NSS: 124569875
+                                NSS: {{datos.7}}
                             </li>
                             <li class="list-group-item">
                                 Teléfono: 442-589-63-25
                             </li>
                             <li class="list-group-item">
-                                Correo Institucional: 121039631@upq.edu.mx
+                                Correo Institucional: {{datos.5}}
                             </li>
                             <li class="list-group-item">
-                                Sexo: Mujer
+                                Sexo: {{datos.4}}
                             </li>
                         </ul>
                         <!-- Fin del contenido del perfil -->

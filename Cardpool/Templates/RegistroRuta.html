@@ -127,7 +127,7 @@
                 <!-- ELEMENTOS A LA IZQUIERDA "HOME" -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                      <a class="nav-link text-white" href="/homepage/pasajero/{{personaid}}">Home</a>
+                      <a class="nav-link text-white" href="/conductor">Home</a>
                     </li>
                 </ul><!-- FIN ELEMENTOS A LA IZQUIERDA -->
                 <!-- ELEMENTOS A LA DERECHA -->
@@ -139,10 +139,10 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
-                                <a id="perfilLink" class="dropdown-item" href="#">Perfil</a>
+                                <a id="perfilLink" class="dropdown-item" href="/conductor/perfil">Perfil</a>
                             </li>
                             <li>
-                                <a class="dropdown-item" href="/">Cerrar Sesión</a>
+                                <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
                             </li>
                         </ul>
                     </div>
@@ -160,24 +160,24 @@
                     <!-- Card para los campos de entrada -->
                     <div class="card">
                         <div class="card-body">
-                            <form>
+                            <form action="/cargarparada/{{id}}" method="POST">
                                 <div class="form-group">
                                     <label for="reference">Punto de referencia</label>
-                                    <input id="reference" class="form-control" type="text" placeholder="Plaza de armas..." required><br>
+                                    <input id="reference" class="form-control" type="text" placeholder="Plaza de armas..." name="txtreferencia" required><br>
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Descripción</label>
-                                    <input id="description" class="form-control" type="text" placeholder="Frente al supermercado..." required><br>
+                                    <input id="description" class="form-control" type="text" placeholder="Frente al supermercado..." name="txtdescripcion" required><br>
                                 </div>
                                 <div class="form-group">
                                     <label for="arrivalTime">Hora aproximada</label>
-                                    <input id="arrivalTime" class="form-control" type="time" placeholder="2:15" required><br>
+                                    <input id="arrivalTime" class="form-control" type="time" placeholder="2:15" name="txthora" required><br>
                                 </div>
                                 <div class="form-group">
                                     <label for="description">Descripción de la Ruta Completa</label>
-                                    <input id="description" class="form-control" type="text" placeholder="Ingresa la descripción completa de tu ruta" required><br>
+                                    <input id="description" class="form-control" type="text" placeholder="Ingresa la descripción completa de tu ruta" value="{{desc.1}}" name="txtdesgral" required><br>
                                 </div>
-                                <button id="add" class="btn btn-outline-warning" type="button"><i class="bi bi-plus-circle"></i> Añadir punto de referencia</button>
+                                <button class="btn btn-outline-warning" type="submit"><i class="bi bi-plus-circle"></i> Añadir punto de referencia</button>
                             </form>
                         </div>
                     </div>
@@ -195,6 +195,15 @@
                             <th scope="col">Ruta Completa</th>
                             <th scope="col">Eliminar</th>
                         </tr>
+                        {%for parada in paradas%}
+                        <tr>
+                            <td>{{parada.0}}</td>
+                            <td>{{parada.1}}</td>
+                            <td>{{parada.2}}</td>
+                            <td>{{desc.0}}</td>
+                            <td></td>
+                        </tr>
+                        {%endfor%}
                     </table>
                 </div>
             </div>

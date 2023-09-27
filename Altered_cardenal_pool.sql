@@ -1,15 +1,15 @@
-use cpool_tryout;
-
+create database carpool;
+use carpool;
 
 create table Conductor(
 id_conductor int not null primary key auto_increment,
-matricula varchar(9),
-primer_ingreso_flag bit default 0,
+matricula varchar(15),
+primer_ingreso_flag tinyint default 0,
 telefono varchar(10),
 foto mediumblob,
 INE mediumblob,
 CredencialUPQ mediumblob,
-foreign key (matricula) references Placeholder(matricula)
+foreign key (matricula) references vw_inscripciones(matricula)
 );
 
 create table Autos(
@@ -21,7 +21,7 @@ color varchar(200),
 poliza varchar(200),
 fecha_vencimiento date,
 lugares_disponibles int,
-##Tarjeta_circulacion binary,
+Tarjeta_circulacion mediumblob,
 capacidad int,
 espacios_disponibles int,
 estatus boolean
@@ -65,24 +65,13 @@ id_relacion int,
 foreign key (id_relacion) references Relacion_ruta(id) on delete cascade on update cascade
 );
 
-create table Conductor(
-id_conductor int not null primary key auto_increment,
-matricula varchar(9),
-primer_ingreso_flag bit default 0,
-telefono varchar(10),
-foto mediumblob,
-INE mediumblob,
-CredencialUPQ mediumblob,
-foreign key (matricula) references Placeholder(matricula)
-);
-
 create table Pasajero(
 id_pasajero int not null primary key auto_increment,
-matricula varchar(9),
+matricula varchar(15),
 telefono varchar(10),
 id_conductor int,
-aprovacion_flag int default 0,
-foreign key (matricula) references Placeholder(matricula),
+aprovacion_flag tinyint default 0,
+foreign key (matricula) references vw_inscripciones(matricula),
 foreign key (id_conductor) references Conductor(id_conductor) on delete cascade on update cascade
 );
 

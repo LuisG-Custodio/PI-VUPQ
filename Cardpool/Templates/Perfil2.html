@@ -127,7 +127,7 @@
                 <!-- ELEMENTOS A LA IZQUIERDA "HOME" -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                      <a class="nav-link text-white" href="/homepage/pasajero/{{personaid}}">Home</a>
+                      <a class="nav-link text-white" href="/conductor">Home</a>
                     </li>
                 </ul><!-- FIN ELEMENTOS A LA IZQUIERDA -->
                 <!-- ELEMENTOS A LA DERECHA -->
@@ -139,7 +139,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuAvatar">
                             <li>
-                                <a class="dropdown-item" href="/">Cerrar Sesión</a>
+                                <a class="dropdown-item" href="/logout">Cerrar Sesión</a>
                             </li>
                         </ul>
                     </div>
@@ -160,28 +160,35 @@
                                             <figure class="figure text-center col-md-12 my-3">
                                                 <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
                                                 <figcaption class="figure-caption">
-                                                    <h2 class="text-center">Sofía</h2>
-                                                    <h2 class="text-center">Naranjos Granado</h2S>
+                                                    <h2 class="text-center">
+                                                        {%for i in nombre%}
+                                                        {{i}}
+                                                        {%endfor%}</h2>
+                                                    <h2 class="text-center">
+                                                        {%for i in apellidos%}
+                                                        {{i}}
+                                                        {%endfor%}
+                                                    </h2S>
                                                 </figcaption>
                                             </figure>
                                         </li>
                                         <li class="list-group-item">
-                                            Matrícula: 121039631
+                                            Matrícula: {{datos.0}}
                                         </li>
                                         <li class="list-group-item">
-                                            Carrera: Lic. Negocios Internacionales
+                                            Carrera: {{datos.3}}
                                         </li>
                                         <li class="list-group-item">
-                                            NSS: 124569875
+                                            NSS: {{datos.7}}
                                         </li>
                                         <li class="list-group-item">
                                             Teléfono: 442-589-63-25
                                         </li>
                                         <li class="list-group-item">
-                                            Correo Institucional: 121039631@upq.edu.mx
+                                            Correo Institucional: {{datos.5}}
                                         </li>
                                         <li class="list-group-item">
-                                            Sexo: Mujer
+                                            Sexo: {{datos.4}}
                                         </li>
                                     </ul>
                                     <!-- Fin del contenido del perfil -->
@@ -213,11 +220,15 @@
                             <hr> <!-- CREA UNA LÍNEA DE SEPARACIÓN -->
                         </h1>
                         <div class="row row-cols-1 row-cols-md-3 g-4">
+                            {%for auto in autos%}
                             <div class="col">
                                 <div class="card h-100">
                                     <img src="https://th.bing.com/th/id/OIP.3coiyto2KN6KK7zUtyDotAHaEK?pid=ImgDet&rs=1" class="card-img-top" alt="...">
                                     <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
+                                      <h5 class="card-title">{{auto.2}} {{auto.1}}</h5>
+                                      Placa:   {{auto.0}}
+                                      Color:   {{auto.3}}
+                                      Lugares: {{auto.4}}
                                       <!-- Botón para ver los archivos PDF subidos -->
                                         <button type="button" class="btn btn-outline-warning mt-3" data-bs-toggle="modal" data-bs-target="#pdfModal">
                                               Ver Documentación
@@ -225,30 +236,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="https://th.bing.com/th/id/OIP.3coiyto2KN6KK7zUtyDotAHaEK?pid=ImgDet&rs=1" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <!-- Botón para ver los archivos PDF subidos -->
-                                        <button type="button" class="btn btn-outline-warning mt-3" data-bs-toggle="modal" data-bs-target="#pdfModal">
-                                              Ver Documentación
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="https://th.bing.com/th/id/OIP.3coiyto2KN6KK7zUtyDotAHaEK?pid=ImgDet&rs=1" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                      <h5 class="card-title">Card title</h5>
-                                      <!-- Botón para ver los archivos PDF subidos -->
-                                        <button type="button" class="btn btn-outline-warning mt-3" data-bs-toggle="modal" data-bs-target="#pdfModal">
-                                              Ver Documentación
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            {%endfor%}
                         </div>
                     </div>
                 </div>
@@ -319,49 +307,49 @@
                     <h1 class="modal-title fs-5" id="exampleModalLabel">Agregar Auto</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="/ingresar_paciente" method="POST">
+                <form action="/ingresar_auto" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputAP" class="form-label">Marca</label>
-                                <input type="text" class="form-control" id="inputAP" name="txtAP" required>
+                                <input type="text" class="form-control" id="inputAP" name="txtMarca" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputAM" class="form-label">Modelo</label>
-                                <input type="text" class="form-control" id="inputAM" name="txtAM" required>
+                                <input type="text" class="form-control" id="inputAM" name="txtModelo" required>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputAP" class="form-label">Color</label>
-                                <input type="text" class="form-control" id="inputAP" name="txtAP" required>
+                                <input type="text" class="form-control" id="inputAP" name="txtColor" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <label for="inputAM" class="form-label">Capacidad</label>
-                                <input type="text" class="form-control" id="inputAM" name="txtAM" required>
+                                <input type="text" class="form-control" id="inputAM" name="txtCapacidad" required>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="inputTelefono" class="form-label">No. Placa</label>
-                                <input type="text" class="form-control" id="inputTelefono" name="txtTelefono" required>
+                                <input type="text" class="form-control" id="inputTelefono" name="txtPlaca" required>
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Tarjeta de circulación</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" type="file" id="formFile" name="imgTarjeta">
                                   </div>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label for="formFile" class="form-label">Credencial UPQ (Vigente)</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" type="file" id="formFile" name="imgCredencial">
                             </div><!--Cierre col-->
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">INE</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" type="file" id="formFile" name="imgINE">
                                   </div>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
@@ -369,7 +357,7 @@
                             <div class="row g-3">
                                 <div class="mb-3">
                                     <label for="formFile" class="form-label">Póliza de Seguro (Vigente)</label>
-                                    <input class="form-control" type="file" id="formFile">
+                                    <input class="form-control" type="file" id="formFile" name="imgPoliza">
                                 </div>
                             </div><!--Cierre col-->
                         </div><!--Cierre row-->
