@@ -195,28 +195,36 @@
                                 <figure class="figure text-center col-md-12 my-3">
                                     <img src="https://i.ibb.co/v3w1HS0/Pasajera1.webp" alt="Foto del pasajero" width="150px">
                                     <figcaption class="figure-caption">
-                                        <h2 class="text-center">Sofía</h2>
-                                        <h2 class="text-center">Naranjos Granado</h2S>
+                                        <h2 class="text-center">
+                                            {%for i in nombre%}
+                                            {{i}}
+                                            {%endfor%}
+                                        </h2>
+                                        <h2 class="text-center">
+                                            {%for i in apellidos%}
+                                            {{i}}
+                                            {%endfor%}
+                                        </h2S>
                                     </figcaption>
                                 </figure>
                             </li>
                             <li class="list-group-item">
-                                Matrícula: 121039631
+                                Matrícula: {{datos.0}}
                             </li>
                             <li class="list-group-item">
-                                Carrera: Lic. Negocios Internacionales
+                                Carrera: {{datos.3}}
                             </li>
                             <li class="list-group-item">
-                                NSS: 124569875
+                                NSS: {{datos.7}}
                             </li>
                             <li class="list-group-item">
-                                Teléfono: 442-589-63-25
+                                Teléfono: {{telefono.0}}
                             </li>
                             <li class="list-group-item">
-                                Correo Institucional: 121039631@upq.edu.mx
+                                Correo Institucional: {{datos.5}}
                             </li>
                             <li class="list-group-item">
-                                Sexo: Mujer
+                                Sexo: {{datos.4}}
                             </li>
                         </ul>
                         <!-- Fin del contenido del perfil -->
@@ -258,23 +266,58 @@
             <div class="row">
                 <!-- Card 1 -->
                 <div class="col-md-6">
-                    <div class="card primera-card">
-                        <div class="card-body text-center">
-                            <h1>Detalles de Ruta</h1>
-                            <hr>
-                            <div>
-                                <p class="p-4">Puntos de Referencia Registrados:</p>
+                    {%if 'None' in  Vnone%}
+                    {%else%}
+                    {%for ruta in rutas%}
+                    <div class="row">
+                        <div class="card primera-card">
+                            <div class="card-body text-center">
+                                <h1>Detalles de Ruta</h1>
                                 <hr>
-                                <hr>
-                                <div id="added"></div>
+                                <div>
+                                    <h3>
+                                    Ruta:{{ruta.1}}<br>
+                                    Turno:{{ruta.3}}<br>
+                                    </h3>
+                                    <p class="p-4">Puntos de Referencia Registrados:</p>
+                                    <hr>
+                                    <hr>
+                                    <div id="added"></div>
+                                </div>
+                                <table id="referenceTable" class="table">
+                                    <tr>
+                                        <th scope="col">Punto de referencia</th>
+                                        <th scope="col">Descripción</th>
+                                        <th scope="col">Hora aproximada</th>
+                                    </tr>
+                                    
+                                    {%for parada in paradas%}
+                                    {%if ruta.0 in parada%}
+                                    <tr>
+                                        <td>{{parada.0}}</td>
+                                        <td>{{parada.1}}</td>
+                                        <td>{{parada.2}}</td>
+
+                                    </tr>
+                                    {%endif%}
+                                    {%endfor%}
+                                    
+                                </table>
                             </div>
-                            <table id="referenceTable" class="table">
-                                <tr>
-                                    <th scope="col">Punto de referencia</th>
-                                    <th scope="col">Descripción</th>
-                                    <th scope="col">Hora aproximada</th>
-                                </tr>
-                            </table>
+                        </div>
+                    </div>
+                    <br>
+                    {%endfor%}
+                    {%endif%}
+                    <div class="row ">
+                        <div class="card primera-card">
+                            <div class="card-body text-center">
+                                <h1>Registrar nueva ruta</h1>
+                                <hr>
+                                <div>
+                                    <a href="pasajero/ruta"><button type="button" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Registrar Ruta</button></a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -337,11 +380,20 @@
                     </div>
                     <form action="/" method="POST">
                         <div class="modal-body">
-                            <p><strong>Nombre:</strong> Nombre</p>
-                            <p><strong>Apellidos:</strong> Apellidos</p>
-                            <p><strong>Matrícula:</strong> Matricula</p>
-                            <p><strong>Carrera:</strong> Carrera</p>
-                            <p><strong>Género:</strong> Género</p>
+                            <p><strong>Nombre:</strong> 
+                                {%for i in nombre2%}
+                                {{i}}
+                                {%endfor%}
+                            </p>
+                            <p><strong>Apellidos:</strong>
+                                {%for i in apellidos%}
+                                {{i}}
+                                {%endfor%}
+                            </p>
+                            <p><strong>Matrícula:</strong> {{datos2.0}}</p>
+                            <p><strong>Carrera:</strong> {{datos2.3}}</p>
+                            <p><strong>Género:</strong> {{datos2.4}}</p>
+                            <p><strong>Teléfono:</strong> {{telefono2.0}}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
@@ -363,9 +415,11 @@
                 <div class="modal-body">
                     <form action="/" method="POST">
                         <div class="modal-body">
-                            <p><strong>Marca:</strong> Nombre</p>
-                            <p><strong>Modelo:</strong> Apellidos</p>
-                            <p><strong>No.Placas:</strong> Matricula</p>
+                            {%for auto in autos%}
+                            <p><strong>Marca:</strong> {{auto.2}}</p>
+                            <p><strong>Modelo:</strong> {{auto.1}}</p>
+                            <p><strong>No.Placas:</strong> {{auto.0}}</p>
+                            {%endfor%}
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>

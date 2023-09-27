@@ -55,7 +55,6 @@ def login():
             if VTipo=="2":
                 CC.execute("select id_pasajero from pasajero where matricula='"+session["Matricula"]+"';")
                 Vid=CC.fetchone()
-                
                 Vnone=str(Vid)
                 if Vnone=='None':
                     CC.execute("insert into pasajero(matricula) values (%s);",(session["Matricula"],))
@@ -66,7 +65,7 @@ def login():
                 else:
                     CC.execute("select id_pasajero from pasajero where matricula='"+session["Matricula"]+"';")
                     Vid=CC.fetchone()
-                    session["Conductor"]=Vid[0]
+                    session["Pasajero"]=Vid[0]
                 return redirect("/pasajero")
             #rol de administrador
             if VTipo=="3":
@@ -214,31 +213,93 @@ def pasajero():
     CC=mysql.connection.cursor()
     CC.execute("select * from pasajero where id_pasajero='"+str(session["Pasajero"])+"';")
     Vid=CC.fetchone()
-    
-    Vnone=str(Vid)
+    Vnone=str(Vid[3])
     print(Vnone)
     if Vnone=='None':
         return redirect("/pasajero/ruta")
     else:
-        CC.execute("select * from Ruta where id_conductor=%s",(session["Conductor"],))
-        rutas=CC.fetchall()
+        CC.execute("select telefono from Pasajero where id_pasajero=%s",(session["Pasajero"],))
+        telefono=CC.fetchone()
         CC.execute("select id_ruta from Ruta where id_conductor=%s",(session["Conductor"],))
         Vnone=str(CC.fetchone())
-        CC.execute("select punto_referencia,descripcion,hora,p.id_ruta from paradas as p inner join ruta as r on p.id_ruta=r.id_ruta where r.id_conductor=%s",(session["Conductor"],))
+        CC.execute("select id_conductor from Pasajero where id_pasajero=%s",(session["Pasajero"],))
+        aux=CC.fetchone()
+        id_conductor=aux[0]
+        CC.execute("select matricula from Conductor where id_conductor=%s",(id_conductor,))
+        aux2=CC.fetchone()
+        matricula_c=aux2[0]
+        CC.execute("select * from Ruta where id_conductor=%s",(id_conductor,))
+        rutas=CC.fetchall()
+        CC.execute("select punto_referencia,descripcion,hora,p.id_ruta from paradas as p inner join ruta as r on p.id_ruta=r.id_ruta where r.id_conductor=%s",(id_conductor,))
         paradas=CC.fetchall()
-        return render_template('HomePasajero.html',rutas=rutas,Vnone=Vnone,paradas=paradas)
-    
+        CC.execute("select matricula, nombre_completo, cuatrimestre, nombre_carrera, sexo, correo_electronico, fecha_nacimiento, nss from vw_inscripciones where matricula='"+session["Matricula"]+"';")
+        datos_personales=CC.fetchone()
+        temp=[]
+        for i in datos_personales[1].split():
+            temp.append(i)
+        if len(temp)==3:
+            nombre=temp[0]
+            del temp[0]
+        else:
+            nombre=[]
+            nombre.append(temp[0])
+            del temp[0]
+            nombre.append(temp[0])
+            del temp[0]
+        CC.execute("select matricula, nombre_completo, cuatrimestre, nombre_carrera, sexo, correo_electronico, fecha_nacimiento, nss from vw_inscripciones where matricula='"+matricula_c+"';")
+        datos_personales2=CC.fetchone()
+        temp2=[]
+        for i in datos_personales2[1].split():
+            temp2.append(i)
+        if len(temp2)==3:
+            nombre2=temp2[0]
+            del temp2[0]
+        else:
+            nombre2=[]
+            nombre2.append(temp2[0])
+            del temp2[0]
+            nombre2.append(temp2[0])
+            del temp2[0]
+            CC.execute("select telefono from Pasajero where id_pasajero=%s",(id_conductor,))
+        telefono2=CC.fetchone()
+        CC.execute("select placa,modelo,marca,color,lugares_disponibles from relacion_autos as ra inner join autos as a on ra.id_auto=a.id_auto where id_conductor=%s",(id_conductor,))
+        autos=CC.fetchall()    
+        return render_template('HomePasajero.html',Vnone=Vnone,paradas=paradas,rutas=rutas,nombre=nombre,apellidos=temp,datos=datos_personales,telefono=telefono,nombre2=nombre2,apellidos2=temp2,datos2=datos_personales2,telefono2=telefono2,autos=autos)
+
+#registrar ruta pasajero    
 @app.route('/pasajero/ruta')
 def reservar_ruta():
     if not session.get("Matricula"):
         return redirect("/login")
     CC= mysql.connection.cursor()
-    CC.execute("select nombre_ruta, descripcion_completa from Ruta where id_ruta=%s",(id,))
-    desc=CC.fetchone()
-    id2=id
-    CC.execute("select punto_referencia, descripcion, hora from Paradas where id_ruta=%s",(id,))
+    CC.execute("select r.nombre_ruta, r.tipo_ruta, i.nombre_completo, i.matricula, c.telefono, r.id_ruta from conductor as c inner join ruta as r on c.id_conductor=r.id_conductor inner join vw_inscripciones as i on i.matricula=c.matricula where primer_ingreso_flag=1")
+    conductores=CC.fetchall()
+    CC.execute("select * from paradas")
     paradas=CC.fetchall()
-    return render_template('Rutas.html',desc=desc,id=id2,paradas=paradas)
+    return render_template('Rutas.html',conductores=conductores,paradas=paradas)
+
+@app.route('/reserva_ruta/<id>')
+def reserva_ruta(id):
+    if not session.get("Matricula"):
+        return redirect("/login")
+    CC= mysql.connection.cursor()
+    CC.execute("select id_conductor from ruta where id_ruta=%s",(id,))
+    id_conductor=CC.fetchone()
+    id_c=id_conductor[0]
+    print(id_c)
+    print(session["Pasajero"])
+    CC.execute("update pasajero set id_conductor=%s where id_pasajero=%s",(id_c,session["Pasajero"]))
+    mysql.connection.commit()
+    return redirect("/pasajero")
+
+#añadir paradas
+@app.route('/actualizar_telefono', methods=['POST'])
+def actualizar_telefono():
+    VTelefono=request.form['txtTelefono']
+    CC= mysql.connection.cursor()
+    CC.execute("update pasajero set telefono=%s where id_pasajero=%s",(VTelefono,session["Pasajero"],))
+    mysql.connection.commit()
+    return redirect("/pasajero")
 
 @app.route('/admin')
 def admin():

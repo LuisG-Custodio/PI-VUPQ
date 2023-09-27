@@ -46,227 +46,105 @@
                             </tr>
                         </thead>
                         <tbody>
+                            {%for cond in conductores%}
                             <tr class="me-3 ms-5">
-                                <td> QUERETARO</td>
-                                <td>Jose Martinez Guzman </td>
+                                <td> {{cond.0}}</td>
+                                <td>{{cond.2}} </td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary me-2" data-toggle="modal"data-target="#myModal"><i class="bi bi-bus-front"></i> Ruta de Vuelta</button>
-                                    <button type="button" class="btn btn-outline-primary me-2" data-toggle="modal"data-target="#myModal"><i class="bi bi-bus-front"></i> Ruta de Ida</button>
-                                    <button type="button" class="btn btn-outline-primary me-2" data-toggle="modal" data-target="#myModal2"><i class="bi bi-bus-front"></i> Ambas</button>
+                                    <button type="button" class="btn btn-outline-primary me-2" data-toggle="modal"data-target="#myModal2"><i class="bi bi-bus-front"></i> Turno {{cond.1}}</button>
+                                    <!-- Modal 1 -->
+                                    <div class="modal fade" id="myModal2">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <!-- Encabezado del modal -->
+                                                <div class="modal-header">
+                                                    <h4 class="modal-title text-center">Datos del Conductor</h4>
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                </div>
+
+                                                <!-- Contenido del modal -->
+                                                <div class="modal-body">
+                                                    <img src="https://i.pinimg.com/736x/19/03/3b/19033b75e736bf231dedd8b7840f4e6e.jpg"
+                                                        alt="Imagen de usuario" class="modal-image">
+                                                    <div class="mb-3">
+                                                        <div class="mb-2">
+                                                            <label for="formFileSm" class="form-labe fw-bold">Nombre:</label>
+                                                            <div class="mb-2">
+                                                                <label for="formFileSm" class="form-label">{{cond.2}}</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label fw-bold">Matricula</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label">{{cond.3}}</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label fw-bold">Telefono</label>
+                                                            </div>
+                                                            <div class="mb-3">
+                                                                <label for="formFileSm" class="form-label">{{cond.4}}</label>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                                <!-- Pie del modal -->
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-dismiss="modal" data-target="#exampleModal5"><i class="bi bi-info-circle"></i> Información de la Ruta</button>
+                                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-dialog-scrollable">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Conductor</h1>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <table class="table table-hover table-bordered">
+                                                        <h1>Paradas</h1>
+                                                        <thead class="table-primary">
+                                                            <tr>
+                                                                <th scope="col">Punto de Referencia</th>
+                                                                <th scope="col">Descripción</th>
+                                                                <th scope="col">Hora</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            {%for parada in paradas%}
+                                                            {%if cond.5 in parada%}
+                                                            <tr>
+                                                                <td>{{parada.1}}</td>
+                                                                <td>{{parada.2}}</td>
+                                                                <td>{{parada.3}}</td>
+                                                            </tr>
+                                                            {%endif%}
+                                                            {%endfor%}
+                                                        </tbody>
+                                                    </table>
+                                                    <!-- Pie del modal -->
+                                                    <div class="modal-footer">
+                                                        <a href="/reserva_ruta/{{cond.5}}"><button type="button" class="btn btn-outline-primary"><i class="bi bi-info-circle"></i>Registrar Ruta</button></a>
+                                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--CIERRE MODAL-->
                                 </td>
                             </tr>
+                            {%endfor%}
                         </tbody>
                     </table>
-                    <!-- Modal 1 -->
-                    <div class="modal fade" id="myModal">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <!-- Encabezado del modal -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title text-center">Datos del Conductor</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Contenido del modal -->
-                                <div class="modal-body">
-                                    <img src="https://cdn.domestika.org/c_limit,dpr_auto,f_auto,q_auto,w_820/v1576497340/content-items/003/518/329/_MG_5442-original.jpg"
-                                        alt="Imagen de usuario" class="modal-image">
-                                    <div class="mb-3">
-                                        <div class="mb-2">
-                                            <label for="formFileSm" class="form-labe fw-bold">Nombre:</label>
-                                            <div class="mb-2">
-                                                <label for="formFileSm" class="form-label">Jose Martinez Guzman</label>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFileSm" class="form-label fw-bold">Matricula</label>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFileSm" class="form-label">121029463</label>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFileSm" class="form-label fw-bold">Telefono</label>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFileSm" class="form-label">4481597896</label>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- Pie del modal -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-dismiss="modal" data-target="#myModa"><i class="bi bi-info-circle"></i> Información de la Ruta</button>
-                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Modal 2 -->
-                    <div class="modal fade" id="myModa">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <!-- Encabezado del modal -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title text-center fs-5">Paradas del Conductor</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Contenido del modal -->
-                                <div class="modal-body">
-                                    <table class="table table-hover table-bordered">
-                                        <thead class="table-primary">
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Nombre parada</th>
-                                                <th scope="col">Hora de llegada</th>
-                                                <th scope="col">Hora de salida</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">Ruta de inicio</th>
-                                                <td>Avenida del marques</td>
-                                                <td>3:00pm</td>
-                                                <td>3:10 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Ruta Final</th>
-                                                <td>Avenida Revolución</td>
-                                                <td>3:30pm</td>
-                                                <td>3:35pm</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    
-                                </div>
-
-                                <!-- Pie del modal -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal"
-                                        data-target="#myModa"><i class="bi bi-pencil-square"></i> Registrar Ruta</button>
-                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- INICIO DE MODAL PARA REGISTRAR AMBAS -->
-                    <!-- Modal 1 -->
-                    <div class="modal fade" id="myModal2">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-                                <!-- Encabezado del modal -->
-                                <div class="modal-header">
-                                    <h4 class="modal-title text-center">Datos del Conductor</h4>
-                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                </div>
-
-                                <!-- Contenido del modal -->
-                                <div class="modal-body">
-                                    <img src="https://i.pinimg.com/736x/19/03/3b/19033b75e736bf231dedd8b7840f4e6e.jpg"
-                                        alt="Imagen de usuario" class="modal-image">
-                                    <div class="mb-3">
-                                        <div class="mb-2">
-                                            <label for="formFileSm" class="form-labe fw-bold">Nombre:</label>
-                                            <div class="mb-2">
-                                                <label for="formFileSm" class="form-label">Graciela Martinez Guzman</label>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFileSm" class="form-label fw-bold">Matricula</label>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFileSm" class="form-label">121029463</label>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFileSm" class="form-label fw-bold">Telefono</label>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="formFileSm" class="form-label">4481597896</label>
-                                            </div>
-
-                                        </div>
-
-                                    </div>
-                                </div>
-
-                                <!-- Pie del modal -->
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-dismiss="modal" data-target="#exampleModal5"><i class="bi bi-info-circle"></i> Información de la Ruta</button>
-                                    <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal fade" id="exampleModal5" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Conductor</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="table table-hover table-bordered">
-                                        <h1>Ruda de Ida</h1>
-                                        <thead class="table-primary">
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Nombre parada</th>
-                                                <th scope="col">Hora de llegada</th>
-                                                <th scope="col">Hora de salida</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">Ruta de inicio</th>
-                                                <td>Avenida del marques</td>
-                                                <td>3:00pm</td>
-                                                <td>3:10 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Ruta Final</th>
-                                                <td>Avenida Revolución</td>
-                                                <td>3:30pm</td>
-                                                <td>3:35pm</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                    <table class="table table-hover table-bordered">
-                                        <h1>Ruta de Vuelta</h1>
-                                        <thead class="table-primary">
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Nombre parada</th>
-                                                <th scope="col">Hora de llegada</th>
-                                                <th scope="col">Hora de salida</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">Ruta de inicio</th>
-                                                <td>Avenida del marques</td>
-                                                <td>3:00pm</td>
-                                                <td>3:10 pm</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Ruta Final</th>
-                                                <td>Avenida Revolución</td>
-                                                <td>3:30pm</td>
-                                                <td>3:35pm</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                     <!-- Pie del modal -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-dismiss="modal" data-target="#exampleModal5"><i class="bi bi-info-circle"></i>Registrar Ruta</button>
-                                        <button type="button" class="btn btn-outline-danger" data-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--CIERRE MODAL-->
+                    
+                    
                 </div>
             </div>
         </div>

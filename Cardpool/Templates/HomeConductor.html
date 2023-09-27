@@ -285,12 +285,14 @@
                                     </tr>
                                     
                                     {%for parada in paradas%}
+                                    {%if ruta.0 in parada%}
                                     <tr>
                                         <td>{{parada.0}}</td>
                                         <td>{{parada.1}}</td>
                                         <td>{{parada.2}}</td>
 
                                     </tr>
+                                    {%endif%}
                                     {%endfor%}
                                     
                                 </table>
