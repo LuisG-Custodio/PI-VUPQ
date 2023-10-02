@@ -322,7 +322,7 @@
                     </div>
                 </div>
                 <!-- Columna derecha para Card 2, 3 y 4 -->
-                <div class="col-md-5 ms-auto">
+                <div class="col-md-5 ms-auto py-4">
                     <!-- Card 2 -->
                     <div class="card segunda-card mb-4">
                         <div class="card-body text-center mx-auto">
@@ -339,30 +339,12 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Card 3 (Raiting) -->
-                    <div class="rating-box text-center mb-4">
-                        <header>¿Cómo fue tu experiencia?</header>
-                        <div class="stars">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
                     <div class="card cuarta-card">
                         <div class="card-body text-center mx-auto">
                             <div class="container">
-                            <h1 class="mt-1">Cuadro de Comentarios</h1>
-                            <!-- Formulario de Comentarios -->
-                                <form id="comentarioForm" disabled>
-                                    <div class="form-group">
-                                    <textarea class="form-control" id="comentario" rows="4" placeholder="Escribe tu comentario"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-outline-primary mt-2">Enviar Comentario</button>
-                                </form>
+                                <h1 class="mt-1">Calificación Final</h1>
+                                <hr>
+                                <button id="btnRedireccionar" type="button" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Calificación</button>
                             </div>
                         </div>
                     </div>
@@ -461,6 +443,19 @@
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="sweetalert2.all.min.js"></script>
         <!-- FIN SCRIPTS -->
+
+           <!-- REDIRECCION DE PAGINA -->
+           <script>
+            // Selecciona el botón por su id
+            const btnRedireccionar = document.getElementById('btnRedireccionar');
+        
+            // Agrega un evento clic al botón
+            btnRedireccionar.addEventListener('click', function() {
+                // Redirige a la página HTML deseada
+                window.location.href = 'Calificacion.html';
+            });
+        </script>
+        
         <!-- SCIPT PARA MODAL CAMBIAR CONTRASEÑA -->
         <script>
             // Obtén una referencia al enlace "Cambiar Contraseña"
