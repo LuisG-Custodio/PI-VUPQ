@@ -69,44 +69,6 @@
                 text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
                 border-radius: 6px;
             }
-
-            .rating-box {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                /* Centra horizontalmente */
-                justify-content: center;
-                /* Centra verticalmente */
-                background: #fff;
-                padding: 25px 50px 35px;
-                border-radius: 8px;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
-            }
-
-            .rating-box header {
-                font-size: 22px;
-                color: #dadada;
-                font-weight: 500;
-                margin-bottom: 20px;
-                text-align: center;
-            }
-
-            .rating-box .stars {
-                display: flex;
-                align-items: center;
-                gap: 25px;
-            }
-
-            .stars i {
-                color: #e6e6e6;
-                font-size: 35px;
-                cursor: pointer;
-                transition: color 0.2s ease;
-            }
-
-            .stars i.active {
-                color: #ff9c1a;
-            }
         </style>
     
     </head>
@@ -129,6 +91,9 @@
                     <li class="nav-item">
                       <a class="nav-link text-white" href="/conductor">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/">Solicitudes</a>
+                      </li>
                 </ul><!-- FIN ELEMENTOS A LA IZQUIERDA -->
                 <!-- ELEMENTOS A LA DERECHA -->
                 <div class="ml-auto">
@@ -339,7 +304,7 @@
 
 
                 <!-- Columna derecha para Card 2, 3 y 4 -->
-                <div class="col-md-5 ms-auto">
+                <div class="col-md-5 ms-auto py-4">
                     <!-- Card 2 -->
                     <div class="card segunda-card mb-4">
                         <div class="card-body text-center mx-auto">
@@ -363,29 +328,12 @@
                             </div>
                         </div>
                     </div>
-                    <!-- Card 3 (Raiting) -->
-                    <div class="rating-box text-center mb-4">
-                        <header>¿Cómo fue tu experiencia?</header>
-                        <div class="stars">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                    </div>
-                    <!-- Card 4 -->
                     <div class="card cuarta-card">
                         <div class="card-body text-center mx-auto">
                             <div class="container">
-                            <h1 class="mt-1">Cuadro de Comentarios</h1>
-                            <!-- Formulario de Comentarios -->
-                                <form id="comentarioForm" disabled>
-                                    <div class="form-group">
-                                    <textarea class="form-control" id="comentario" rows="4" placeholder="Escribe tu comentario"></textarea>
-                                    </div>
-                                    <button type="submit" class="btn btn-outline-primary mt-2">Enviar Comentario</button>
-                                </form>
+                                <h1 class="mt-1">Calificación Final</h1>
+                                <hr>
+                                <button id="btnRedireccionar" type="button" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Calificación</button>
                             </div>
                         </div>
                     </div>
@@ -533,6 +481,19 @@
                 modal.show();
             });
         </script><!-- FIN SCRIPT ESTRELLAS -->
+
+        <!-- REDIRECCION DE PAGINA -->
+        <script>
+            // Selecciona el botón por su id
+            const btnRedireccionar = document.getElementById('btnRedireccionar');
+        
+            // Agrega un evento clic al botón
+            btnRedireccionar.addEventListener('click', function() {
+                // Redirige a la página HTML deseada
+                window.location.href = 'Calificacion.html';
+            });
+        </script>
+        
         
     </body><!-- FIN BODY -->
 </html>

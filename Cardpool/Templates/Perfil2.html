@@ -16,7 +16,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.20.0/font/bootstrap-icons.css" rel="stylesheet">
 
         
-        <title>CARPOOL</title>
+        <title>Perfil Conductor</title>
         <style>
                         /* ESTILOS DEL BODY */
             body {
@@ -195,15 +195,18 @@
                                 </div> 
                                 <div class="row">
                                     <!-- Contenedor de botones -->
-<div class="col p-3 d-flex align-items-center">
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-outline-primary mb-2 me-2 justify-content-md-center mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal2">
-        <i class="bi bi-person-add"></i> Agregar Auto
-    </button>
-    <button type="button" class="btn btn-outline-warning mb-2 me-2 justify-content-md-center" data-bs-toggle="modal" data-bs-target="#passwordModal">
-        <i class="bi bi-file-lock"></i> Cambiar Contraseña
-    </button>
-</div>
+                                    <div class="col p-3 d-flex align-items-center">
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-outline-primary mb-2 me-2 justify-content-md-center mx-4" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+                                            <i class="bi bi-person-add"></i> Agregar Auto
+                                        </button>
+                                        <button type="button" class="btn btn-outline-warning mb-2 me-2 justify-content-md-center" data-bs-toggle="modal" data-bs-target="#passwordModal">
+                                            <i class="bi bi-file-lock"></i> Cambiar Contraseña
+                                        </button>
+                                    </div>
+                                    <div class="col p-3 me-4 d-flex flex-column align-items-center">
+                                        <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#telefonoModal"><i class="bi bi-phone"></i> Actualizar Teléfono</button>
+                                    </div>
                                 </div> 
                             </li>
                         </ul>
@@ -215,7 +218,7 @@
         
                 <div class="col-md-6 py-5">
                     <div class="card card-body">
-                        <h1>
+                        <h1 class="text-center">
                             Autos Registrados
                             <hr> <!-- CREA UNA LÍNEA DE SEPARACIÓN -->
                         </h1>
@@ -371,6 +374,30 @@
         </div>
       </div>
 
+         <!-- MODAL DE ACTUALIZAR TELÉFONO -->
+         <div class="modal fade" id="telefonoModal" tabindex="-1" aria-labelledby="telefonoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="telefonoModalLabel">Actualizar Teléfono</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <form action="/actualizar_telefono" method="POST">
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label for="inputTelefono" class="form-label">Nuevo Número de Teléfono</label>
+                                <input type="tel" class="form-control" id="inputTelefono" name="txtTelefono" required>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-outline-primary"><i class="bi bi-save"></i> Guardar Cambios</button>
+                            <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>        
+        <!-- FIN MODAL TELÉFONO -->
         
         <!-- INICIO FOOTER -->
         <footer class="text-center text-white" style="background-color: #0a4275;">
