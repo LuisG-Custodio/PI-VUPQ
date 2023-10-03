@@ -116,6 +116,7 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {%for sol in solicitudes%}
                         <tr class="me-3 ms-5">
                             <td class="d-flex align-items-center">
                                 <div class="me-5">
@@ -123,15 +124,15 @@
                                     <img src="https://th.bing.com/th/id/R.0ea429d8c4cfcfd1bc91c59e1e8023f2?rik=qSy2dgKJRY4efw&riu=http%3a%2f%2ftusimagenesde.com%2fwp-content%2fuploads%2f2014%2f09%2fimagenes-de-personas-2.jpg&ehk=dhYrjUUkCtGOEUs1vDrN%2fAtRPCGBuErA%2fuh%2bnZAt5b0%3d&risl=&pid=ImgRaw&r=0" width="80px" class="img-thumbnail">
                                 </div>
                                 <div class="text-center me-5">
-                                    <p>Graciela Álvarez González</p>
+                                    <p>{{sol.4}}</p>
                                 </div>
                             </td>
                             <td>
-                                <button type="reset" class="btn btn-outline-primary btn-block me-2 mb-5"><i class="bi bi-check2"></i> Aceptar</button>
+                                <a href="/solicitud/{{sol.0}}"><button type="reset" class="btn btn-outline-primary btn-block me-2 mb-5"><i class="bi bi-check2"></i> Aceptar</button></a>
                                 <button type="reset" class="btn btn-outline-danger btn-block me-2 mb-5"><i class="bi bi-x"></i> Rechazar</button>
                             </td>
                         </tr>
-                        
+                        {%endfor%}
                     </tbody>
                 </table>
             </div>

@@ -289,7 +289,7 @@ def reserva_ruta(id):
     mysql.connection.commit()
     return redirect("/pasajero")
 
-#añadir paradas
+#actualizar_telefono
 @app.route('/actualizar_telefono', methods=['POST'])
 def actualizar_telefono():
     VTelefono=request.form['txtTelefono']
@@ -297,6 +297,21 @@ def actualizar_telefono():
     CC.execute("update pasajero set telefono=%s where id_pasajero=%s",(VTelefono,session["Pasajero"],))
     mysql.connection.commit()
     return redirect("/pasajero")
+
+#solicitudes
+@app.route('/conductor/solicitudes')
+def solicitudes():
+    CC= mysql.connection.cursor()
+    CC.execute("select pasajero.id_pasajero,nombre_ruta,tipo_ruta,i.matricula,nombre_completo,sexo from ruta inner join relacion_ruta as rr on ruta.id_ruta=rr.id_ruta inner join pasajero on rr.id_pasajero=pasajero.id_pasajero inner join vw_inscripciones as i on pasajero.matricula=i.matricula where ruta.id_conductor=%s",(session["Conductor"],))
+    solicitudes=CC.fetchall()
+    return render_template('Solicitudes.html',solicitudes=solicitudes)
+
+@app.route('/solicitud/<id>')
+def solicitud(id):
+    CC= mysql.connection.cursor()
+    CC.execute("update relacion_ruta set aprovacion=1 where id_pasajero=%s",(id,))
+    mysql.connection.commit()
+    return redirect("/conductor/solicitudes")
 
 @app.route('/admin')
 def admin():
