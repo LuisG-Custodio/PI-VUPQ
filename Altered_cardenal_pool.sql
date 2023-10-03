@@ -69,31 +69,19 @@ id_ruta int,
 foreign key (id_ruta) references Ruta(id_ruta) on delete cascade on update cascade
 );
 
-create table Relacion_ruta(
-id int not null primary key auto_increment,
-id_ruta int,
-id_referencias int,
-foreign key (id_ruta) references Ruta(id_ruta) on delete cascade on update cascade,
-foreign key (id_referencias) references Referencias(id_referencias) on delete cascade on update cascade
-);
-
-create table Horarios(
-id_horario int,
-id_conductor int,
-dia varchar(10),
-turno varchar(10),
-salida time,
-id_relacion int,
-foreign key (id_relacion) references Relacion_ruta(id) on delete cascade on update cascade
-);
-
 create table Pasajero(
 id_pasajero int not null primary key auto_increment,
 matricula varchar(15),
-telefono varchar(10),
-id_conductor int,
-aprovacion_flag tinyint default 0,
-foreign key (id_conductor) references Conductor(id_conductor) on delete cascade on update cascade
+telefono varchar(10)
+);
+
+create table Relacion_ruta(
+id int not null primary key auto_increment,
+id_ruta int,
+id_pasajero int,
+aprovacion tinyint default 0,
+foreign key (id_ruta) references Ruta(id_ruta) on delete cascade on update cascade,
+foreign key (id_pasajero) references Pasajero(id_pasajero) on delete cascade on update cascade
 );
 
 create table Administrador(
@@ -102,3 +90,6 @@ password binary
 );
 
 insert into vw_inscripciones (id, matricula, nombre_completo, cuatrimestre, nombre_carrera, sexo, correo_electronico, fecha_nacimiento, nss,clave_ingreso) values (1,'121039302','Luis Guillermo Custodio Serrano',7,'Sistemas Computacionales','Hombre','121039302@upq.edu.mx','1995-01-04','96109537918','123456');
+insert into vw_inscripciones (id, matricula, nombre_completo, cuatrimestre, nombre_carrera, sexo, correo_electronico, fecha_nacimiento, nss,clave_ingreso) values (2,'121037815','Angel Cristian Juárez Martínez',7,'Sistemas Computacionales','Hombre','121037815@upq.edu.mx','1999-11-14','95687512364','cz7575'),
+(3,'121039875','Edieneth Garduño Calderon',4,'Negocios Internacionales','Mujer','121039875@upq.edu.mx','2001-04-22','96109556789','delunoalocho8'),
+(4,'121014865','Eleana Martínez Salazar',1,'Mecatrónica','Mujer','121014865@upq.edu.mx','2000-12-12','961092531475','13972846');

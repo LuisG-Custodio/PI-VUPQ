@@ -272,6 +272,7 @@
                     <div class="row">
                         <div class="card primera-card">
                             <div class="card-body text-center">
+                                {%for ruta in rutas%}
                                 <h1>Detalles de Ruta</h1>
                                 <hr>
                                 <div>
@@ -303,6 +304,7 @@
                                     {%endfor%}
                                     
                                 </table>
+                                {%endfor%}
                             </div>
                         </div>
                     </div>
@@ -324,6 +326,7 @@
                 <!-- Columna derecha para Card 2, 3 y 4 -->
                 <div class="col-md-5 ms-auto py-4">
                     <!-- Card 2 -->
+                    {%for data in datos2%}
                     <div class="card segunda-card mb-4">
                         <div class="card-body text-center mx-auto">
                             <!-- Agregar las imágenes redondeadas -->
@@ -362,20 +365,13 @@
                     </div>
                     <form action="/" method="POST">
                         <div class="modal-body">
-                            <p><strong>Nombre:</strong> 
-                                {%for i in nombre2%}
-                                {{i}}
-                                {%endfor%}
+                            <p><strong>Nombre: {{data.2}}</strong> 
+                                
                             </p>
-                            <p><strong>Apellidos:</strong>
-                                {%for i in apellidos%}
-                                {{i}}
-                                {%endfor%}
-                            </p>
-                            <p><strong>Matrícula:</strong> {{datos2.0}}</p>
-                            <p><strong>Carrera:</strong> {{datos2.3}}</p>
-                            <p><strong>Género:</strong> {{datos2.4}}</p>
-                            <p><strong>Teléfono:</strong> {{telefono2.0}}</p>
+                            <p><strong>Matrícula: {{data.1}}</strong> </p>
+                            <p><strong>Carrera: {{data.4}}</strong> </p>
+                            <p><strong>Género: {{data.5}}</strong> </p>
+                            <p><strong>Teléfono: </strong> </p>
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
@@ -411,6 +407,7 @@
             </div>
         </div>
     </div>
+    {%endfor%}
     <!--FIN DEL MODAL DE LA INFORMACION DEL AUTOMOVIL-->
         
 

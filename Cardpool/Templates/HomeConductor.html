@@ -311,37 +311,14 @@
                             <!-- Agregar las imágenes redondeadas -->
                             <div class="row">
                                 <h3>Pasajeros</h3>
+                                {%for pasajero in pasajeros%}
                                 <div class="col-md-6 mb-4">
                                     <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
                                 </div>
-                                <div class="col-md-6">
-                                    <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
-                                </div>
-                                <div class="col-md-6">
-                                    <img src="https://th.bing.com/th/id/OIP.4ExqsKhmdKnjieXagyEolwHaHa?pid=ImgDet&rs=1" class="img-fluid rounded-circle" width="50%" data-toggle="modal" data-target="#myModal">
-                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="card cuarta-card">
-                        <div class="card-body text-center mx-auto">
-                            <div class="container">
-                                <h1 class="mt-1">Calificación Final</h1>
-                                <hr>
-                                <button id="btnRedireccionar" type="button" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Calificación</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!--Modal de INFO PASAJEROS-->
+                    <!--Modal de INFO PASAJEROS-->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -351,19 +328,31 @@
                     </div>
                     <form action="/" method="POST">
                         <div class="modal-body">
-                            <p><strong>Nombre:</strong> Nombre</p>
-                            <p><strong>Apellidos:</strong> Apellidos</p>
-                            <p><strong>Matrícula:</strong> Matricula</p>
-                            <p><strong>Correo Institucional:</strong> Matricula</p>
-                            <p><strong>Teléfono:</strong> Matricula</p>
-                            <p><strong>Carrera:</strong> Carrera</p>
-                            <p><strong>Género:</strong> Género</p>
-                            <p><strong>Tipo de Ruta:</strong> Ida</p>
+                            <p><strong>Nombre:</strong> {{pasajero.2}}</p>
+                            <p><strong>Matrícula:</strong> {{pasajero.1}}</p>
+                            <p><strong>Correo Institucional:</strong> {{pasajero.6}}</p>
+                            <p><strong>Teléfono:</strong> None</p>
+                            <p><strong>Carrera:</strong> {{pasajero.4}}</p>
+                            <p><strong>Género:</strong> {{pasajero.5}}</p>
                         </div>
                         <div class="modal-footer">
                             <button type="reset" class="btn btn-outline-warning" data-bs-dismiss="modal"><i class="bi bi-arrow-return-left"></i> Cerrar</button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+                    {%endfor%}
+                    <div class="card cuarta-card">
+                        <div class="card-body text-center mx-auto">
+                            <div class="container">
+                                <h1 class="mt-1">Calificación Final</h1>
+                                <hr>
+                                <button id="btnRedireccionar" type="button" class="btn btn-outline-primary"><i class="bi bi-file-lock"></i> Calificación</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
