@@ -101,10 +101,16 @@ def conductor():
         CC.execute("select punto_referencia,descripcion,hora,p.id_ruta from paradas as p inner join ruta as r on p.id_ruta=r.id_ruta where r.id_conductor=%s",(session["Conductor"],))
         paradas=CC.fetchall()
         CC.execute("select id_pasajero from ruta inner join relacion_ruta on ruta.id_ruta=relacion_ruta.id_ruta where id_conductor=%s",(session["Conductor"],))
-        id_pasajeros=CC.fetchall()
-        CC.execute("select matricula from Pasajero where id_pasajero in (%s)",(id_pasajeros,))
-        matriculas=CC.fetchall()
-        CC.execute("select * from vw_inscripciones where matricula in (%s)",(matriculas,))
+        aux=CC.fetchall()  
+        id_pasajeros=[]
+        for a in aux:
+            id_pasajeros.append(int(a[0]))
+        CC.execute("select matricula from Pasajero where id_pasajero in (%s)",(str(id_pasajeros),))
+        aux=CC.fetchall()
+        matriculas=[]
+        for a in aux:
+            id_pasajeros.append(int(a[0]))
+        CC.execute("select * from vw_inscripciones where matricula in (%s)",(str(matriculas),))
         pasajeros=CC.fetchall()
         return render_template('HomeConductor.html',rutas=rutas,Vnone=Vnone,paradas=paradas,pasajeros=pasajeros)
 
